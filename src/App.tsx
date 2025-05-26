@@ -1,10 +1,13 @@
-import { Box, Typography } from '@mui/material';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
 
 function App() {
   return (
-    <Box sx={{ p: 4 }}>
-      <Typography>Trade Layback App</Typography>
-    </Box>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Home />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

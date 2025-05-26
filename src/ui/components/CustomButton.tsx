@@ -1,0 +1,73 @@
+import React from 'react';
+import type { LinkProps } from 'react-router-dom'; // <–– uvezi LinkProps
+import Button, { type ButtonProps } from '@mui/material/Button';
+import { styled } from '@mui/material/styles';
+import BlockIcon from '@mui/icons-material/Block';
+
+type CustomButtonProps = Omit<ButtonProps, 'variant'> &
+  LinkProps & {
+    variant?: 'default' | 'primary';
+  };
+
+const StyledButton = styled(Button, {
+  shouldForwardProp: (prop) => prop !== 'variantType',
+})<{ variantType: NonNullable<CustomButtonProps['variant']> }>(
+  ({ theme, variantType }) => {
+    const baseStyle = {
+      textTransform: 'none' as const,
+      fontSize: '16px',
+      borderRadius: '20px',
+      height: 44,
+      position: 'relative' as const,
+
+      '& .disabledIcon': {
+        position: 'absolute',
+        right: '12px',
+        top: '50%',
+        transform: 'translateY(-50%)',
+        opacity: 0,
+        transition: 'opacity 0.2s',
+      },
+
+      '&.Mui-disabled': {
+        pointerEvents: 'auto',
+      },
+      '&.Mui-disabled:hover .disabledIcon': {
+        opacity: 1,
+      },
+
+      '&:disabled': {
+        color: 'gray.main',
+      },
+    };
+
+    switch (variantType) {
+      case 'primary':
+        return {
+          ...baseStyle,
+          backgroundColor: theme.palette.primary.main,
+          color: 'black',
+        };
+      default:
+        return {
+          ...baseStyle,
+          backgroundColor: 'bgBlack.main',
+          color: 'gray.light',
+        };
+    }
+  }
+);
+
+const CustomButton: React.FC<CustomButtonProps> = ({
+  variant = 'default',
+  children,
+  disableRipple = false,
+  ...rest
+}) => (
+  <StyledButton variantType={variant} disableRipple={disableRipple} {...rest}>
+    {children}
+    <BlockIcon className='disabledIcon' fontSize='small' />
+  </StyledButton>
+);
+
+export default CustomButton;
