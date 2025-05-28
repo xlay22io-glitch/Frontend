@@ -1,5 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { login, logout, register, verifyEmail } from '../services/auth-api';
+import {
+  login,
+  logout,
+  register,
+  requestPasswordReset,
+  resetPassword,
+  verifyEmail,
+} from '../services/auth-api';
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -76,6 +83,36 @@ export const useLogout = () => {
     },
     onError: (error: any) => {
       toast.error(error || 'Logout failed.');
+    },
+  });
+};
+
+export const useRequestPasswordReset = () => {
+  return useMutation({
+    mutationFn: (data: { email: string }) => requestPasswordReset(data),
+    onSuccess: (res) => {
+      toast.success(res?.detail || 'Password reset link sent to your email.');
+    },
+    onError: (error: any) => {
+      const errorMessage =
+        error?.email || error?.error || 'Failed to send reset link.';
+      toast.error(errorMessage);
+    },
+  });
+};
+
+export const useResetPassword = () => {
+  const navigate = useNavigate();
+
+  return useMutation({
+    mutationFn: resetPassword,
+    onSuccess: () => {
+      toast.success('Password reset successfully!');
+      navigate('/login');
+    },
+    onError: (error: any) => {
+      const message = error?.detail || error?.password?.[0] || 'Reset failed';
+      toast.error(message);
     },
   });
 };

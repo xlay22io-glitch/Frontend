@@ -66,3 +66,41 @@ export const logout = async (data: { refresh: string }) => {
     return handleError(error, 'An error occurred during logout.');
   }
 };
+
+export const requestPasswordReset = async (data: { email: string }) => {
+  try {
+    const response = await axiosInstance.post(
+      `/auth/request-reset/password/`,
+      data,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+    return response.data;
+  } catch (error: unknown) {
+    return handleError(
+      error,
+      'An error occurred while requesting password reset.'
+    );
+  }
+};
+
+export const resetPassword = async (data: {
+  uid: string;
+  token: string;
+  password: string;
+  confirm_password: string;
+}) => {
+  try {
+    const response = await axiosInstance.post(`/auth/reset/password/`, data, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    return response.data;
+  } catch (error: unknown) {
+    return handleError(error, 'Reset password failed.');
+  }
+};

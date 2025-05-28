@@ -8,6 +8,8 @@ import Home from './pages/Home';
 import Register from './pages/auth/Register';
 import Login from './pages/auth/Login';
 import EmailSuccess from './pages/success/EmailSuccess';
+import ForgotPassword from './pages/auth/ForgotPassword';
+import ResetPassword from './pages/auth/ResetPassword';
 
 function App() {
   return (
@@ -54,6 +56,22 @@ function App() {
             element={
               <Layout>
                 <EmailSuccess />
+              </Layout>
+            }
+          />
+          <Route
+            path='/forgot-password'
+            element={
+              <Layout>
+                <ForgotPassword />
+              </Layout>
+            }
+          />
+          <Route
+            path='/auth/reset/password'
+            element={
+              <Layout>
+                <ResetPassword />
               </Layout>
             }
           />
