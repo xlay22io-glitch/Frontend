@@ -17,6 +17,7 @@ const Layout = ({ children }: LayoutProps) => {
           minHeight: 'calc(100vh - 90px)',
           paddingTop: '80px',
           color: 'white',
+          backgroundColor: (theme) => theme.palette.background.default,
         }}
       >
         {children}

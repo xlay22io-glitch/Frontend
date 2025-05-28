@@ -5,6 +5,7 @@ declare module '@mui/material/styles' {
     customColors: {
       smoothGray: string;
       mediumGray: string;
+      lightGray: string;
     };
   }
 
@@ -12,6 +13,7 @@ declare module '@mui/material/styles' {
     customColors?: {
       smoothGray?: string;
       mediumGray?: string;
+      lightGray?: string;
     };
   }
 }
@@ -21,6 +23,7 @@ const theme = createTheme({
     customColors: {
       smoothGray: '#1A1E20',
       mediumGray: '#A5A5A5',
+      lightGray: '#313131',
     },
     primary: {
       main: '#BAFD02',

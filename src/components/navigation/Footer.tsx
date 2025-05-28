@@ -15,6 +15,8 @@ const Footer = () => {
         alignItems: 'center',
         px: 5,
         width: '100%',
+        borderTop: (theme) =>
+          `1px solid ${theme.palette.customColors.lightGray}`,
       }}
     >
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>

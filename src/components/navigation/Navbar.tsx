@@ -11,7 +11,7 @@ import {
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link, useNavigate } from 'react-router-dom';
 import { alpha } from '@mui/material/styles';
-import CustomButton from '../../ui/components/CustomButton';
+import CustomButton from '../common/CustomButton';
 import CloseIcon from '@mui/icons-material/Close';
 import logo from '../../assets/icons/logo.png';
 

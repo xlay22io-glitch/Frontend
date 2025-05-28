@@ -1,5 +1,5 @@
 import React from 'react';
-import type { LinkProps } from 'react-router-dom'; // <–– uvezi LinkProps
+import type { LinkProps } from 'react-router-dom';
 import Button, { type ButtonProps } from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 import BlockIcon from '@mui/icons-material/Block';
