@@ -20,11 +20,13 @@ import faqsIcon from '../../assets/icons/faqs-icon.png';
 import homeIcon from '../../assets/icons/home-icon.png';
 import useAuthStore from '../../store/auth-store';
 import logoutIcon from '../../assets/icons/logout-icon.png';
+import { useLogout } from '../../hooks/auth-hook';
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const navigate = useNavigate();
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
+  const { mutate: logoutUser, isPending } = useLogout();
 
   const toggleDrawer = () => setMobileOpen((prev) => !prev);
 
@@ -35,7 +37,7 @@ const Navbar = () => {
   ];
 
   const handleLogout = () => {
-    console.log('logout');
+    logoutUser();
   };
 
   return (
@@ -159,6 +161,7 @@ const Navbar = () => {
             {isAuthenticated ? (
               <CustomButton
                 onClick={handleLogout}
+                disabled={isPending}
                 variant='default'
                 sx={(theme) => ({
                   color: 'common.white',
@@ -167,7 +170,7 @@ const Navbar = () => {
                   width: '114px',
                 })}
               >
-                Logout
+                {isPending ? 'Logging out...' : 'Logout'}
               </CustomButton>
             ) : (
               <>

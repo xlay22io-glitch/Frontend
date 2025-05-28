@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { login, register, verifyEmail } from '../services/auth-api';
+import { login, logout, register, verifyEmail } from '../services/auth-api';
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -58,6 +58,24 @@ export const useVerifyEmail = () => {
     },
     onError: (error: any) => {
       toast.error(error?.detail || 'Email verification failed.');
+    },
+  });
+};
+
+export const useLogout = () => {
+  const navigate = useNavigate();
+  const refreshToken = useAuthStore((state) => state.refreshToken);
+  const clearAuth = useAuthStore((state) => state.clearAuth);
+
+  return useMutation({
+    mutationFn: () => logout({ refresh: refreshToken! }),
+    onSuccess: () => {
+      clearAuth();
+      navigate('/login');
+      toast.success('You have been logged out.');
+    },
+    onError: (error: any) => {
+      toast.error(error || 'Logout failed.');
     },
   });
 };

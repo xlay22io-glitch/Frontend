@@ -53,3 +53,16 @@ export const verifyEmail = async (data: { uid: string; token: string }) => {
     return handleError(error, 'Email verification failed.');
   }
 };
+
+export const logout = async (data: { refresh: string }) => {
+  try {
+    const response = await axiosInstance.post(`/auth/logout/`, data, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    return response.data;
+  } catch (error: unknown) {
+    return handleError(error, 'An error occurred during logout.');
+  }
+};

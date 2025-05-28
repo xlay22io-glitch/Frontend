@@ -78,6 +78,7 @@ const Register = () => {
             <CustomButton
               type='submit'
               variant='primary'
+              disabled={isPending}
               sx={{
                 ml: 2,
                 textTransform: 'none',
