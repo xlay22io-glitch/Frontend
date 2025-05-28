@@ -40,3 +40,16 @@ export const login = async (data: { email: string; password: string }) => {
     return handleError(error, 'An error occurred during logging in process.');
   }
 };
+
+export const verifyEmail = async (data: { uid: string; token: string }) => {
+  try {
+    const response = await axiosInstance.post(`/auth/verify/email/`, data, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    return response.data;
+  } catch (error: unknown) {
+    return handleError(error, 'Email verification failed.');
+  }
+};

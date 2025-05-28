@@ -14,15 +14,17 @@ import { alpha } from '@mui/material/styles';
 import CustomButton from '../common/CustomButton';
 import CloseIcon from '@mui/icons-material/Close';
 import logo from '../../assets/icons/logo.png';
-// import accIcon from '../../assets/icons/account-icon.png'
+import accIcon from '../../assets/icons/account-icon.png';
 import backCalcIcon from '../../assets/icons/back-calculator-icon.png';
 import faqsIcon from '../../assets/icons/faqs-icon.png';
 import homeIcon from '../../assets/icons/home-icon.png';
-// import logoutIcon from '../../assets/icons/logout-icon.png'
+import useAuthStore from '../../store/auth-store';
+import logoutIcon from '../../assets/icons/logout-icon.png';
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const navigate = useNavigate();
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
 
   const toggleDrawer = () => setMobileOpen((prev) => !prev);
 
@@ -31,6 +33,10 @@ const Navbar = () => {
     { icon: backCalcIcon, label: 'Back Calculator', path: '/calculator' },
     { icon: faqsIcon, label: 'FAQ', path: '/faq' },
   ];
+
+  const handleLogout = () => {
+    console.log('logout');
+  };
 
   return (
     <>
@@ -150,27 +156,44 @@ const Navbar = () => {
               },
             }}
           >
-            <CustomButton
-              component={Link}
-              to='/login'
-              variant='default'
-              sx={(theme) => ({
-                color: 'common.white',
-                border: `2px solid ${theme.palette.black.medium}`,
-                textTransform: 'none',
-                width: '114px',
-              })}
-            >
-              Log in
-            </CustomButton>
-            <CustomButton
-              component={Link}
-              to='/register'
-              variant='primary'
-              sx={{ ml: 2, textTransform: 'none', width: '114px' }}
-            >
-              Register
-            </CustomButton>
+            {isAuthenticated ? (
+              <CustomButton
+                onClick={handleLogout}
+                variant='default'
+                sx={(theme) => ({
+                  color: 'common.white',
+                  border: `2px solid ${theme.palette.black.medium}`,
+                  textTransform: 'none',
+                  width: '114px',
+                })}
+              >
+                Logout
+              </CustomButton>
+            ) : (
+              <>
+                <CustomButton
+                  component={Link}
+                  to='/login'
+                  variant='default'
+                  sx={(theme) => ({
+                    color: 'common.white',
+                    border: `2px solid ${theme.palette.black.medium}`,
+                    textTransform: 'none',
+                    width: '114px',
+                  })}
+                >
+                  Log in
+                </CustomButton>
+                <CustomButton
+                  component={Link}
+                  to='/register'
+                  variant='primary'
+                  sx={{ ml: 2, textTransform: 'none', width: '114px' }}
+                >
+                  Register
+                </CustomButton>
+              </>
+            )}
           </Box>
 
           <Box
@@ -247,49 +270,104 @@ const Navbar = () => {
             </ListItem>
           ))}
 
-          <ListItem disablePadding>
-            <ListItemText
-              primary={
-                <Typography
-                  onClick={() => {
-                    navigate('/login');
-                    setMobileOpen(false);
-                  }}
-                  sx={{
-                    fontSize: '18px',
-                    fontWeight: 500,
-                    pl: 2,
-                    py: 1.5,
-                    cursor: 'pointer',
-                  }}
-                >
-                  Login
-                </Typography>
-              }
-            />
-          </ListItem>
+          {isAuthenticated ? (
+            <>
+              <ListItem disablePadding>
+                <ListItemText
+                  primary={
+                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                      <Box component='img' src={accIcon} alt='Account Icon' />
+                      <Typography
+                        onClick={() => {
+                          navigate('/account');
+                          setMobileOpen(false);
+                        }}
+                        sx={{
+                          fontSize: '18px',
+                          fontWeight: 500,
+                          pl: 2,
+                          py: 1.5,
+                          cursor: 'pointer',
+                        }}
+                      >
+                        Account
+                      </Typography>
+                    </Box>
+                  }
+                />
+              </ListItem>
+              <ListItem disablePadding>
+                <ListItemText
+                  primary={
+                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                      <Box component='img' src={logoutIcon} alt='Logout Icon' />
+                      <Typography
+                        onClick={() => {
+                          handleLogout();
+                          setMobileOpen(false);
+                        }}
+                        sx={{
+                          fontSize: '18px',
+                          fontWeight: 500,
+                          pl: 2,
+                          py: 1.5,
+                          cursor: 'pointer',
+                        }}
+                      >
+                        Logout
+                      </Typography>
+                    </Box>
+                  }
+                />
+              </ListItem>
+            </>
+          ) : (
+            <>
+              <ListItem disablePadding>
+                <ListItemText
+                  primary={
+                    <Typography
+                      onClick={() => {
+                        navigate('/login');
+                        setMobileOpen(false);
+                      }}
+                      sx={{
+                        fontSize: '18px',
+                        fontWeight: 500,
+                        pl: 2,
+                        py: 1.5,
+                        cursor: 'pointer',
+                      }}
+                    >
+                      Login
+                    </Typography>
+                  }
+                />
+              </ListItem>
 
-          <ListItem disablePadding>
-            <ListItemText
-              primary={
-                <Typography
-                  onClick={() => {
-                    navigate('/register');
-                    setMobileOpen(false);
-                  }}
-                  sx={{
-                    fontSize: '18px',
-                    fontWeight: 500,
-                    pl: 2,
-                    py: 1.5,
-                    cursor: 'pointer',
-                  }}
-                >
-                  Register
-                </Typography>
-              }
-            />
-          </ListItem>
+              <ListItem disablePadding>
+                <ListItemText
+                  primary={
+                    <Typography
+                      onClick={() => {
+                        navigate('/register');
+                        setMobileOpen(false);
+                      }}
+                      sx={{
+                        fontSize: '18px',
+                        fontWeight: 500,
+                        pl: 2,
+                        py: 1.5,
+                        cursor: 'pointer',
+                      }}
+                    >
+                      Register
+                    </Typography>
+                  }
+                />
+              </ListItem>
+            </>
+          )}
         </List>
       </Drawer>
     </>

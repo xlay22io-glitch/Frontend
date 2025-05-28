@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { login, register } from '../services/auth-api';
+import { login, register, verifyEmail } from '../services/auth-api';
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -46,6 +46,18 @@ export const useLogin = () => {
     onError: (error: any) => {
       const errorMessage = error?.detail?.[0] || 'Login failed.';
       toast.error(errorMessage);
+    },
+  });
+};
+
+export const useVerifyEmail = () => {
+  return useMutation({
+    mutationFn: (data: { uid: string; token: string }) => verifyEmail(data),
+    onSuccess: (res) => {
+      toast.success(res?.detail || 'Email verified successfully.');
+    },
+    onError: (error: any) => {
+      toast.error(error?.detail || 'Email verification failed.');
     },
   });
 };

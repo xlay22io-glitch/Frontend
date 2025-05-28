@@ -2,9 +2,12 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Layout from './components/layout/Layout';
+import PublicRoute from './components/routes/PublicRoute';
+// import ProtectedRoute from './components/routes/ProtectedRoute';
 import Home from './pages/Home';
 import Register from './pages/auth/Register';
 import Login from './pages/auth/Login';
+import EmailSuccess from './pages/success/EmailSuccess';
 
 function App() {
   return (
@@ -29,22 +32,32 @@ function App() {
             </Layout>
           }
         />
-        <Route
-          path='/register'
-          element={
-            <Layout>
-              <Register />
-            </Layout>
-          }
-        />
-        <Route
-          path='/login'
-          element={
-            <Layout>
-              <Login />
-            </Layout>
-          }
-        />
+        <Route element={<PublicRoute />}>
+          <Route
+            path='/register'
+            element={
+              <Layout>
+                <Register />
+              </Layout>
+            }
+          />
+          <Route
+            path='/login'
+            element={
+              <Layout>
+                <Login />
+              </Layout>
+            }
+          />
+          <Route
+            path='/auth/verify'
+            element={
+              <Layout>
+                <EmailSuccess />
+              </Layout>
+            }
+          />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
