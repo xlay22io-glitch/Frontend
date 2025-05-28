@@ -1,7 +1,27 @@
 import { createTheme } from '@mui/material/styles';
 
+declare module '@mui/material/styles' {
+  interface Palette {
+    customColors: {
+      smoothGray: string;
+      mediumGray: string;
+    };
+  }
+
+  interface PaletteOptions {
+    customColors?: {
+      smoothGray?: string;
+      mediumGray?: string;
+    };
+  }
+}
+
 const theme = createTheme({
   palette: {
+    customColors: {
+      smoothGray: '#1A1E20',
+      mediumGray: '#A5A5A5',
+    },
     primary: {
       main: '#BAFD02',
     },
@@ -16,6 +36,9 @@ const theme = createTheme({
     gray: {
       main: '#9E9E9E',
       light: '#F6F6F6',
+    },
+    background: {
+      default: '#111111',
     },
   },
   typography: {

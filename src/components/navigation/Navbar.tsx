@@ -1,0 +1,289 @@
+import { useState } from 'react';
+import {
+  Typography,
+  Box,
+  IconButton,
+  Drawer,
+  ListItem,
+  List,
+  ListItemText,
+} from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import { Link, useNavigate } from 'react-router-dom';
+import { alpha } from '@mui/material/styles';
+import CustomButton from '../../ui/components/CustomButton';
+import CloseIcon from '@mui/icons-material/Close';
+import logo from '../../assets/icons/logo.png';
+
+const Navbar = () => {
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const toggleDrawer = () => setMobileOpen((prev) => !prev);
+
+  const navItems = [
+    { label: 'Home', path: '/' },
+    { label: 'Back Calculator', path: '/calculator' },
+    { label: 'FAQ', path: '/faq' },
+  ];
+
+  return (
+    <>
+      <Box
+        sx={(theme) => ({
+          backgroundColor: theme.palette.customColors.smoothGray,
+          justifyContent: 'center',
+          borderBottom: `2px solid ${theme.palette.black.dark}`,
+          height: '80px',
+          px: { xs: 3, md: 6, lg: 12 },
+          position: 'fixed',
+          width: '100%',
+        })}
+      >
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            height: '100%',
+          }}
+        >
+          <Box sx={{ display: 'flex', alignItems: 'center', flex: 1 }}>
+            <Box
+              component='img'
+              src={logo}
+              alt='Logo icon'
+              sx={{
+                width: '16px',
+                height: '16px',
+              }}
+            />
+            <Typography
+              variant='h6'
+              component={Link}
+              to='/'
+              sx={{
+                textDecoration: 'none',
+                color: 'white',
+                fontWeight: 700,
+                fontSize: '18px',
+                lineHeight: '24px',
+                letterSpacing: '0px',
+                ml: 1,
+              }}
+            >
+              TradeLayback
+            </Typography>
+          </Box>
+
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              flex: 1,
+              gap: 4,
+
+              '@media (max-width: 1200px)': {
+                display: 'none',
+              },
+            }}
+          >
+            <CustomButton
+              component={Link}
+              to='/'
+              variant='default'
+              sx={(theme) => ({
+                textTransform: 'none',
+                px: 3,
+                fontWeight: 700,
+                fontSize: '16px',
+                color: alpha(theme.palette.common.white, 0.8),
+              })}
+            >
+              Home
+            </CustomButton>
+            <CustomButton
+              component={Link}
+              to='/calculator'
+              variant='default'
+              sx={(theme) => ({
+                textTransform: 'none',
+                px: 3,
+                fontWeight: 700,
+                fontSize: '16px',
+                color: alpha(theme.palette.common.white, 0.8),
+              })}
+            >
+              Back&nbsp;Calculator
+            </CustomButton>
+            <CustomButton
+              component={Link}
+              to='/faq'
+              variant='default'
+              sx={(theme) => ({
+                textTransform: 'none',
+                px: 3,
+                fontWeight: 700,
+                fontSize: '16px',
+                color: alpha(theme.palette.common.white, 0.8),
+              })}
+            >
+              FAQ
+            </CustomButton>
+          </Box>
+
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'flex-end',
+              flex: 1,
+              '@media (max-width: 1200px)': {
+                display: 'none',
+              },
+            }}
+          >
+            <CustomButton
+              component={Link}
+              to='/login'
+              variant='default'
+              sx={(theme) => ({
+                color: 'common.white',
+                border: `2px solid ${theme.palette.black.medium}`,
+                textTransform: 'none',
+                width: '114px',
+              })}
+            >
+              Log in
+            </CustomButton>
+            <CustomButton
+              component={Link}
+              to='/register'
+              variant='primary'
+              sx={{ ml: 2, textTransform: 'none', width: '114px' }}
+            >
+              Register
+            </CustomButton>
+          </Box>
+
+          <Box
+            sx={{
+              display: {
+                xs: 'flex',
+                lg: 'none',
+                alignItems: 'center',
+                height: '100%',
+              },
+            }}
+          >
+            <IconButton
+              onClick={toggleDrawer}
+              sx={{
+                color: 'white',
+                display: 'flex',
+                alignItems: 'center',
+              }}
+            >
+              <MenuIcon sx={{ fontSize: 28, transform: 'scaleY(1.2)' }} />
+            </IconButton>
+          </Box>
+        </Box>
+      </Box>
+
+      <Drawer
+        anchor='right'
+        open={mobileOpen}
+        onClose={toggleDrawer}
+        slotProps={{
+          paper: {
+            sx: {
+              width: '100%',
+              backgroundColor: 'black',
+              color: 'white',
+              p: 2,
+            },
+          },
+        }}
+      >
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+          <IconButton onClick={toggleDrawer} sx={{ color: '#fff' }}>
+            <CloseIcon sx={{ fontSize: 32 }} />
+          </IconButton>
+        </Box>
+
+        <List>
+          {navItems.map(({ label, path }) => (
+            <ListItem key={label} disablePadding>
+              <ListItemText
+                primary={
+                  <Typography
+                    onClick={() => {
+                      navigate(path);
+                      setMobileOpen(false);
+                    }}
+                    sx={{
+                      fontSize: '18px',
+                      fontWeight: 500,
+                      pl: 2,
+                      py: 1.5,
+                      cursor: 'pointer',
+                    }}
+                  >
+                    {label}
+                  </Typography>
+                }
+              />
+            </ListItem>
+          ))}
+
+          <ListItem disablePadding>
+            <ListItemText
+              primary={
+                <Typography
+                  onClick={() => {
+                    navigate('/login');
+                    setMobileOpen(false);
+                  }}
+                  sx={{
+                    fontSize: '18px',
+                    fontWeight: 500,
+                    pl: 2,
+                    py: 1.5,
+                    cursor: 'pointer',
+                  }}
+                >
+                  Login
+                </Typography>
+              }
+            />
+          </ListItem>
+
+          <ListItem disablePadding>
+            <ListItemText
+              primary={
+                <Typography
+                  onClick={() => {
+                    navigate('/register');
+                    setMobileOpen(false);
+                  }}
+                  sx={{
+                    fontSize: '18px',
+                    fontWeight: 500,
+                    pl: 2,
+                    py: 1.5,
+                    cursor: 'pointer',
+                  }}
+                >
+                  Register
+                </Typography>
+              }
+            />
+          </ListItem>
+        </List>
+      </Drawer>
+    </>
+  );
+};
+
+export default Navbar;

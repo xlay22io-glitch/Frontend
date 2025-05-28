@@ -51,7 +51,7 @@ const StyledButton = styled(Button, {
       default:
         return {
           ...baseStyle,
-          backgroundColor: 'bgBlack.main',
+          backgroundColor: 'customBox.smoothGray',
           color: 'gray.light',
         };
     }
