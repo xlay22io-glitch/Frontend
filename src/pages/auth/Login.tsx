@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { type LoginFormInputs, loginSchema } from '../../utils/validation';
 import { useNavigate } from 'react-router-dom';
+import { useLogin } from '../../hooks/auth-hook';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -17,8 +18,10 @@ const Login = () => {
     resolver: zodResolver(loginSchema),
   });
 
+  const { mutate: loginUser, isPending } = useLogin();
+
   const onSubmit = (data: LoginFormInputs) => {
-    console.log('Form data:', data);
+    loginUser(data);
   };
 
   return (
@@ -86,7 +89,7 @@ const Login = () => {
                 height: '36px',
               }}
             >
-              Login
+              {isPending ? 'Logging in...' : 'Login'}
             </CustomButton>
           </Box>
         </Box>

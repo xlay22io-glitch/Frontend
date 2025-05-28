@@ -7,6 +7,7 @@ import {
   type RegisterFormInputs,
   registerSchema,
 } from '../../utils/validation';
+import { useRegister } from '../../hooks/auth-hook';
 
 const Register = () => {
   const {
@@ -17,8 +18,10 @@ const Register = () => {
     resolver: zodResolver(registerSchema),
   });
 
+  const { mutate: registerUser, isPending } = useRegister();
+
   const onSubmit = (data: RegisterFormInputs) => {
-    console.log('Form data:', data);
+    registerUser(data);
   };
 
   return (
@@ -82,7 +85,7 @@ const Register = () => {
                 height: '36px',
               }}
             >
-              Register
+              {isPending ? 'Registering...' : 'Register'}
             </CustomButton>
           </Box>
         </Box>
