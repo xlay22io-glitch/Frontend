@@ -3,21 +3,18 @@ import CustomInput from '../../components/common/CustomInput';
 import CustomButton from '../../components/common/CustomButton';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import {
-  type RegisterFormInputs,
-  registerSchema,
-} from '../../utils/validation';
+import { type LoginFormInputs, loginSchema } from '../../utils/validation';
 
-const Register = () => {
+const Login = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<RegisterFormInputs>({
-    resolver: zodResolver(registerSchema),
+  } = useForm<LoginFormInputs>({
+    resolver: zodResolver(loginSchema),
   });
 
-  const onSubmit = (data: RegisterFormInputs) => {
+  const onSubmit = (data: LoginFormInputs) => {
     console.log('Form data:', data);
   };
 
@@ -58,19 +55,6 @@ const Register = () => {
             )}
           </Box>
 
-          <Box>
-            <CustomInput
-              label='Confirm Password'
-              type='password'
-              {...register('confirm_password')}
-            />
-            {errors.confirm_password && (
-              <Typography sx={{ color: 'red', fontSize: '12px', mt: 0.5 }}>
-                {errors.confirm_password.message}
-              </Typography>
-            )}
-          </Box>
-
           <Box sx={{ display: 'flex', justifyContent: 'center' }}>
             <CustomButton
               type='submit'
@@ -82,7 +66,7 @@ const Register = () => {
                 height: '36px',
               }}
             >
-              Register
+              Login
             </CustomButton>
           </Box>
         </Box>
@@ -91,4 +75,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Login;

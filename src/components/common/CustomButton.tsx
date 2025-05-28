@@ -5,7 +5,7 @@ import { styled } from '@mui/material/styles';
 import BlockIcon from '@mui/icons-material/Block';
 
 type CustomButtonProps = Omit<ButtonProps, 'variant'> &
-  LinkProps & {
+  Partial<LinkProps> & {
     variant?: 'default' | 'primary';
   };
 
