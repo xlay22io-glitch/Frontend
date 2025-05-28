@@ -28,6 +28,8 @@ const Footer = () => {
           display: 'flex',
           alignItems: 'center',
           gap: 1,
+          cursor: 'pointer',
+
           '@media (max-width: 1200px)': {
             display: 'none',
           },

@@ -1,11 +1,14 @@
-import { Box, Typography } from '@mui/material';
+import { Box, Link, Typography } from '@mui/material';
 import CustomInput from '../../components/common/CustomInput';
 import CustomButton from '../../components/common/CustomButton';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { type LoginFormInputs, loginSchema } from '../../utils/validation';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -30,7 +33,7 @@ const Login = () => {
             display: 'flex',
             flexDirection: 'column',
             gap: 2,
-            px: 1,
+            px: 2,
           }}
         >
           <Box>
@@ -55,6 +58,23 @@ const Login = () => {
             )}
           </Box>
 
+          <Box sx={{ display: 'flex', justifyContent: 'center', mb: 1 }}>
+            <Link
+              onClick={() => navigate('/forgot-password')}
+              sx={{
+                color: '#B7B8BB',
+                textDecoration: 'none',
+                cursor: 'pointer',
+
+                '&:hover': {
+                  textDecoration: 'underline',
+                },
+              }}
+            >
+              Forgot password?
+            </Link>
+          </Box>
+
           <Box sx={{ display: 'flex', justifyContent: 'center' }}>
             <CustomButton
               type='submit'
@@ -62,7 +82,7 @@ const Login = () => {
               sx={{
                 ml: 2,
                 textTransform: 'none',
-                px: 3,
+                px: 4,
                 height: '36px',
               }}
             >

@@ -33,7 +33,7 @@ const Register = () => {
             display: 'flex',
             flexDirection: 'column',
             gap: 2,
-            px: 1,
+            px: 2,
           }}
         >
           <Box>

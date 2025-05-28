@@ -14,6 +14,11 @@ import { alpha } from '@mui/material/styles';
 import CustomButton from '../common/CustomButton';
 import CloseIcon from '@mui/icons-material/Close';
 import logo from '../../assets/icons/logo.png';
+// import accIcon from '../../assets/icons/account-icon.png'
+import backCalcIcon from '../../assets/icons/back-calculator-icon.png';
+import faqsIcon from '../../assets/icons/faqs-icon.png';
+import homeIcon from '../../assets/icons/home-icon.png';
+// import logoutIcon from '../../assets/icons/logout-icon.png'
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -22,9 +27,9 @@ const Navbar = () => {
   const toggleDrawer = () => setMobileOpen((prev) => !prev);
 
   const navItems = [
-    { label: 'Home', path: '/' },
-    { label: 'Back Calculator', path: '/calculator' },
-    { label: 'FAQ', path: '/faq' },
+    { icon: homeIcon, label: 'Home', path: '/' },
+    { icon: backCalcIcon, label: 'Back Calculator', path: '/calculator' },
+    { icon: faqsIcon, label: 'FAQ', path: '/faq' },
   ];
 
   return (
@@ -38,6 +43,7 @@ const Navbar = () => {
           px: { xs: 3, md: 6, lg: 12 },
           position: 'fixed',
           width: '100%',
+          zIndex: 1300,
         })}
       >
         <Box
@@ -185,7 +191,11 @@ const Navbar = () => {
                 alignItems: 'center',
               }}
             >
-              <MenuIcon sx={{ fontSize: 28, transform: 'scaleY(1.2)' }} />
+              {mobileOpen ? (
+                <CloseIcon sx={{ fontSize: 28 }} />
+              ) : (
+                <MenuIcon sx={{ fontSize: 28, transform: 'scaleY(1.2)' }} />
+              )}
             </IconButton>
           </Box>
         </Box>
@@ -195,43 +205,43 @@ const Navbar = () => {
         anchor='right'
         open={mobileOpen}
         onClose={toggleDrawer}
+        hideBackdrop
         slotProps={{
           paper: {
             sx: {
               width: '100%',
-              backgroundColor: 'black',
+              backgroundColor: '#111',
               color: 'white',
-              p: 2,
+              py: 2,
+              px: 4,
+              mt: '80px',
             },
           },
         }}
       >
-        <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-          <IconButton onClick={toggleDrawer} sx={{ color: '#fff' }}>
-            <CloseIcon sx={{ fontSize: 32 }} />
-          </IconButton>
-        </Box>
-
         <List>
-          {navItems.map(({ label, path }) => (
+          {navItems.map(({ icon, label, path }) => (
             <ListItem key={label} disablePadding>
               <ListItemText
                 primary={
-                  <Typography
-                    onClick={() => {
-                      navigate(path);
-                      setMobileOpen(false);
-                    }}
-                    sx={{
-                      fontSize: '18px',
-                      fontWeight: 500,
-                      pl: 2,
-                      py: 1.5,
-                      cursor: 'pointer',
-                    }}
-                  >
-                    {label}
-                  </Typography>
+                  <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    <Box component='img' src={icon} alt={`${label} icon`} />
+                    <Typography
+                      onClick={() => {
+                        navigate(path);
+                        setMobileOpen(false);
+                      }}
+                      sx={{
+                        fontSize: '18px',
+                        fontWeight: 500,
+                        pl: 2,
+                        py: 1.5,
+                        cursor: 'pointer',
+                      }}
+                    >
+                      {label}
+                    </Typography>
+                  </Box>
                 }
               />
             </ListItem>
