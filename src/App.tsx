@@ -14,6 +14,7 @@ import ProtectedRoute from './components/routes/ProtectedRoute';
 import Account from './pages/main/Account';
 import Deposit from './pages/main/Deposit';
 import Withdraw from './pages/main/Withdraw';
+import Calculator from './pages/main/Calculator';
 
 function App() {
   return (
@@ -90,7 +91,6 @@ function App() {
               </Layout>
             }
           />
-
           <Route
             path='/deposit'
             element={
@@ -99,12 +99,19 @@ function App() {
               </Layout>
             }
           />
-
           <Route
             path='/withdraw'
             element={
               <Layout>
                 <Withdraw />
+              </Layout>
+            }
+          />
+          <Route
+            path='/calculator'
+            element={
+              <Layout>
+                <Calculator />
               </Layout>
             }
           />

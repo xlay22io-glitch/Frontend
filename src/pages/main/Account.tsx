@@ -1,12 +1,29 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Box, Typography } from '@mui/material';
 import CustomButton from '../../components/common/CustomButton';
 import CustomAccordion from '../../components/common/CustomAccordion';
 import type { ActiveHistoryTypes } from '../../types/AccountTypes.tsx';
+import Pagination from '@mui/material/Pagination';
 import { accInfoData } from '../../../mockData.ts';
 
 const Account = () => {
   const navigate = useNavigate();
+
+  const [activePage, setActivePage] = useState(1);
+  const [historyPage, setHistoryPage] = useState(1);
+
+  const ITEMS_PER_PAGE = 6;
+
+  const paginatedActive = accInfoData.active_lay.slice(
+    (activePage - 1) * ITEMS_PER_PAGE,
+    activePage * ITEMS_PER_PAGE
+  );
+
+  const paginatedHistory = accInfoData.history.slice(
+    (historyPage - 1) * ITEMS_PER_PAGE,
+    historyPage * ITEMS_PER_PAGE
+  );
 
   return (
     <Box
@@ -109,22 +126,36 @@ const Account = () => {
             Active
           </Typography>
           <Box sx={{ mb: 4 }}>
-            {accInfoData.active_lay.map(
-              (item: ActiveHistoryTypes, index: number) => (
-                <CustomAccordion
-                  key={item.id}
-                  title={`B20251407112500${index + 1}`}
-                >
-                  <Typography>Total Odds: {item.total_odds}</Typography>
-                  <Typography>
-                    Stake Amount: {item.stake_amount} USDT
-                  </Typography>
-                  <Typography>Win Payout: {item.win_payout} USDT</Typography>
-                  <Typography>Loss Payout: {item.loss_payout} USDT</Typography>
-                  <Typography>{item.file_name}</Typography>
-                </CustomAccordion>
-              )
-            )}
+            {paginatedActive.map((item: ActiveHistoryTypes, index: number) => (
+              <CustomAccordion
+                key={item.id}
+                title={`B20251407112500${
+                  index + 1 + (activePage - 1) * ITEMS_PER_PAGE
+                }`}
+              >
+                <Typography>Total Odds: {item.total_odds}</Typography>
+                <Typography>Stake Amount: {item.stake_amount} USDT</Typography>
+                <Typography>Win Payout: {item.win_payout} USDT</Typography>
+                <Typography>Loss Payout: {item.loss_payout} USDT</Typography>
+                <Typography>{item.file_name}</Typography>
+              </CustomAccordion>
+            ))}
+            <Pagination
+              count={Math.ceil(accInfoData.active_lay.length / ITEMS_PER_PAGE)}
+              page={activePage}
+              onChange={(_, value) => setActivePage(value)}
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                '& .MuiPaginationItem-root': {
+                  color: 'white',
+                },
+                '& .MuiPaginationItem-root.Mui-selected': {
+                  color: 'white',
+                  fontWeight: 'bold',
+                },
+              }}
+            />
           </Box>
         </Box>
 
@@ -141,22 +172,37 @@ const Account = () => {
             History
           </Typography>
           <Box sx={{ mb: 4 }}>
-            {accInfoData.history.map(
-              (item: ActiveHistoryTypes, index: number) => (
-                <CustomAccordion
-                  key={item.id}
-                  title={`B20251407112500${index + 1}`}
-                >
-                  <Typography>Total Odds: {item.total_odds}</Typography>
-                  <Typography>
-                    Stake Amount: {item.stake_amount} USDT
-                  </Typography>
-                  <Typography>Win Payout: {item.win_payout} USDT</Typography>
-                  <Typography>Loss Payout: {item.loss_payout} USDT</Typography>
-                  <Typography>{item.file_name}</Typography>
-                </CustomAccordion>
-              )
-            )}
+            {paginatedHistory.map((item: ActiveHistoryTypes, index: number) => (
+              <CustomAccordion
+                key={item.id}
+                title={`B20251407112500${
+                  index + 1 + (historyPage - 1) * ITEMS_PER_PAGE
+                }`}
+              >
+                <Typography>Total Odds: {item.total_odds}</Typography>
+                <Typography>Stake Amount: {item.stake_amount} USDT</Typography>
+                <Typography>Win Payout: {item.win_payout} USDT</Typography>
+                <Typography>Loss Payout: {item.loss_payout} USDT</Typography>
+                <Typography>{item.file_name}</Typography>
+              </CustomAccordion>
+            ))}
+
+            <Pagination
+              count={Math.ceil(accInfoData.history.length / ITEMS_PER_PAGE)}
+              page={historyPage}
+              onChange={(_, value) => setHistoryPage(value)}
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                '& .MuiPaginationItem-root': {
+                  color: 'white',
+                },
+                '& .MuiPaginationItem-root.Mui-selected': {
+                  color: 'white',
+                  fontWeight: 'bold',
+                },
+              }}
+            />
           </Box>
         </Box>
       </Box>
