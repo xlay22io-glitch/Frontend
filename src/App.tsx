@@ -12,6 +12,7 @@ import ForgotPassword from './pages/auth/ForgotPassword';
 import ResetPassword from './pages/auth/ResetPassword';
 import ProtectedRoute from './components/routes/ProtectedRoute';
 import Account from './pages/main/Account';
+import Deposit from './pages/main/Deposit';
 
 function App() {
   return (
@@ -85,6 +86,15 @@ function App() {
             element={
               <Layout>
                 <Account />
+              </Layout>
+            }
+          />
+
+          <Route
+            path='/deposit'
+            element={
+              <Layout>
+                <Deposit />
               </Layout>
             }
           />

@@ -1,10 +1,13 @@
+import { useNavigate } from 'react-router-dom';
 import { Box, Typography } from '@mui/material';
 import CustomButton from '../../components/common/CustomButton';
 import CustomAccordion from '../../components/common/CustomAccordion';
-import { accInfoData } from '../../../mockData.ts';
 import type { ActiveHistoryTypes } from '../../types/AccountTypes.tsx';
+import { accInfoData } from '../../../mockData.ts';
 
 const Account = () => {
+  const navigate = useNavigate();
+
   return (
     <Box
       sx={{
@@ -70,6 +73,7 @@ const Account = () => {
           </Typography>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 2.5 }}>
             <CustomButton
+              onClick={() => navigate('/deposit')}
               variant='primary'
               sx={{ width: '100%', maxWidth: '164px' }}
             >

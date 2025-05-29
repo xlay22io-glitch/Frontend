@@ -34,9 +34,6 @@ const theme = createTheme({
     primary: {
       main: '#BAFD02',
     },
-    bgBlack: {
-      main: '#1A1E20',
-    },
     black: {
       main: '#000000',
       dark: '#2E2F32',

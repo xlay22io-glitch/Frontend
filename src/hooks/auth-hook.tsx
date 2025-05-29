@@ -70,15 +70,11 @@ export const useVerifyEmail = () => {
 };
 
 export const useLogout = () => {
-  const navigate = useNavigate();
   const refreshToken = useAuthStore((state) => state.refreshToken);
-  const clearAuth = useAuthStore((state) => state.clearAuth);
 
   return useMutation({
     mutationFn: () => logout({ refresh: refreshToken! }),
     onSuccess: () => {
-      clearAuth();
-      navigate('/login');
       toast.success('You have been logged out.');
     },
     onError: (error: any) => {

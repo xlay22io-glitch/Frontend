@@ -27,6 +27,7 @@ const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const navigate = useNavigate();
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
+  const clearAuth = useAuthStore((state) => state.clearAuth);
   const { mutate: logoutUser, isPending } = useLogout();
 
   const toggleDrawer = () => setMobileOpen((prev) => !prev);
@@ -39,6 +40,8 @@ const Navbar = () => {
 
   const handleLogout = () => {
     logoutUser();
+    clearAuth();
+    navigate('/login');
   };
 
   return (
