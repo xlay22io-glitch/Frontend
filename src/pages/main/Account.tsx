@@ -81,6 +81,7 @@ const Account = () => {
             </CustomButton>
             <CustomButton
               variant='primary'
+              onClick={() => navigate('/withdraw')}
               sx={{
                 width: '100%',
                 maxWidth: '164px',

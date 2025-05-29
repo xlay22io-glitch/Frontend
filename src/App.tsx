@@ -13,6 +13,7 @@ import ResetPassword from './pages/auth/ResetPassword';
 import ProtectedRoute from './components/routes/ProtectedRoute';
 import Account from './pages/main/Account';
 import Deposit from './pages/main/Deposit';
+import Withdraw from './pages/main/Withdraw';
 
 function App() {
   return (
@@ -95,6 +96,15 @@ function App() {
             element={
               <Layout>
                 <Deposit />
+              </Layout>
+            }
+          />
+
+          <Route
+            path='/withdraw'
+            element={
+              <Layout>
+                <Withdraw />
               </Layout>
             }
           />
