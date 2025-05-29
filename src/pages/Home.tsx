@@ -2,6 +2,10 @@ import { useNavigate } from 'react-router-dom';
 import { Box, Typography } from '@mui/material';
 import CustomButton from '../components/common/CustomButton';
 import useAuthStore from '../store/auth-store';
+import registerIcon from '../assets/icons/register.png';
+import depositIcon from '../assets/icons/deposit.png';
+import backIcon from '../assets/icons/back.png';
+import withdrawIcon from '../assets/icons/withdraw.png';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -190,6 +194,254 @@ const Home = () => {
           >
             Back your prematch lay for full odds and get cash back for weekly
             negative balance up to 30%. Back your lays and transfer risk to us.
+          </Typography>
+        </Box>
+      </Box>
+
+      <Box
+        sx={{
+          mt: 8,
+          display: 'flex',
+          justifyContent: 'center',
+        }}
+      >
+        <Box sx={{ maxWidth: '668px', width: '100%' }}>
+          <Typography
+            sx={{
+              fontSize: '40px',
+              fontWeight: 900,
+              fontFamily: 'Inter',
+              color: (theme) => theme.palette.primary.main,
+              lineHeight: '44px',
+              '@media (max-width: 400px)': {
+                lineHeight: '50px',
+              },
+            }}
+          >
+            INSTANCE
+          </Typography>
+          <Typography
+            sx={{
+              fontSize: '40px',
+              fontWeight: 900,
+              fontFamily: 'Inter',
+              color: 'white',
+              lineHeight: '44px',
+              '@media (max-width: 400px)': {
+                lineHeight: '50px',
+              },
+            }}
+          >
+            ACCEPTANCE
+          </Typography>
+          <Typography
+            sx={{
+              color: '#B2B2B2',
+              fontWeight: 400,
+              fontSize: '20px',
+              fontFamily: 'Inter',
+              lineHeight: '28px',
+              mt: 1.5,
+            }}
+          >
+            Back your prematch lay for full odds and get cash back for weekly
+            negative balance up to 30%. Back your lays and transfer risk to us.
+          </Typography>
+        </Box>
+      </Box>
+
+      <Box
+        sx={{
+          mt: 8,
+          display: 'flex',
+          justifyContent: 'center',
+        }}
+      >
+        <Box sx={{ maxWidth: '668px', width: '100%' }}>
+          <Typography
+            sx={{
+              fontSize: '40px',
+              fontWeight: 900,
+              fontFamily: 'Inter',
+              color: (theme) => theme.palette.primary.main,
+              lineHeight: '44px',
+              '@media (max-width: 400px)': {
+                lineHeight: '50px',
+              },
+            }}
+          >
+            STEPS TO
+          </Typography>
+          <Typography
+            sx={{
+              fontSize: '40px',
+              fontWeight: 900,
+              fontFamily: 'Inter',
+              color: 'white',
+              lineHeight: '44px',
+              '@media (max-width: 400px)': {
+                lineHeight: '50px',
+              },
+            }}
+          >
+            GET STARTED
+          </Typography>
+
+          <Box sx={{ mt: 5, display: 'flex', flexDirection: 'column', gap: 4 }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+              <Box component='img' src={registerIcon} alt='Register Icon' />
+              <Box>
+                <Typography
+                  sx={{
+                    fontSize: '22px',
+                    fontWeight: 600,
+                    fontFamily: 'Inter',
+                  }}
+                >
+                  Register
+                </Typography>
+                <Typography
+                  sx={{
+                    fontSize: '14px',
+                    fontWeight: 400,
+                    fontFamily: 'Inter',
+                    lineHeight: '24px',
+                    color: '#B2B2B2',
+                  }}
+                >
+                  Sign up to create your account.
+                </Typography>
+              </Box>
+            </Box>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+              <Box component='img' src={depositIcon} alt='Register Icon' />
+              <Box>
+                <Typography
+                  sx={{
+                    fontSize: '22px',
+                    fontWeight: 600,
+                    fontFamily: 'Inter',
+                  }}
+                >
+                  Deposit
+                </Typography>
+                <Typography
+                  sx={{
+                    fontSize: '14px',
+                    fontWeight: 400,
+                    fontFamily: 'Inter',
+                    lineHeight: '24px',
+                    color: '#B2B2B2',
+                  }}
+                >
+                  Deposit funds to back your lay.
+                </Typography>
+              </Box>
+            </Box>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+              <Box component='img' src={backIcon} alt='Register Icon' />
+              <Box>
+                <Typography
+                  sx={{
+                    fontSize: '22px',
+                    fontWeight: 600,
+                    fontFamily: 'Inter',
+                  }}
+                >
+                  Back
+                </Typography>
+                <Typography
+                  sx={{
+                    fontSize: '14px',
+                    fontWeight: 400,
+                    fontFamily: 'Inter',
+                    lineHeight: '24px',
+                    color: '#B2B2B2',
+                  }}
+                >
+                  Back your lay and profit without risk.
+                </Typography>
+              </Box>
+            </Box>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+              <Box component='img' src={withdrawIcon} alt='Register Icon' />
+              <Box>
+                <Typography
+                  sx={{
+                    fontSize: '22px',
+                    fontWeight: 600,
+                    fontFamily: 'Inter',
+                  }}
+                >
+                  Withdraw
+                </Typography>
+                <Typography
+                  sx={{
+                    fontSize: '14px',
+                    fontWeight: 400,
+                    fontFamily: 'Inter',
+                    lineHeight: '24px',
+                    color: '#B2B2B2',
+                  }}
+                >
+                  Withdraw your earnings.
+                </Typography>
+              </Box>
+            </Box>
+          </Box>
+        </Box>
+      </Box>
+
+      <Box
+        sx={{
+          mt: 12,
+          mb: 8,
+          display: 'flex',
+          justifyContent: 'center',
+        }}
+      >
+        <Box sx={{ maxWidth: '668px', width: '100%' }}>
+          <Typography
+            sx={{
+              fontSize: '40px',
+              fontWeight: 900,
+              fontFamily: 'Inter',
+              color: (theme) => theme.palette.primary.main,
+              lineHeight: '44px',
+              '@media (max-width: 400px)': {
+                lineHeight: '50px',
+              },
+            }}
+          >
+            CRYPTO
+          </Typography>
+          <Typography
+            sx={{
+              fontSize: '40px',
+              fontWeight: 900,
+              fontFamily: 'Inter',
+              color: 'white',
+              lineHeight: '44px',
+              '@media (max-width: 400px)': {
+                lineHeight: '50px',
+              },
+            }}
+          >
+            PAYMENT
+          </Typography>
+          <Typography
+            sx={{
+              color: '#B2B2B2',
+              fontWeight: 400,
+              fontSize: '20px',
+              fontFamily: 'Inter',
+              lineHeight: '28px',
+              mt: 4,
+            }}
+          >
+            Safe and secure crypto payments to fund your account. TradeLayBack
+            accepts only BTC. Minimum deposit and withdrawal amount equal to
+            10USD with no extra fees.
           </Typography>
         </Box>
       </Box>

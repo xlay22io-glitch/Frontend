@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import {
   calculateLay,
   generateDepositAddress,
@@ -32,13 +32,19 @@ export const useWithdraw = () => {
 };
 
 export const useCalculator = () => {
+  const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: calculateLay,
     onSuccess: () => {
       toast.success('Lay backed successfully.');
+
+      queryClient.invalidateQueries({ queryKey: ['account-info'] });
     },
     onError: (err: any) => {
-      toast.error(err?.detail || 'Failed to back your lay.');
+      toast.error(
+        err?.detail || err?.detail?.detail?.[0] || 'Failed to back your lay.'
+      );
     },
   });
 };

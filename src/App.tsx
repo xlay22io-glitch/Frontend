@@ -15,6 +15,8 @@ import Account from './pages/main/Account';
 import Deposit from './pages/main/Deposit';
 import Withdraw from './pages/main/Withdraw';
 import Calculator from './pages/main/Calculator';
+import FAQ from './pages/legal/FAQ';
+import NotFound from './pages/error/NotFound';
 
 function App() {
   return (
@@ -36,6 +38,22 @@ function App() {
           element={
             <Layout>
               <Home />
+            </Layout>
+          }
+        />
+        <Route
+          path='/faq'
+          element={
+            <Layout>
+              <FAQ />
+            </Layout>
+          }
+        />
+        <Route
+          path='*'
+          element={
+            <Layout>
+              <NotFound />
             </Layout>
           }
         />
