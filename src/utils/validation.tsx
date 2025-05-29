@@ -36,7 +36,22 @@ export const resetPasswordSchema = z
     path: ['confirm_password'],
   });
 
+export const calculatorSchema = z.object({
+  total_odd: z.string().min(1, 'Total odd is required'),
+  stake_amount: z.string().min(1, 'Stake amount is required'),
+  win_payout: z.string().min(1, 'Win payout is required'),
+  file: z
+    .instanceof(File, { message: 'File is required' })
+    .refine((file) => file.type.startsWith('image/'), {
+      message: 'Only image files are allowed',
+    }),
+  all_data_true: z.literal(true, {
+    errorMap: () => ({ message: 'You must confirm that data is correct' }),
+  }),
+});
+
 export type RegisterFormInputs = z.infer<typeof registerSchema>;
 export type LoginFormInputs = z.infer<typeof loginSchema>;
 export type ForgotPasswordInputs = z.infer<typeof forgotPasswordSchema>;
 export type ResetPasswordFormInputs = z.infer<typeof resetPasswordSchema>;
+export type CalculatorFormInputs = z.infer<typeof calculatorSchema>;

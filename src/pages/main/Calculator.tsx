@@ -1,13 +1,44 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { Box, Typography, Checkbox, FormControlLabel } from '@mui/material';
 import CustomInput from '../../components/common/CustomInput';
 import CustomButton from '../../components/common/CustomButton';
+import { useCalculator } from '../../hooks/lay-hook';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import {
+  calculatorSchema,
+  type CalculatorFormInputs,
+} from '../../utils/validation';
+import { useAccountInfo } from '../../hooks/auth-hook';
 import logo from '../../assets/icons/logo.png';
 import uploadIcon from '../../assets/icons/upload-icon.png';
 
 const Calculator = () => {
-  const [agreed, setAgreed] = useState(false);
-  const [uploadedFile, setUploadedFile] = useState<File | null>(null);
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    watch,
+    formState: { errors },
+  } = useForm<CalculatorFormInputs>({
+    resolver: zodResolver(calculatorSchema),
+  });
+
+  const totalOdd = watch('total_odd');
+  const stakeAmount = watch('stake_amount');
+  const file = watch('file');
+
+  const { data, isPending: isAccPending } = useAccountInfo();
+
+  useEffect(() => {
+    const odd = parseFloat(totalOdd);
+    const stake = parseFloat(stakeAmount);
+    const result =
+      !isNaN(odd) && !isNaN(stake) ? (odd * stake).toFixed(8) : '0.00000000';
+    setValue('win_payout', result);
+  }, [totalOdd, stakeAmount, setValue]);
+
+  const { mutate: calculatorMutate, isPending } = useCalculator();
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -15,11 +46,17 @@ const Calculator = () => {
     fileInputRef.current?.click();
   };
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      setUploadedFile(file);
+  const onSubmit = (data: CalculatorFormInputs) => {
+    const payload = new FormData();
+    payload.append('total_odd', data.total_odd);
+    payload.append('stake_amount', data.stake_amount);
+    payload.append('win_payout', data.win_payout);
+    if (data.file) {
+      payload.append('file', data.file);
     }
+    payload.append('all_data_true', String(data.all_data_true));
+
+    calculatorMutate(payload);
   };
 
   return (
@@ -49,11 +86,29 @@ const Calculator = () => {
           component='span'
           sx={{ color: 'white', fontSize: '16px', fontWeight: 600 }}
         >
-          0.0000125 BTC
+          {isAccPending ? (
+            <Typography
+              component='span'
+              sx={{ color: 'white', fontSize: '14px', fontWeight: 600 }}
+            >
+              Loading...
+            </Typography>
+          ) : (
+            <Typography
+              component='span'
+              sx={{ color: 'white', fontSize: '16px', fontWeight: 600 }}
+            >
+              {data?.balance || 0} BTC
+            </Typography>
+          )}
         </Typography>
       </Typography>
 
-      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+      <Box
+        component='form'
+        onSubmit={handleSubmit(onSubmit)}
+        sx={{ display: 'flex', justifyContent: 'center' }}
+      >
         <Box
           sx={{
             display: 'flex',
@@ -108,13 +163,25 @@ const Calculator = () => {
               <CustomInput
                 label='TOTAL ODD'
                 variantStyle='boxed'
-                placeholder='0,00'
+                placeholder='0.00'
+                {...register('total_odd')}
               />
+              {errors.total_odd && (
+                <Typography sx={{ color: 'red', fontSize: '12px', mt: -1 }}>
+                  {errors.total_odd.message}
+                </Typography>
+              )}
               <CustomInput
                 label='STAKE AMOUNT'
                 variantStyle='boxed'
-                placeholder='0,00'
+                placeholder='0.00'
+                {...register('stake_amount')}
               />
+              {errors.stake_amount && (
+                <Typography sx={{ color: 'red', fontSize: '12px', mt: -1 }}>
+                  {errors.stake_amount.message}
+                </Typography>
+              )}
             </Box>
 
             <Box
@@ -142,7 +209,7 @@ const Calculator = () => {
                   color: (theme) => theme.palette.primary.main,
                 }}
               >
-                0,000000 BTC
+                {watch('win_payout') || '0.000000'} BTC
               </Typography>
             </Box>
 
@@ -159,7 +226,12 @@ const Calculator = () => {
                   type='file'
                   accept='image/*'
                   ref={fileInputRef}
-                  onChange={handleFileChange}
+                  onChange={(e) => {
+                    const selectedFile = e.target.files?.[0];
+                    if (selectedFile) {
+                      setValue('file', selectedFile);
+                    }
+                  }}
                   style={{ display: 'none' }}
                 />
 
@@ -176,17 +248,19 @@ const Calculator = () => {
                   <Typography
                     sx={{ fontWeight: 600, fontSize: '14px', color: '#909A9F' }}
                   >
-                    {uploadedFile
-                      ? uploadedFile.name
-                      : 'Screen of your original lay'}
+                    {file ? file.name : 'Screen of your original lay'}
                   </Typography>
                 </Box>
+                {errors.file && (
+                  <Typography sx={{ color: 'red', fontSize: '12px' }}>
+                    {errors.file.message}
+                  </Typography>
+                )}
 
                 <FormControlLabel
                   control={
                     <Checkbox
-                      checked={agreed}
-                      onChange={(e) => setAgreed(e.target.checked)}
+                      {...register('all_data_true')}
                       sx={{
                         color: '#909A9F',
                         '&.Mui-checked': {
@@ -210,12 +284,22 @@ const Calculator = () => {
                     </Typography>
                   }
                 />
+                {errors.all_data_true && (
+                  <Typography sx={{ color: 'red', fontSize: '12px', mt: -1.5 }}>
+                    {errors.all_data_true.message}
+                  </Typography>
+                )}
               </Box>
             </Box>
 
             <Box sx={{ mt: 4, display: 'flex', justifyContent: 'center' }}>
-              <CustomButton variant='primary' sx={{ px: 3 }}>
-                Back your lay
+              <CustomButton
+                type='submit'
+                disabled={isPending}
+                variant='primary'
+                sx={{ px: 3 }}
+              >
+                {isPending ? 'Submitting...' : 'Back your lay'}
               </CustomButton>
             </Box>
           </Box>

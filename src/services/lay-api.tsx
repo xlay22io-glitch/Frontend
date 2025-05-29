@@ -32,3 +32,12 @@ export const withdraw = async (data: { amount: number; address: string }) => {
     return handleError(error, 'Withdrawal request failed.');
   }
 };
+
+export const calculateLay = async (formData: FormData) => {
+  try {
+    const response = await axiosInstance.post(`/account/calculator/`, formData);
+    return response.data;
+  } catch (error) {
+    return handleError(error, 'Failed to back your lay.');
+  }
+};
