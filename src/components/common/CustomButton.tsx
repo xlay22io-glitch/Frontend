@@ -1,11 +1,10 @@
 import React from 'react';
-import type { LinkProps } from 'react-router-dom'; // <–– uvezi LinkProps
+import type { LinkProps } from 'react-router-dom';
 import Button, { type ButtonProps } from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
-import BlockIcon from '@mui/icons-material/Block';
 
 type CustomButtonProps = Omit<ButtonProps, 'variant'> &
-  LinkProps & {
+  Partial<LinkProps> & {
     variant?: 'default' | 'primary';
   };
 
@@ -31,13 +30,17 @@ const StyledButton = styled(Button, {
 
       '&.Mui-disabled': {
         pointerEvents: 'auto',
+        opacity: 0.6,
+        color: undefined,
+        backgroundColor: undefined,
       },
+
       '&.Mui-disabled:hover .disabledIcon': {
         opacity: 1,
       },
 
       '&:disabled': {
-        color: 'gray.main',
+        opacity: 0.6,
       },
     };
 
@@ -51,7 +54,7 @@ const StyledButton = styled(Button, {
       default:
         return {
           ...baseStyle,
-          backgroundColor: 'bgBlack.main',
+          backgroundColor: 'customBox.smoothGray',
           color: 'gray.light',
         };
     }
@@ -66,7 +69,6 @@ const CustomButton: React.FC<CustomButtonProps> = ({
 }) => (
   <StyledButton variantType={variant} disableRipple={disableRipple} {...rest}>
     {children}
-    <BlockIcon className='disabledIcon' fontSize='small' />
   </StyledButton>
 );
 
