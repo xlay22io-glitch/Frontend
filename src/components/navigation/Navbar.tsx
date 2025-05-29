@@ -13,14 +13,15 @@ import { Link, useNavigate } from 'react-router-dom';
 import { alpha } from '@mui/material/styles';
 import CustomButton from '../common/CustomButton';
 import CloseIcon from '@mui/icons-material/Close';
+import useAuthStore from '../../store/auth-store';
+import { useLogout } from '../../hooks/auth-hook';
 import logo from '../../assets/icons/logo.png';
 import accIcon from '../../assets/icons/account-icon.png';
 import backCalcIcon from '../../assets/icons/back-calculator-icon.png';
 import faqsIcon from '../../assets/icons/faqs-icon.png';
 import homeIcon from '../../assets/icons/home-icon.png';
-import useAuthStore from '../../store/auth-store';
 import logoutIcon from '../../assets/icons/logout-icon.png';
-import { useLogout } from '../../hooks/auth-hook';
+import profilePlaceholder from '../../assets/images/profile-picture-placeholder.webp';
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -159,19 +160,36 @@ const Navbar = () => {
             }}
           >
             {isAuthenticated ? (
-              <CustomButton
-                onClick={handleLogout}
-                disabled={isPending}
-                variant='default'
-                sx={(theme) => ({
-                  color: 'common.white',
-                  border: `2px solid ${theme.palette.black.medium}`,
-                  textTransform: 'none',
-                  width: '114px',
-                })}
-              >
-                {isPending ? 'Logging out...' : 'Logout'}
-              </CustomButton>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                <CustomButton
+                  onClick={handleLogout}
+                  disabled={isPending}
+                  variant='default'
+                  sx={(theme) => ({
+                    color: 'common.white',
+                    border: `2px solid ${theme.palette.black.medium}`,
+                    textTransform: 'none',
+                    width: '114px',
+                  })}
+                >
+                  {isPending ? 'Logging out...' : 'Logout'}
+                </CustomButton>
+
+                {/* TODO: add real user picture if exists */}
+                <Box
+                  onClick={() => navigate('/account')}
+                  component='img'
+                  src={profilePlaceholder}
+                  alt='Profile Picture'
+                  sx={{
+                    width: '52px',
+                    height: '52px',
+                    objectFit: 'cover',
+                    borderRadius: '50%',
+                    cursor: 'pointer',
+                  }}
+                />
+              </Box>
             ) : (
               <>
                 <CustomButton

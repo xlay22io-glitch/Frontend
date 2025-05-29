@@ -1,0 +1,48 @@
+export const accInfoData = {
+  balance: 0.00015,
+  weekly_cashback: 0.00015,
+  active_lay: [
+    {
+      id: 'uuid_here',
+      total_odds: 27.55,
+      stake_amount: 50.0,
+      win_payout: 0.000000025,
+      loss_payout: 0.00000025,
+      file_name: 'file_name_here',
+    },
+    {
+      id: 'uuid_here',
+      total_odds: 27.55,
+      stake_amount: 50.0,
+      win_payout: 0.000000025,
+      loss_payout: 0.00000025,
+      file_name: 'file_name_here',
+    },
+  ],
+  history: [
+    {
+      id: 'uuid_here',
+      total_odds: 27.55,
+      stake_amount: 50.0,
+      win_payout: 0.000000025,
+      loss_payout: 0.00000025,
+      file_name: 'file_name_here',
+    },
+    {
+      id: 'uuid_here',
+      total_odds: 27.55,
+      stake_amount: 50.0,
+      win_payout: 0.000000025,
+      loss_payout: 0.00000025,
+      file_name: 'file_name_here',
+    },
+    {
+      id: 'uuid_here',
+      total_odds: 27.55,
+      stake_amount: 50.0,
+      win_payout: 0.000000025,
+      loss_payout: 0.00000025,
+      file_name: 'file_name_here',
+    },
+  ],
+};

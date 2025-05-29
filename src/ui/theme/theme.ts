@@ -6,6 +6,8 @@ declare module '@mui/material/styles' {
       smoothGray: string;
       mediumGray: string;
       lightGray: string;
+      carbon: string;
+      deadGray: string;
     };
   }
 
@@ -14,6 +16,8 @@ declare module '@mui/material/styles' {
       smoothGray?: string;
       mediumGray?: string;
       lightGray?: string;
+      carbon?: string;
+      deadGray?: string;
     };
   }
 }
@@ -24,6 +28,8 @@ const theme = createTheme({
       smoothGray: '#1A1E20',
       mediumGray: '#A5A5A5',
       lightGray: '#313131',
+      carbon: '#252C2F',
+      deadGray: '#919A9F',
     },
     primary: {
       main: '#BAFD02',

@@ -10,6 +10,8 @@ import Login from './pages/auth/Login';
 import EmailSuccess from './pages/success/EmailSuccess';
 import ForgotPassword from './pages/auth/ForgotPassword';
 import ResetPassword from './pages/auth/ResetPassword';
+import ProtectedRoute from './components/routes/ProtectedRoute';
+import Account from './pages/main/Account';
 
 function App() {
   return (
@@ -72,6 +74,17 @@ function App() {
             element={
               <Layout>
                 <ResetPassword />
+              </Layout>
+            }
+          />
+        </Route>
+
+        <Route element={<ProtectedRoute />}>
+          <Route
+            path='/account'
+            element={
+              <Layout>
+                <Account />
               </Layout>
             }
           />

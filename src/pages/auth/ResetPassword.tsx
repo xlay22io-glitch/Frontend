@@ -32,7 +32,19 @@ const ResetPassword = () => {
   };
 
   return (
-    <Box sx={{ py: 6 }}>
+    <Box
+      sx={{
+        py: 6,
+        px: 6,
+        '@media (max-width: 900px)': {
+          px: 4,
+        },
+        '@media (max-width: 640px)': {
+          px: 2,
+          py: 4,
+        },
+      }}
+    >
       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
         <Box
           component='form'
@@ -43,7 +55,6 @@ const ResetPassword = () => {
             display: 'flex',
             flexDirection: 'column',
             gap: 2,
-            px: 2,
           }}
         >
           <Box>
