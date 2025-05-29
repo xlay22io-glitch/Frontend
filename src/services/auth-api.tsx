@@ -104,3 +104,12 @@ export const resetPassword = async (data: {
     return handleError(error, 'Reset password failed.');
   }
 };
+
+export const getAccountInfo = async () => {
+  try {
+    const response = await axiosInstance.get(`/account/info/`);
+    return response.data;
+  } catch (error: unknown) {
+    return handleError(error, 'Failed to fetch account information.');
+  }
+};

@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {
+  getAccountInfo,
   login,
   logout,
   register,
@@ -7,7 +8,7 @@ import {
   resetPassword,
   verifyEmail,
 } from '../services/auth-api';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import useAuthStore from '../store/auth-store';
@@ -110,5 +111,13 @@ export const useResetPassword = () => {
       const message = error?.detail || error?.password?.[0] || 'Reset failed';
       toast.error(message);
     },
+  });
+};
+
+export const useAccountInfo = () => {
+  return useQuery({
+    queryKey: ['account-info'],
+    queryFn: getAccountInfo,
+    staleTime: 1000 * 60 * 5,
   });
 };
