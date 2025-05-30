@@ -6,6 +6,7 @@ import registerIcon from '../assets/icons/register.png';
 import depositIcon from '../assets/icons/deposit.png';
 import backIcon from '../assets/icons/back.png';
 import withdrawIcon from '../assets/icons/withdraw.png';
+import mobileImg from '../assets/images/mobilepicture 1.png';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -234,6 +235,55 @@ const Home = () => {
           >
             ACCEPTANCE
           </Typography>
+
+          <Box
+            component='img'
+            src={mobileImg}
+            alt='Mobile Image'
+            sx={{
+              width: '100%',
+              maxWidth: '506px',
+              filter: 'drop-shadow(0 0 80px rgba(63, 86, 0, 0.5))',
+            }}
+          />
+        </Box>
+      </Box>
+
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+        }}
+      >
+        <Box sx={{ maxWidth: '668px', width: '100%' }}>
+          <Typography
+            sx={{
+              fontSize: '40px',
+              fontWeight: 900,
+              fontFamily: 'Inter',
+              color: (theme) => theme.palette.primary.main,
+              lineHeight: '44px',
+              '@media (max-width: 400px)': {
+                lineHeight: '50px',
+              },
+            }}
+          >
+            INSTANCE
+          </Typography>
+          <Typography
+            sx={{
+              fontSize: '40px',
+              fontWeight: 900,
+              fontFamily: 'Inter',
+              color: 'white',
+              lineHeight: '44px',
+              '@media (max-width: 400px)': {
+                lineHeight: '50px',
+              },
+            }}
+          >
+            ACCEPTANCE
+          </Typography>
           <Typography
             sx={{
               color: '#B2B2B2',
@@ -287,7 +337,7 @@ const Home = () => {
             GET STARTED
           </Typography>
 
-          <Box sx={{ mt: 5, display: 'flex', flexDirection: 'column', gap: 4 }}>
+          <Box sx={{ mt: 5, display: 'flex', flexDirection: 'column' }}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
               <Box component='img' src={registerIcon} alt='Register Icon' />
               <Box>
@@ -313,6 +363,9 @@ const Home = () => {
                 </Typography>
               </Box>
             </Box>
+
+            <Box sx={{ borderLeft: '1px solid #AAA', height: '58px', ml: 2 }} />
+
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
               <Box component='img' src={depositIcon} alt='Register Icon' />
               <Box>
@@ -338,6 +391,9 @@ const Home = () => {
                 </Typography>
               </Box>
             </Box>
+
+            <Box sx={{ borderLeft: '1px solid #AAA', height: '58px', ml: 2 }} />
+
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
               <Box component='img' src={backIcon} alt='Register Icon' />
               <Box>
@@ -363,6 +419,9 @@ const Home = () => {
                 </Typography>
               </Box>
             </Box>
+
+            <Box sx={{ borderLeft: '1px solid #AAA', height: '58px', ml: 2 }} />
+
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
               <Box component='img' src={withdrawIcon} alt='Register Icon' />
               <Box>
