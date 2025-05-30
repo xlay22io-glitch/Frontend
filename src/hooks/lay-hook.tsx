@@ -43,7 +43,10 @@ export const useCalculator = () => {
     },
     onError: (err: any) => {
       toast.error(
-        err?.detail || err?.detail?.detail?.[0] || 'Failed to back your lay.'
+        err?.detail?.detail?.[0] ||
+          err?.detail?.total_odd?.[0] ||
+          err?.detail?.stake_amount?.[0] ||
+          'Failed to back your lay.'
       );
     },
   });
