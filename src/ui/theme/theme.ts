@@ -1,6 +1,6 @@
-import { createTheme } from '@mui/material/styles';
+import { createTheme } from "@mui/material/styles";
 
-declare module '@mui/material/styles' {
+declare module "@mui/material/styles" {
   interface Palette {
     customColors: {
       smoothGray: string;
@@ -25,30 +25,54 @@ declare module '@mui/material/styles' {
 const theme = createTheme({
   palette: {
     customColors: {
-      smoothGray: '#1A1E20',
-      mediumGray: '#A5A5A5',
-      lightGray: '#313131',
-      carbon: '#252C2F',
-      deadGray: '#919A9F',
+      smoothGray: "#1A1E20",
+      mediumGray: "#A5A5A5",
+      lightGray: "#313131",
+      carbon: "#252C2F",
+      deadGray: "#919A9F",
     },
     primary: {
-      main: '#BAFD02',
+      main: "#BAFD02",
     },
     black: {
-      main: '#000000',
-      dark: '#2E2F32',
-      medium: '#373A40',
+      main: "#000000",
+      dark: "#1A1A1A",
+      medium: "#373A40",
     },
     gray: {
-      main: '#9E9E9E',
-      light: '#F6F6F6',
+      main: "#9E9E9E",
+      light: "#F6F6F6",
     },
     background: {
-      default: '#111111',
+      default: "#1A1A1A",
     },
   },
+
   typography: {
-    fontFamily: '"Plus Jakarta Sans", "Inter", "Arial", sans-serif',
+    fontFamily: '"Plus Jakarta Sans", "Manrope", "Inter", "Arial", sans-serif',
+    h1: {
+      fontWeight: 500,
+      color: "#fff",
+      fontSize: "2.625rem",
+      letterSpacing: "-2px",
+      fontFamily: "Manrope",
+    },
+    body1: {
+      fontWeight: 400,
+      color: "#fff",
+      fontSize: "0.875rem",
+      letterSpacing: "0%",
+      lineHeight: "150%",
+      fontFamily: "Manrope",
+    },
+    body2: {
+      fontWeight: 500,
+      color: "#fff",
+      fontSize: "0.94rem",
+      letterSpacing: "0%",
+      lineHeight: "11px",
+      fontFamily: "Manrope",
+    },
   },
 });
 
