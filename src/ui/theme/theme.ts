@@ -40,7 +40,9 @@ const theme = createTheme({
       medium: "#373A40",
     },
     gray: {
+      dark: "#202020",
       main: "#9E9E9E",
+      medium: "#C0C0C0",
       light: "#F6F6F6",
     },
     background: {
@@ -57,6 +59,13 @@ const theme = createTheme({
       letterSpacing: "-2px",
       fontFamily: "Manrope",
     },
+    h2: {
+      fontFamily: "Manrope",
+      fontWeight: 500,
+      fontSize: "1.7rem",
+      color: "#fff",
+    },
+
     body1: {
       fontWeight: 400,
       color: "#fff",

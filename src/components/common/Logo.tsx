@@ -25,7 +25,7 @@ const Logo = () => {
         src={LogoText}
         alt="logo"
         sx={{
-          maxWidth: "28px",
+          maxWidth: "64px",
           maxHeight: "28px",
         }}
       />
