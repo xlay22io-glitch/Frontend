@@ -1,11 +1,11 @@
-import { Box, Link, Typography } from '@mui/material';
-import CustomInput from '../../components/common/CustomInput';
-import CustomButton from '../../components/common/CustomButton';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { type LoginFormInputs, loginSchema } from '../../utils/validation';
-import { useNavigate } from 'react-router-dom';
-import { useLogin } from '../../hooks/auth-hook';
+import { Box, Link, Typography } from "@mui/material";
+import CustomInput from "../../components/common/CustomInput";
+import CustomButton from "../../components/common/CustomButton";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { type LoginFormInputs, loginSchema } from "../../utils/validation";
+import { useNavigate } from "react-router-dom";
+import { useLogin } from "../../hooks/auth-hook";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -29,59 +29,80 @@ const Login = () => {
       sx={{
         py: 6,
         px: 6,
-        '@media (max-width: 900px)': {
+        "@media (max-width: 900px)": {
           px: 4,
         },
-        '@media (max-width: 640px)': {
+        "@media (max-width: 640px)": {
           px: 2,
           py: 4,
         },
       }}
     >
-      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "column",
+        }}
+      >
         <Box
-          component='form'
+          sx={{
+            textAlign: "center",
+            margin: "2.4em 0",
+          }}
+        >
+          <Typography
+            variant="h2"
+            sx={{
+              fontSize: "2rem",
+            }}
+          >
+            Welcome Back! 👋
+          </Typography>
+          <Typography variant="body1" sx={{ opacity: "70%" }}>
+            Please Enter your login details.
+          </Typography>
+        </Box>
+        <Box
+          component="form"
           onSubmit={handleSubmit(onSubmit)}
           sx={{
-            maxWidth: '332px',
-            width: '100%',
-            display: 'flex',
-            flexDirection: 'column',
+            maxWidth: "332px",
+            width: "100%",
+            display: "flex",
+            flexDirection: "column",
             gap: 2,
           }}
         >
           <Box>
-            <CustomInput label='Email' {...register('email')} />
+            <CustomInput label="Email" {...register("email")} />
             {errors.email && (
-              <Typography sx={{ color: 'red', fontSize: '12px', mt: 0.5 }}>
+              <Typography sx={{ color: "red", fontSize: "12px", mt: 0.5 }}>
                 {errors.email.message}
               </Typography>
             )}
           </Box>
 
           <Box>
-            <CustomInput
-              label='Password'
-              type='password'
-              {...register('password')}
-            />
+            <CustomInput label="Password" type="password" {...register("password")} />
             {errors.password && (
-              <Typography sx={{ color: 'red', fontSize: '12px', mt: 0.5 }}>
+              <Typography sx={{ color: "red", fontSize: "12px", mt: 0.5 }}>
                 {errors.password.message}
               </Typography>
             )}
           </Box>
 
-          <Box sx={{ display: 'flex', justifyContent: 'center', mb: 1 }}>
+          <Box sx={{ display: "flex", justifyContent: "right", mb: 1 }}>
             <Link
-              onClick={() => navigate('/forgot-password')}
+              onClick={() => navigate("/forgot-password")}
               sx={{
-                color: '#B7B8BB',
-                textDecoration: 'none',
-                cursor: 'pointer',
+                color: "#B7B8BB",
+                textDecoration: "none",
+                cursor: "pointer",
 
-                '&:hover': {
-                  textDecoration: 'underline',
+                "&:hover": {
+                  textDecoration: "underline",
                 },
               }}
             >
@@ -89,20 +110,46 @@ const Login = () => {
             </Link>
           </Box>
 
-          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "1.2rem",
+            }}
+          >
             <CustomButton
-              type='submit'
-              variant='primary'
+              type="submit"
+              variant="primary"
               disabled={isPending}
               sx={{
                 ml: 2,
-                textTransform: 'none',
+                textTransform: "none",
                 px: 4,
-                height: '36px',
+                py: "20px",
+
+                width: "100%",
               }}
             >
-              {isPending ? 'Logging in...' : 'Login'}
+              {isPending ? "Logging in..." : "Login"}
             </CustomButton>
+            <Typography
+              sx={{
+                opacity: "70%",
+              }}
+            >
+              Don't have an account?{" "}
+              <Link
+                href="/register"
+                style={{
+                  textDecoration: "none",
+                  fontWeight: 500,
+                }}
+              >
+                Sign up
+              </Link>{" "}
+            </Typography>
           </Box>
         </Box>
       </Box>
