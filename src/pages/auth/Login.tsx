@@ -1,15 +1,15 @@
-import { Box, Link, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import CustomInput from "../../components/common/CustomInput";
 import CustomButton from "../../components/common/CustomButton";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { type LoginFormInputs, loginSchema } from "../../utils/validation";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useLogin } from "../../hooks/auth-hook";
+import EmailIcon from "../../assets/icons/login-email-icon.svg";
+import PasswordIcon from "../../assets/icons/login-password-icon.svg";
 
 const Login = () => {
-  const navigate = useNavigate();
-
   const {
     register,
     handleSubmit,
@@ -75,8 +75,25 @@ const Login = () => {
             gap: 2,
           }}
         >
-          <Box>
-            <CustomInput label="Email" {...register("email")} />
+          <Box
+            sx={{
+              position: "relative",
+            }}
+          >
+            <Box
+              src={EmailIcon}
+              component={"img"}
+              width={20}
+              height={20}
+              alt="email"
+              sx={{
+                position: "absolute",
+                left: "20px",
+                zIndex: 1,
+                top: "35%",
+              }}
+            />
+            <CustomInput label="Email" placeholder="Enter your Email" {...register("email")} />
             {errors.email && (
               <Typography sx={{ color: "red", fontSize: "12px", mt: 0.5 }}>
                 {errors.email.message}
@@ -84,8 +101,32 @@ const Login = () => {
             )}
           </Box>
 
-          <Box>
-            <CustomInput label="Password" type="password" {...register("password")} />
+          <Box
+            sx={{
+              position: "relative",
+            }}
+          >
+            <Box
+              src={PasswordIcon}
+              component={"img"}
+              width={20}
+              height={20}
+              alt="password"
+              sx={{
+                position: "absolute",
+                left: "20px",
+                zIndex: 1,
+                top: "35%",
+              }}
+            />
+            <CustomInput
+              label="Password"
+              type="password"
+              variantStyle="password"
+              placeholder="Enter your Password"
+              {...register("password")}
+            />
+
             {errors.password && (
               <Typography sx={{ color: "red", fontSize: "12px", mt: 0.5 }}>
                 {errors.password.message}
@@ -95,15 +136,11 @@ const Login = () => {
 
           <Box sx={{ display: "flex", justifyContent: "right", mb: 1 }}>
             <Link
-              onClick={() => navigate("/forgot-password")}
-              sx={{
+              to="/forgot-password"
+              style={{
                 color: "#B7B8BB",
                 textDecoration: "none",
                 cursor: "pointer",
-
-                "&:hover": {
-                  textDecoration: "underline",
-                },
               }}
             >
               Forgot password?
@@ -141,10 +178,11 @@ const Login = () => {
             >
               Don't have an account?{" "}
               <Link
-                href="/register"
+                to="/register"
                 style={{
                   textDecoration: "none",
                   fontWeight: 500,
+                  color: "#BAFD02",
                 }}
               >
                 Sign up
