@@ -8,14 +8,21 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import CustomModal from "../../components/common/CustomModal";
 import Withdraw from "./Withdraw";
+import Deposit from "./Deposit";
 
 const Account = () => {
   const navigate = useNavigate();
   const [withdrawModalVisible, setWithdrawModalVisible] = useState(false);
+  const [depositModalVisible, setDepositModalVisible] = useState(false);
 
   const handleWithdrawClick = () => {
     setWithdrawModalVisible((c) => !c);
   };
+
+  const handleDepositClick = () => {
+    setDepositModalVisible((c) => !c);
+  };
+
   return (
     <Box
       sx={{
@@ -43,6 +50,12 @@ const Account = () => {
         {withdrawModalVisible && (
           <CustomModal isOpen={withdrawModalVisible} onClose={handleWithdrawClick}>
             <Withdraw />
+          </CustomModal>
+        )}
+
+        {depositModalVisible && (
+          <CustomModal isOpen={depositModalVisible} onClose={handleDepositClick}>
+            <Deposit />
           </CustomModal>
         )}
         <Box>
@@ -120,6 +133,7 @@ const Account = () => {
               }}
             >
               <CustomButton
+                onClick={() => navigate("/calculator")}
                 variant="primary"
                 sx={{ borderRadius: "50%", width: 55, height: 55, minWidth: "unset" }}
               >
@@ -141,6 +155,7 @@ const Account = () => {
               }}
             >
               <CustomButton
+                onClick={handleDepositClick}
                 sx={{
                   borderRadius: "50%",
                   width: 55,

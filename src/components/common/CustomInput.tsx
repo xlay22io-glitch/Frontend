@@ -51,10 +51,11 @@ const DefaultStyledInput = styled(TextField)(({ theme }) => ({
 
 const BoxedStyledInput = styled(TextField)(({ theme }) => ({
   backgroundColor: theme.palette.customColors.smoothGray,
-  borderRadius: "10px",
+  borderRadius: "50px",
   "& .MuiOutlinedInput-root": {
     color: "#fff",
-    borderRadius: "10px",
+    borderRadius: "50px",
+
     "& fieldset": {
       borderColor: "#2D3437",
     },
@@ -80,7 +81,7 @@ const BoxedStyledInput = styled(TextField)(({ theme }) => ({
     boxShadow: "none",
   },
   "& .MuiInputBase-input": {
-    padding: "12px 16px",
+    padding: "20px 20px",
     color: "white",
     fontSize: "14px",
   },
