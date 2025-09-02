@@ -1,28 +1,29 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import Layout from './components/layout/Layout';
-import PublicRoute from './components/routes/PublicRoute';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Layout from "./components/layout/Layout";
+import PublicRoute from "./components/routes/PublicRoute";
 // import ProtectedRoute from './components/routes/ProtectedRoute';
-import Home from './pages/Home';
-import Register from './pages/auth/Register';
-import Login from './pages/auth/Login';
-import EmailSuccess from './pages/success/EmailSuccess';
-import ForgotPassword from './pages/auth/ForgotPassword';
-import ResetPassword from './pages/auth/ResetPassword';
-import ProtectedRoute from './components/routes/ProtectedRoute';
-import Account from './pages/main/Account';
-import Deposit from './pages/main/Deposit';
-import Withdraw from './pages/main/Withdraw';
-import Calculator from './pages/main/Calculator';
-import FAQ from './pages/legal/FAQ';
-import NotFound from './pages/error/NotFound';
+import Home from "./pages/Home";
+import Register from "./pages/auth/Register";
+import Login from "./pages/auth/Login";
+import EmailSuccess from "./pages/success/EmailSuccess";
+import ForgotPassword from "./pages/auth/ForgotPassword";
+import ResetPassword from "./pages/auth/ResetPassword";
+import ProtectedRoute from "./components/routes/ProtectedRoute";
+import Account from "./pages/main/Account";
+import Deposit from "./pages/main/Deposit";
+import Withdraw from "./pages/main/Withdraw";
+import Calculator from "./pages/main/Calculator";
+import FAQ from "./pages/legal/FAQ";
+import NotFound from "./pages/error/NotFound";
+import MyBacks from "./pages/main/MyBacks";
 
 function App() {
   return (
     <BrowserRouter>
       <ToastContainer
-        position='top-center'
+        position="top-center"
         autoClose={4000}
         hideProgressBar={false}
         newestOnTop={true}
@@ -34,7 +35,7 @@ function App() {
       />
       <Routes>
         <Route
-          path='/'
+          path="/"
           element={
             <Layout>
               <Home />
@@ -42,7 +43,7 @@ function App() {
           }
         />
         <Route
-          path='/faq'
+          path="/faq"
           element={
             <Layout>
               <FAQ />
@@ -50,7 +51,7 @@ function App() {
           }
         />
         <Route
-          path='*'
+          path="*"
           element={
             <Layout>
               <NotFound />
@@ -59,7 +60,7 @@ function App() {
         />
         <Route element={<PublicRoute />}>
           <Route
-            path='/register'
+            path="/register"
             element={
               <Layout>
                 <Register />
@@ -67,7 +68,7 @@ function App() {
             }
           />
           <Route
-            path='/login'
+            path="/login"
             element={
               <Layout>
                 <Login />
@@ -75,7 +76,7 @@ function App() {
             }
           />
           <Route
-            path='/auth/verify'
+            path="/auth/verify"
             element={
               <Layout>
                 <EmailSuccess />
@@ -83,7 +84,7 @@ function App() {
             }
           />
           <Route
-            path='/forgot-password'
+            path="/forgot-password"
             element={
               <Layout>
                 <ForgotPassword />
@@ -91,7 +92,7 @@ function App() {
             }
           />
           <Route
-            path='/reset/password'
+            path="/reset/password"
             element={
               <Layout>
                 <ResetPassword />
@@ -102,7 +103,7 @@ function App() {
 
         <Route element={<ProtectedRoute />}>
           <Route
-            path='/account'
+            path="/account"
             element={
               <Layout>
                 <Account />
@@ -110,7 +111,7 @@ function App() {
             }
           />
           <Route
-            path='/deposit'
+            path="/deposit"
             element={
               <Layout>
                 <Deposit />
@@ -118,7 +119,7 @@ function App() {
             }
           />
           <Route
-            path='/withdraw'
+            path="/withdraw"
             element={
               <Layout>
                 <Withdraw />
@@ -126,10 +127,18 @@ function App() {
             }
           />
           <Route
-            path='/calculator'
+            path="/calculator"
             element={
               <Layout>
                 <Calculator />
+              </Layout>
+            }
+          />
+          <Route
+            path="/my-backs"
+            element={
+              <Layout>
+                <MyBacks />
               </Layout>
             }
           />

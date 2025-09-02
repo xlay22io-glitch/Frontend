@@ -7,7 +7,6 @@ import CustomButton from "../common/CustomButton";
 import CloseIcon from "@mui/icons-material/Close";
 import useAuthStore from "../../store/auth-store";
 import { useLogout } from "../../hooks/auth-hook";
-import logo from "../../assets/icons/logo.png";
 import accIcon from "../../assets/icons/account-icon.png";
 import backCalcIcon from "../../assets/icons/back-calculator-icon.png";
 import faqsIcon from "../../assets/icons/faqs-icon.png";
@@ -41,11 +40,11 @@ const Navbar = () => {
     <>
       <Box
         sx={(theme) => ({
-          backgroundColor: theme.palette.customColors.smoothGray,
+          backgroundColor: (theme) => theme.palette.background.default,
           justifyContent: "center",
           borderBottom: `2px solid ${theme.palette.black.dark}`,
           height: "80px",
-          px: { xs: 3, md: 6, lg: 12 },
+          px: { xs: 2.5, md: 6, lg: 12 },
           position: "fixed",
           width: "100%",
           zIndex: 1300,

@@ -5,6 +5,10 @@ export type ActiveHistoryTypes = {
   win_payout: number;
   loss_payout: number;
   file_name: string;
+  home_team: string;
+  away_team: string;
+  tip: string;
+  created_at: string;
 };
 
 export type AccountInfoTypes = {
