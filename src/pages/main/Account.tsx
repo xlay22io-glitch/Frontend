@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, CircularProgress, Typography } from "@mui/material";
 import CustomButton from "../../components/common/CustomButton";
 import RedirectIcon from "../../assets/icons/redirect-icon.svg";
 import PlusIcon from "../../assets/icons/plus-icon.svg";
@@ -9,7 +9,7 @@ import { useState } from "react";
 import CustomModal from "../../components/common/CustomModal";
 import Withdraw from "./Withdraw";
 import Deposit from "./Deposit";
-import { useLogout } from "../../hooks/auth-hook";
+import { useAccountInfo, useLogout } from "../../hooks/auth-hook";
 import useAuthStore from "../../store/auth-store";
 
 const Account = () => {
@@ -18,6 +18,7 @@ const Account = () => {
   const [depositModalVisible, setDepositModalVisible] = useState(false);
   const clearAuth = useAuthStore((state) => state.clearAuth);
   const { mutate: logoutUser } = useLogout();
+  const { data, isPending } = useAccountInfo();
 
   const handleWithdrawClick = () => {
     setWithdrawModalVisible((c) => !c);
@@ -32,6 +33,21 @@ const Account = () => {
     clearAuth();
     navigate("/login");
   };
+
+  if (isPending) {
+    return (
+      <Box
+        sx={{
+          minHeight: "calc(100vh - 90px - 78px)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <CircularProgress size={40} sx={{ color: "white" }} />
+      </Box>
+    );
+  }
 
   return (
     <Box
@@ -87,7 +103,7 @@ const Account = () => {
             </Typography>
             <Typography component="span" sx={{ color: "white", fontSize: "16px", fontWeight: 600 }}>
               {/* missing data */}
-              johnrambo125@gmail.com
+              {data.email}
             </Typography>
           </Box>
         </Box>
@@ -124,7 +140,7 @@ const Account = () => {
               }}
             >
               {/* missing data */}
-              0.002534{" "}
+              {data.balance}
               <Box component="span" sx={{ fontSize: "10px", fontWeight: 500 }}>
                 BTC
               </Box>
