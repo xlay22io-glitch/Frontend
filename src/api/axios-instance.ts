@@ -1,5 +1,5 @@
-import axios from 'axios';
-import useAuthStore from '../store/auth-store';
+import axios from "axios";
+import useAuthStore from "../store/auth-store";
 
 const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
@@ -14,5 +14,17 @@ axiosInstance.interceptors.request.use((config) => {
   }
   return config;
 });
+
+axiosInstance.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      const clearAuth = useAuthStore.getState().clearAuth;
+      clearAuth();
+      //   window.location.href = "/prijavi-se?expired=true";
+    }
+    return Promise.reject(error);
+  }
+);
 
 export default axiosInstance;

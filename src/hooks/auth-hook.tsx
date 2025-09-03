@@ -7,31 +7,28 @@ import {
   requestPasswordReset,
   resetPassword,
   verifyEmail,
-} from '../services/auth-api';
-import { useMutation, useQuery } from '@tanstack/react-query';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import useAuthStore from '../store/auth-store';
+} from "../services/auth-api";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import useAuthStore from "../store/auth-store";
 
 export const useRegister = () => {
   return useMutation({
-    mutationFn: (data: {
-      email: string;
-      password: string;
-      confirm_password: string;
-    }) => register(data),
+    mutationFn: (data: { email: string; password: string; confirm_password: string }) =>
+      register(data),
     onSuccess: (res) => {
-      toast.success(
-        res?.detail || 'Registration successful! Please verify your email.'
-      );
+      toast.success(res?.detail || "Registration successful! Please verify your email.");
     },
     onError: (error: any) => {
       const errorMessage =
-        error?.email ||
-        error?.first_name ||
-        error?.last_name ||
-        error?.error ||
-        'Registration failed.';
+        error?.email?.[0] ||
+        error?.first_name?.[0] ||
+        error?.last_name?.[0] ||
+        error?.error?.[0] ||
+        "Registration failed.";
+
+      console.log(errorMessage);
       toast.error(errorMessage);
     },
   });
@@ -49,10 +46,10 @@ export const useLogin = () => {
       setToken(access);
       setRefreshToken(refresh);
 
-      navigate('/');
+      navigate("/");
     },
     onError: (error: any) => {
-      const errorMessage = error?.detail?.[0] || 'Login failed.';
+      const errorMessage = error?.detail?.[0] || "Login failed.";
       toast.error(errorMessage);
     },
   });
@@ -62,10 +59,10 @@ export const useVerifyEmail = () => {
   return useMutation({
     mutationFn: (data: { uid: string; token: string }) => verifyEmail(data),
     onSuccess: (res) => {
-      toast.success(res?.detail || 'Email verified successfully.');
+      toast.success(res?.detail || "Email verified successfully.");
     },
     onError: (error: any) => {
-      toast.error(error?.detail || 'Email verification failed.');
+      toast.error(error?.detail || "Email verification failed.");
     },
   });
 };
@@ -76,23 +73,24 @@ export const useLogout = () => {
   return useMutation({
     mutationFn: () => logout({ refresh: refreshToken! }),
     onSuccess: () => {
-      toast.success('You have been logged out.');
+      toast.success("You have been logged out.");
     },
     onError: (error: any) => {
-      toast.error(error || 'Logout failed.');
+      toast.error(error || "Logout failed.");
     },
   });
 };
 
 export const useRequestPasswordReset = () => {
+  const navigate = useNavigate();
   return useMutation({
     mutationFn: (data: { email: string }) => requestPasswordReset(data),
     onSuccess: (res) => {
-      toast.success(res?.detail || 'Password reset link sent to your email.');
+      toast.success(res?.detail || "Password reset link sent to your email.");
+      navigate("/reset/password/email-sent");
     },
     onError: (error: any) => {
-      const errorMessage =
-        error?.email || error?.error || 'Failed to send reset link.';
+      const errorMessage = error?.email || error?.error || "Failed to send reset link.";
       toast.error(errorMessage);
     },
   });
@@ -104,11 +102,11 @@ export const useResetPassword = () => {
   return useMutation({
     mutationFn: resetPassword,
     onSuccess: () => {
-      toast.success('Password reset successfully!');
-      navigate('/login');
+      toast.success("Password reset successfully!");
+      navigate("/login");
     },
     onError: (error: any) => {
-      const message = error?.detail || error?.password?.[0] || 'Reset failed';
+      const message = error?.detail || error?.password?.[0] || "Reset failed";
       toast.error(message);
     },
   });
@@ -116,7 +114,7 @@ export const useResetPassword = () => {
 
 export const useAccountInfo = () => {
   return useQuery({
-    queryKey: ['account-info'],
+    queryKey: ["account-info"],
     queryFn: getAccountInfo,
     staleTime: 1000 * 60 * 5,
   });

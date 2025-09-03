@@ -1,7 +1,6 @@
 import type { ReactNode } from "react";
 import { Box } from "@mui/material";
 import Navbar from "../navigation/Navbar";
-import Footer from "../navigation/Footer";
 
 type LayoutProps = {
   children: ReactNode;
@@ -23,7 +22,6 @@ const Layout = ({ children }: LayoutProps) => {
       >
         {children}
       </Box>
-      <Footer />
     </>
   );
 };

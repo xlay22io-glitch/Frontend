@@ -66,7 +66,9 @@ const MyBacks = () => {
   }
 
   return (
-    <Box sx={{ width: "100%", maxWidth: "602px", mx: "auto", my: 8, px: "20px" }}>
+    <Box
+      sx={{ width: "100%", maxWidth: { xs: "602px", md: "80%" }, mx: "auto", my: 8, px: "20px" }}
+    >
       <Box
         sx={{
           display: "flex",

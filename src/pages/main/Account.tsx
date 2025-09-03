@@ -9,11 +9,15 @@ import { useState } from "react";
 import CustomModal from "../../components/common/CustomModal";
 import Withdraw from "./Withdraw";
 import Deposit from "./Deposit";
+import { useLogout } from "../../hooks/auth-hook";
+import useAuthStore from "../../store/auth-store";
 
 const Account = () => {
   const navigate = useNavigate();
   const [withdrawModalVisible, setWithdrawModalVisible] = useState(false);
   const [depositModalVisible, setDepositModalVisible] = useState(false);
+  const clearAuth = useAuthStore((state) => state.clearAuth);
+  const { mutate: logoutUser } = useLogout();
 
   const handleWithdrawClick = () => {
     setWithdrawModalVisible((c) => !c);
@@ -21,6 +25,12 @@ const Account = () => {
 
   const handleDepositClick = () => {
     setDepositModalVisible((c) => !c);
+  };
+
+  const handleLogout = () => {
+    logoutUser();
+    clearAuth();
+    navigate("/login");
   };
 
   return (
@@ -40,11 +50,10 @@ const Account = () => {
       <Box
         sx={{
           display: "flex",
-          justifyContent: "space-between",
-          "@media (max-width: 900px)": {
-            flexDirection: "column",
-            gap: 5,
-          },
+          flexDirection: "column",
+          gap: 5,
+          justifyContent: "center",
+          alignItems: { md: "center", xs: "flex-start" },
         }}
       >
         {withdrawModalVisible && (
@@ -64,13 +73,14 @@ const Account = () => {
               backgroundColor: (theme) => theme.palette.background.default,
               borderRadius: "20px",
               px: 1,
+              textAlign: { md: "center", xs: "left" },
             }}
           >
             <Typography
+              variant="body1"
               sx={{
                 color: (theme) => theme.palette.customColors.deadGray,
                 fontWeight: 400,
-                fontSize: "16px",
               }}
             >
               Hello, Welcome
@@ -83,8 +93,9 @@ const Account = () => {
         </Box>
         <Box
           sx={{
-            width: "400px",
-            "@media (max-width: 900px)": { width: "100%" },
+            // width: "400px",
+            width: { xs: "100%", md: "50%" },
+            margin: "auto",
           }}
         >
           <Box
@@ -231,12 +242,7 @@ const Account = () => {
           </Box>
 
           {/*  */}
-          <Box
-            sx={{
-              width: "400px",
-              "@media (max-width: 900px)": { width: "100%" },
-            }}
-          >
+          <Box>
             <Box
               sx={{
                 padding: "15px",
@@ -335,9 +341,10 @@ const Account = () => {
               </Box>
             </Box>
             <CustomButton
+              onClick={handleLogout}
               variant="primary"
               fullWidth
-              sx={{ mt: 2, mb: 1, p: 3.5, borderRadius: "50px" }}
+              sx={{ mt: 4, mb: 1, p: 3.5, borderRadius: "50px" }}
             >
               Log out
             </CustomButton>

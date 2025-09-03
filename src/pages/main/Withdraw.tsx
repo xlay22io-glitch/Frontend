@@ -117,7 +117,7 @@ const Withdraw = () => {
             />
 
             <CustomInput
-              value={address}
+              value={amount}
               onChange={(e) => setAmount(e.target.value)}
               label="Bitcoin Address"
               placeholder="0.00000000"

@@ -18,6 +18,7 @@ import Calculator from "./pages/main/Calculator";
 import FAQ from "./pages/legal/FAQ";
 import NotFound from "./pages/error/NotFound";
 import MyBacks from "./pages/main/MyBacks";
+import EmailSentSuccess from "./pages/success/EmailSentSuccess";
 
 function App() {
   return (
@@ -96,6 +97,14 @@ function App() {
             element={
               <Layout>
                 <ResetPassword />
+              </Layout>
+            }
+          />
+          <Route
+            path="/reset/password/email-sent"
+            element={
+              <Layout>
+                <EmailSentSuccess />
               </Layout>
             }
           />

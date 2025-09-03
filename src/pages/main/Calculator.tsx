@@ -1,19 +1,7 @@
 import { useEffect, useRef } from "react";
-import {
-  Box,
-  Typography,
-  Checkbox,
-  FormControlLabel,
-  TextField,
-  InputAdornment,
-  IconButton,
-  useTheme,
-} from "@mui/material";
+import { Box, Typography, TextField, IconButton, useTheme } from "@mui/material";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
-import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
-import TipsAndUpdatesIcon from "@mui/icons-material/TipsAndUpdates";
-import PercentIcon from "@mui/icons-material/Percent";
-import SavingsIcon from "@mui/icons-material/Savings";
+
 import { useCalculator } from "../../hooks/lay-hook";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -186,7 +174,7 @@ const Calculator = () => {
         onSubmit={handleSubmit(onSubmit)}
         sx={{
           width: "100%",
-          maxWidth: 420,
+          maxWidth: { xs: 420, md: "50%" },
         }}
       >
         {/* Header */}
@@ -209,62 +197,69 @@ const Calculator = () => {
           <Box></Box>
         </Box>
 
-        {/* Match */}
-        <Labeled label="Match">
-          <Field
-            placeholder="Enter Match"
-            icon={MatchIcon}
-            inputProps={register("match" as any)} // optional: ignore if not in schema
-          />
-        </Labeled>
-
-        {/* Tip */}
-        <Labeled label="Tip">
-          <Field
-            placeholder="Under 0.5 or Correct Score 0:0"
-            icon={TipIcon}
-            inputProps={register("tip" as any)}
-          />
-        </Labeled>
-
-        {/* Odds */}
-        <Labeled label="Odds">
-          <Field
-            placeholder="0.00"
-            type="number"
-            icon={OddIcon}
-            inputProps={{
-              ...register("total_odd"),
-              inputMode: "decimal",
-            }}
-            error={errors.total_odd?.message}
-          />
-        </Labeled>
-
-        {/* Stake + available */}
-        <Labeled
-          label="Stake (BTC)"
-          rightLabel={
-            <Typography sx={{ color: "#B3B3B3", fontSize: 12 }}>
-              Available:{" "}
-              <Box component="span" sx={{ color: accent, fontWeight: 800 }}>
-                {isAccPending ? "0.00000" : account?.balance ?? "0.00000"} BTC
-              </Box>
-            </Typography>
-          }
+        <Box
+          sx={{
+            display: "grid",
+            gridTemplateColumns: { md: "repeat(2, 1fr)", xs: "repeat(1, 1fr)" },
+            gap: "10px",
+          }}
         >
-          <Field
-            placeholder="0.000000"
-            type="number"
-            icon={StakeIcon}
-            inputProps={{
-              ...register("stake_amount"),
-              inputMode: "decimal",
-            }}
-            error={errors.stake_amount?.message}
-          />
-        </Labeled>
+          {/* Match */}
+          <Labeled label="Match">
+            <Field
+              placeholder="Enter Match"
+              icon={MatchIcon}
+              inputProps={register("match" as any)} // optional: ignore if not in schema
+            />
+          </Labeled>
 
+          {/* Tip */}
+          <Labeled label="Tip">
+            <Field
+              placeholder="Under 0.5 or Correct Score 0:0"
+              icon={TipIcon}
+              inputProps={register("tip" as any)}
+            />
+          </Labeled>
+
+          {/* Odds */}
+          <Labeled label="Odds">
+            <Field
+              placeholder="0.00"
+              type="number"
+              icon={OddIcon}
+              inputProps={{
+                ...register("total_odd"),
+                inputMode: "decimal",
+              }}
+              error={errors.total_odd?.message}
+            />
+          </Labeled>
+
+          {/* Stake + available */}
+          <Labeled
+            label="Stake (BTC)"
+            rightLabel={
+              <Typography sx={{ color: "#B3B3B3", fontSize: 12 }}>
+                Available:{" "}
+                <Box component="span" sx={{ color: accent, fontWeight: 800 }}>
+                  {isAccPending ? "0.00000" : account?.balance ?? "0.00000"} BTC
+                </Box>
+              </Typography>
+            }
+          >
+            <Field
+              placeholder="0.000000"
+              type="number"
+              icon={StakeIcon}
+              inputProps={{
+                ...register("stake_amount"),
+                inputMode: "decimal",
+              }}
+              error={errors.stake_amount?.message}
+            />
+          </Labeled>
+        </Box>
         {/* Upload card */}
         <Box sx={{ my: 3 }}>
           <Typography sx={{ fontSize: 14, fontWeight: 500, color: labelColor, mb: 1 }}>

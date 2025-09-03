@@ -21,6 +21,7 @@ import NoLuckTransparentIcon from "../assets/icons/no-luck-transparent-icon.svg"
 import theme from "../ui/theme/theme";
 import FAQ from "../components/home/FAQ";
 import Logo from "../components/common/Logo";
+import Footer from "../components/navigation/Footer";
 
 const EXPLANATION_CONTENT = [
   {
@@ -847,6 +848,7 @@ const Home = () => {
           support@xlyplatform.com
         </Typography>
       </Box>
+      <Footer />
     </Box>
   );
 };
