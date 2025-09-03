@@ -55,7 +55,7 @@ const theme = createTheme({
     h1: {
       fontWeight: 500,
       color: "#fff",
-      fontSize: "2.625rem",
+      fontSize: "clamp(2.625rem, 4vw + 0.5rem, 4.5rem)",
       letterSpacing: "-2px",
       fontFamily: "Manrope",
     },
@@ -69,7 +69,7 @@ const theme = createTheme({
     body1: {
       fontWeight: 400,
       color: "#fff",
-      fontSize: "0.875rem",
+      fontSize: "clamp(0.875rem, 1.1rem)",
       letterSpacing: "0%",
       lineHeight: "150%",
       fontFamily: "Manrope",
@@ -77,7 +77,7 @@ const theme = createTheme({
     body2: {
       fontWeight: 500,
       color: "#fff",
-      fontSize: "0.94rem",
+      fontSize: "clamp(0.94rem, 1rem)",
       letterSpacing: "0%",
       lineHeight: "11px",
       fontFamily: "Manrope",

@@ -110,6 +110,8 @@ const Home = () => {
           sx={{
             textAlign: "center",
             opacity: "0.7",
+            width: { md: "50%", xs: "unset" },
+            margin: { md: "auto", xs: "unset" },
           }}
         >
           Bulid your bank by safely transfering risk! Back prematch your lays under 0.5 goals for
@@ -122,7 +124,7 @@ const Home = () => {
             justifyContent: "center",
             gap: "10px",
             marginTop: "1.5em",
-            marginBottom: "13em",
+            marginBottom: { xs: "13em", md: "30em" },
           }}
         >
           <CustomButton
@@ -131,6 +133,7 @@ const Home = () => {
               display: "flex",
               alignItems: "center",
               gap: "3px",
+              padding: { md: "20px 40px" },
             }}
           >
             <Typography
@@ -143,7 +146,12 @@ const Home = () => {
             </Typography>
             <Box component={"img"} src={RedirectIcon} sx={{ width: "15px", height: "15px" }} />
           </CustomButton>
-          <CustomButton variant="outlined">
+          <CustomButton
+            variant="outlined"
+            sx={{
+              padding: { md: "20px 40px" },
+            }}
+          >
             <Typography
               variant="body2"
               sx={{
@@ -158,6 +166,8 @@ const Home = () => {
         <Box
           sx={{
             position: "relative",
+            zIndex: 1,
+            pb: { xs: 18, md: 24 },
           }}
         >
           <Box
@@ -166,9 +176,9 @@ const Home = () => {
             alt="phone"
             sx={{
               position: "absolute",
-              top: "-190px",
-              left: "-50px",
-              width: "100%",
+              top: { xs: "-190px", md: "-450px" },
+              left: { xs: "-50px", md: "220px" },
+              width: { xs: "100%", md: "50%" },
             }}
           />
           <Box
@@ -177,10 +187,10 @@ const Home = () => {
             alt="phone"
             sx={{
               position: "absolute",
-              top: "-230px",
-              left: "-20px",
+              top: { xs: "-230px", md: "-550px" },
+              left: { xs: "-20px", md: "300px" },
               zIndex: 1,
-              width: "100%",
+              width: { xs: "100%", md: "50%" },
             }}
           />
           <Box
@@ -189,13 +199,13 @@ const Home = () => {
             alt="phone"
             sx={{
               position: "absolute",
-              top: "-200px",
-              right: "-50px",
-
+              top: { xs: "-200px", md: "-450px" },
+              right: { xs: "-50px", md: "200px" },
               zIndex: 0,
-              width: "100%",
+              width: { xs: "100%", md: "50%" },
             }}
           />
+
           <Box
             sx={{
               border: `1px solid ${theme.palette.primary.main}`,
@@ -207,6 +217,8 @@ const Home = () => {
               zIndex: 9999,
               position: "relative",
               backgroundColor: (theme) => theme.palette.background.default,
+              width: { md: "50%", xs: "unset" },
+              margin: "auto",
             }}
           >
             <Box>
@@ -294,222 +306,298 @@ const Home = () => {
           <Box
             sx={{
               backgroundColor: (theme) => theme.palette.background.default,
-              height: "120px",
-              zIndex: 9,
+              height: "250px",
               position: "absolute",
-              right: 0,
               left: 0,
+              right: 0,
+              bottom: "-50px",
+              zIndex: 2,
             }}
-          ></Box>
+          />
         </Box>
 
         {/* How It Works */}
         <Box
           sx={{
-            marginTop: "130px",
+            display: "flex",
+            flexDirection: { xs: "column", md: "row" },
+            alignItems: "center",
+            justifyContent: "center",
           }}
         >
-          <CustomButton
-            variant="primary"
-            sx={{
-              fontSize: "0.5rem",
-              height: "fit-content",
-              margin: "25px 0",
-            }}
-          >
-            How it Works
-          </CustomButton>
-          <Typography variant="h1">Get Immediately And Weekly Cashback</Typography>
           <Box
             sx={{
-              marginTop: "3em",
-              marginLeft: "2em",
+              backgroundColor: (theme) => theme.palette.background.default,
+              zIndex: 9999,
+              marginTop: { md: "50px", xs: "unset" },
             }}
           >
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "flex-start",
-                gap: "8px",
-              }}
-            >
-              <CustomButton
-                variant="outlined"
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "8px",
-                  borderRadius: "30px",
-                }}
-              >
-                <Box component={"img"} src={SmallBtcIcon} alt="btc icon" />
-                <Typography>Lay On Exchange</Typography>
-              </CustomButton>
-
-              <Box
-                component={"img"}
-                src={ArrowBottomIconRight}
-                alt="arrow bottom icon"
-                sx={{
-                  marginTop: "10px",
-                }}
-              />
-            </Box>
-
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "flex-start",
-                justifyContent: "center",
-                marginTop: "10px",
-                gap: "8px",
-              }}
-            >
-              <Box
-                component={"img"}
-                src={ArrowBottomIconLeft}
-                alt="arrow bottom icon"
-                sx={{
-                  marginTop: "10px",
-                }}
-              />
-
-              <CustomButton
-                variant="outlined"
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "8px",
-                  borderRadius: "30px",
-                }}
-              >
-                <Box component={"img"} src={BackOnXLayIcon} alt="btc icon" />
-                <Typography>Back On XLAY</Typography>
-              </CustomButton>
-            </Box>
-
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "flex-start",
-                gap: "8px",
-              }}
-            >
-              <CustomButton
-                variant="outlined"
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "8px",
-                  borderRadius: "30px",
-                }}
-              >
-                <Box component={"img"} src={BtcOneSmallIcon} alt="btc icon" />
-                <Typography>Get Cashback</Typography>
-              </CustomButton>
-
-              <Box
-                component={"img"}
-                src={ArrowBottomIconRight}
-                alt="arrow bottom icon"
-                sx={{
-                  marginTop: "10px",
-                }}
-              />
-            </Box>
-
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "flex-start",
-                justifyContent: "center",
-                marginTop: "10px",
-                gap: "8px",
-              }}
-            >
-              <Box
-                component={"img"}
-                src={ArrowBottomIconLeft}
-                alt="arrow bottom icon"
-                sx={{
-                  marginTop: "10px",
-                }}
-              />
-
-              <CustomButton
-                variant="outlined"
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "8px",
-                  borderRadius: "30px",
-                }}
-              >
-                <Box component={"img"} src={WinOrLoseIcon} alt="btc icon" />
-                <Typography>Win Or Lose On XLAY</Typography>
-              </CustomButton>
-            </Box>
             <CustomButton
-              variant="outlined"
+              variant="primary"
               sx={{
-                display: "flex",
-                alignItems: "center",
-                gap: "8px",
-                borderRadius: "30px",
+                fontSize: { xs: "0.5rem", md: "1rem" },
+                padding: { xs: "unset", md: "5px 15px" },
+                height: "fit-content",
+                margin: "25px 0",
               }}
             >
-              <Box component={"img"} src={UpToDiscount} alt="btc icon" />
-              <Typography
-                sx={{
-                  color: (theme) => theme.palette.primary.main,
-                }}
-              >
-                Up to 40% Cashback
-              </Typography>
+              How it Works
             </CustomButton>
-          </Box>
-        </Box>
-        {/* Explanation on How It Works */}
-        <Box
-          sx={{
-            marginTop: "2.5em",
-            display: "flex",
-            flexDirection: "column",
-            gap: "3em",
-          }}
-        >
-          {EXPLANATION_CONTENT.map((item, i) => (
+            <Typography
+              variant="h1"
+              sx={{
+                width: { md: "50%", xs: "unset" },
+              }}
+            >
+              Get Immediately And Weekly Cashback
+            </Typography>
+
+            {/* BOXES WITH ARROWS */}
             <Box
               sx={{
                 display: "flex",
-                alignItems: "flex-start",
-                gap: "20px",
+                flexDirection: { xs: "column", md: "row-reverse" },
+
+                justifyContent: "space-between",
+                width: "100%",
+                alignItems: "center",
               }}
             >
-              <Typography>0{i + 1}</Typography>
               <Box
                 sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "20px",
+                  marginTop: "3em",
+                  marginLeft: "2em",
+                  flexGrow: 1,
                 }}
               >
-                <Box>
-                  <Typography variant="body2">{item.title}</Typography>
-                  <Typography
-                    variant="body1"
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "flex-start",
+                    justifyContent: { md: "center", xs: "flex-start" },
+                    gap: "8px",
+                  }}
+                >
+                  <CustomButton
+                    variant="outlined"
                     sx={{
-                      opacity: "70%",
-                      marginTop: "5px",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "8px",
+                      borderRadius: "30px",
+                      padding: { md: "30px", xs: "10px" },
                     }}
                   >
-                    {item.description}
-                  </Typography>
+                    <Box
+                      component={"img"}
+                      src={SmallBtcIcon}
+                      alt="btc icon"
+                      sx={{
+                        width: { md: "30px", xs: "unset" },
+                      }}
+                    />
+                    <Typography>Lay On Exchange</Typography>
+                  </CustomButton>
+
+                  <Box
+                    component={"img"}
+                    src={ArrowBottomIconRight}
+                    alt="arrow bottom icon"
+                    sx={{
+                      marginTop: "10px",
+                    }}
+                  />
                 </Box>
-                <Box component={"img"} src={WhiteRedirectIcon} alt="redirect" />
+
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "flex-start",
+                    justifyContent: { md: "flex-end", xs: "flex-start" },
+                    marginTop: "10px",
+                    gap: "8px",
+                    marginRight: { md: "7rem", xs: "unset" },
+                    marginY: "20px",
+                  }}
+                >
+                  <Box
+                    component={"img"}
+                    src={ArrowBottomIconLeft}
+                    alt="arrow bottom icon"
+                    sx={{
+                      marginTop: "10px",
+                    }}
+                  />
+
+                  <CustomButton
+                    variant="outlined"
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "8px",
+                      borderRadius: "30px",
+                      padding: { md: "30px", xs: "10px" },
+                    }}
+                  >
+                    <Box
+                      component={"img"}
+                      src={BackOnXLayIcon}
+                      alt="btc icon"
+                      sx={{
+                        width: { md: "30px", xs: "unset" },
+                      }}
+                    />
+                    <Typography>Back On XLAY</Typography>
+                  </CustomButton>
+                </Box>
+
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "flex-start",
+                    justifyContent: { md: "center", xs: "flex-start" },
+                    gap: "8px",
+                  }}
+                >
+                  <CustomButton
+                    variant="outlined"
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "8px",
+                      padding: { md: "30px", xs: "10px" },
+                      borderRadius: "30px",
+                    }}
+                  >
+                    <Box
+                      component={"img"}
+                      src={BtcOneSmallIcon}
+                      alt="btc icon"
+                      sx={{
+                        width: { md: "30px", xs: "unset" },
+                      }}
+                    />
+                    <Typography>Get Cashback</Typography>
+                  </CustomButton>
+
+                  <Box
+                    component={"img"}
+                    src={ArrowBottomIconRight}
+                    alt="arrow bottom icon"
+                    sx={{
+                      marginTop: "10px",
+                    }}
+                  />
+                </Box>
+
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "flex-start",
+                    justifyContent: "flex-end",
+                    marginTop: "10px",
+                    gap: "8px",
+                    marginRight: { md: "7rem", xs: "unset" },
+                    marginY: "20px",
+                  }}
+                >
+                  <Box
+                    component={"img"}
+                    src={ArrowBottomIconLeft}
+                    alt="arrow bottom icon"
+                    sx={{
+                      marginTop: "10px",
+                    }}
+                  />
+
+                  <CustomButton
+                    variant="outlined"
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "8px",
+
+                      borderRadius: "30px",
+                      padding: { md: "30px", xs: "10px" },
+                    }}
+                  >
+                    <Box
+                      component={"img"}
+                      src={WinOrLoseIcon}
+                      alt="btc icon"
+                      sx={{
+                        width: { md: "30px", xs: "unset" },
+                      }}
+                    />
+                    <Typography>Win Or Lose On XLAY</Typography>
+                  </CustomButton>
+                </Box>
+                <CustomButton
+                  variant="outlined"
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifySelf: { md: "center", xs: "flex-start" },
+                    gap: "8px",
+                    borderRadius: "30px",
+                    padding: { md: "30px", xs: "10px" },
+                  }}
+                >
+                  <Box component={"img"} src={UpToDiscount} alt="btc icon" />
+                  <Typography
+                    sx={{
+                      color: (theme) => theme.palette.primary.main,
+                    }}
+                  >
+                    Up to 40% Cashback
+                  </Typography>
+                </CustomButton>
+              </Box>
+              <Box
+                sx={{
+                  marginTop: "2.5em",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "3em",
+                  maxWidth: { md: "50%", xs: "unset" },
+                }}
+              >
+                {EXPLANATION_CONTENT.map((item, i) => (
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "flex-start",
+                      gap: "20px",
+                    }}
+                  >
+                    <Typography>0{i + 1}</Typography>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "20px",
+                      }}
+                    >
+                      <Box>
+                        <Typography variant="body2">{item.title}</Typography>
+                        <Typography
+                          variant="body1"
+                          sx={{
+                            opacity: "70%",
+                            marginTop: "5px",
+                          }}
+                        >
+                          {item.description}
+                        </Typography>
+                      </Box>
+                      <Box component={"img"} src={WhiteRedirectIcon} alt="redirect" />
+                    </Box>
+                  </Box>
+                ))}
               </Box>
             </Box>
-          ))}
+          </Box>
+          {/* Explanation on How It Works */}
         </Box>
 
         {/* CASHBACK STRUCTURE */}
@@ -517,9 +605,10 @@ const Home = () => {
           <CustomButton
             variant="primary"
             sx={{
-              fontSize: "0.5rem",
               height: "fit-content",
               margin: "25px 0",
+              fontSize: { xs: "0.5rem", md: "1rem" },
+              padding: { xs: "unset", md: "5px 15px" },
             }}
           >
             Cashback Structure
@@ -538,17 +627,20 @@ const Home = () => {
 
           <Box
             sx={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "1.1em",
+              display: { xs: "flex", md: "grid" },
+              flexDirection: { xs: "column" },
+              gap: { xs: "1.1em", md: 3 },
+
+              gridTemplateColumns: { md: "repeat(2, minmax(0, 1fr))" },
             }}
           >
-            {YOUR_CASHBACK_STRUCTURE_CONTENT.map((item) => (
+            {YOUR_CASHBACK_STRUCTURE_CONTENT.map((item, idx) => (
               <Box
                 sx={{
                   padding: "15px",
                   borderRadius: "16px",
                   backgroundColor: (theme) => theme.palette.gray.dark,
+                  gridColumn: { md: idx === 2 ? "1 / -1" : "auto" },
                 }}
               >
                 <Box
@@ -574,11 +666,16 @@ const Home = () => {
         </Box>
 
         {/* HOW IT WORKS 2 */}
-        <Box>
+        <Box
+          sx={{
+            marginTop: "100px",
+          }}
+        >
           <CustomButton
             variant="primary"
             sx={{
-              fontSize: "0.5rem",
+              fontSize: { xs: "0.5rem", md: "1rem" },
+              padding: { xs: "unset", md: "5px 15px" },
               height: "fit-content",
               margin: "25px 0",
             }}
@@ -636,22 +733,39 @@ const Home = () => {
         </Box>
 
         {/* FAQ */}
-        <Box>
+        <Box
+          sx={{
+            marginTop: "100px",
+          }}
+        >
           <CustomButton
             variant="primary"
             sx={{
-              fontSize: "0.5rem",
+              fontSize: { xs: "0.5rem", md: "1rem" },
+              padding: { xs: "unset", md: "5px 15px" },
               height: "fit-content",
-              margin: "25px 0",
+              margin: { xs: "25px 0", md: "50px 0" },
             }}
           >
-            Cashback Structure
+            Question And Answer
           </CustomButton>
-          <Typography variant="h1">Find Quick Answers to Common Questions</Typography>
+          <Typography
+            variant="h1"
+            sx={{
+              width: { md: "50%", xs: "unset" },
+              margin: "auto",
+              marginBottom: { xs: "unset", md: "50px" },
+            }}
+          >
+            Find Quick Answers to Common Questions
+          </Typography>
           <Typography
             sx={{
               opacity: "70%",
-              marginBottom: "1.5em",
+
+              width: { md: "50%", xs: "unset" },
+              margin: "1.5em auto",
+              textAlign: "center",
             }}
           >
             Before we start, it’s important to answer these questions to avoid any confusion later.
@@ -665,38 +779,55 @@ const Home = () => {
         component={"footer"}
         sx={{
           backgroundColor: "#2A2929",
-          padding: "13px",
+
+          padding: { md: "30px 10vw", xs: "13px" },
         }}
       >
-        <Logo />
-        <Typography
-          sx={{
-            margin: "15px 0",
-            opacity: "70%",
-          }}
-        >
-          Smarter betting starts here. Back your lay bets on XLY, unlock instant cashback, and
-          protect your bankroll — win or lose.
-        </Typography>
-        <Typography
-          sx={{
-            marginBottom: "15px",
-          }}
-        >
-          More about us
-        </Typography>
         <Box
           sx={{
             display: "flex",
-            alignItems: "center",
+            flexDirection: { md: "row", xs: "column" },
+            alignItems: "flex-start",
             justifyContent: "space-between",
-            opacity: "70%",
           }}
         >
-          <Typography>How it Works</Typography>
-          <Typography>Testimonials</Typography>
-          <Typography>Why XLY</Typography>
-          <Typography>FAQ</Typography>
+          <Box
+            sx={{
+              width: { md: "30%" },
+            }}
+          >
+            <Logo />
+            <Typography
+              sx={{
+                margin: "15px 0",
+                opacity: "70%",
+              }}
+            >
+              Smarter betting starts here. Back your lay bets on XLY, unlock instant cashback, and
+              protect your bankroll — win or lose.
+            </Typography>
+            <Typography
+              sx={{
+                marginBottom: "15px",
+              }}
+            >
+              More about us
+            </Typography>
+          </Box>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              opacity: "70%",
+              width: { md: "50%", xs: "100%" },
+            }}
+          >
+            <Typography>How it Works</Typography>
+            <Typography>Testimonials</Typography>
+            <Typography>Why XLY</Typography>
+            <Typography>FAQ</Typography>
+          </Box>
         </Box>
         <Typography
           sx={{
@@ -714,15 +845,6 @@ const Home = () => {
           }}
         >
           support@xlyplatform.com
-        </Typography>
-        <Typography
-          sx={
-            {
-              // TODO add gradient
-            }
-          }
-        >
-          © 2025 — Copyright AllRights reserved
         </Typography>
       </Box>
     </Box>
