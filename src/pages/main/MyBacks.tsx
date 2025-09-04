@@ -116,11 +116,13 @@ const MyBacks = () => {
             paginatedData.map((item: ActiveHistoryTypes, index: number) => (
               <CustomAccordion
                 key={item.id}
+                created_at={item.created_at}
+                status={item.status}
                 title={`B20251407112500${index + 1 + (activePage - 1) * ITEMS_PER_PAGE}`}
               >
                 <BetDetails
                   item={{
-                    match: `${item.home_team} - ${item.away_team}`, // TODO: missing
+                    match: `${item.match}`, // TODO: missing
                     tip: item.tip, // e.g. "Correct Score 0:0"
                     odds: item.total_odds,
                     total_odds: item.total_odds,
@@ -128,8 +130,9 @@ const MyBacks = () => {
                     win_payout: item.win_payout,
                     loss_payout: item.loss_payout,
                     file_name: item.file_name,
-                    stake_unit: "USDT",
-                    payout_unit: "USDT",
+
+                    stake_unit: "BTC",
+                    payout_unit: "BTC",
                   }}
                 />
               </CustomAccordion>

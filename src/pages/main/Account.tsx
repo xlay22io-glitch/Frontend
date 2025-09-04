@@ -19,6 +19,7 @@ const Account = () => {
   const clearAuth = useAuthStore((state) => state.clearAuth);
   const { mutate: logoutUser } = useLogout();
   const { data, isPending } = useAccountInfo();
+  console.log(data);
 
   const handleWithdrawClick = () => {
     setWithdrawModalVisible((c) => !c);
@@ -32,6 +33,14 @@ const Account = () => {
     logoutUser();
     clearAuth();
     navigate("/login");
+  };
+  const dateFormatter = (dateStr: string) => {
+    const date = new Date(dateStr);
+    const formatted = date.toLocaleDateString("en-GB", {
+      day: "2-digit",
+      month: "long",
+    });
+    return formatted;
   };
 
   if (isPending) {
@@ -280,7 +289,9 @@ const Account = () => {
                   marginTop: "5px",
                 }}
               >
-                07 July 2025 - 13 July 2025
+                {`${dateFormatter(data?.weekly_bonus?.[0]?.week_start)} - ${dateFormatter(
+                  data?.weekly_bonus?.[0]?.week_end
+                )}`}
               </Typography>
 
               <Box>
@@ -307,7 +318,7 @@ const Account = () => {
                       fontWeight: 600,
                     }}
                   >
-                    0.000000{" "}
+                    {data?.weekly_bonus?.[0]?.weekly_reward}
                     <Box
                       component={"span"}
                       sx={{
@@ -343,7 +354,7 @@ const Account = () => {
                       fontWeight: 600,
                     }}
                   >
-                    0.000000{" "}
+                    {data?.weekly_bonus?.[0]?.weekly_balance}
                     <Box
                       component={"span"}
                       sx={{

@@ -9,16 +9,32 @@ import {
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useState } from "react";
 import RedCheckmarkIcon from "../../assets/icons/red-checkmark.svg";
+import ApprovedIcon from "../../assets/icons/approved-icon.svg";
+import PendingIcon from "../../assets/icons/pending-icon.svg";
 
 type CustomAccordionProps = {
   title: string;
+  created_at: string;
+  status: string;
   children: React.ReactNode;
 };
 
-const CustomAccordion = ({ title, children }: CustomAccordionProps) => {
+const CustomAccordion = ({ title, created_at, status, children }: CustomAccordionProps) => {
   const [expanded, setExpanded] = useState(false);
   const theme = useTheme();
+  const date = new Date(created_at);
+  const formatted = date.toLocaleDateString("en-GB", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+  });
 
+  let icon = PendingIcon;
+  if (status === "declined") {
+    icon = RedCheckmarkIcon;
+  } else if (status === "approved") {
+    icon = ApprovedIcon;
+  }
   return (
     <Accordion
       expanded={expanded}
@@ -49,7 +65,7 @@ const CustomAccordion = ({ title, children }: CustomAccordionProps) => {
           },
         }}
       >
-        <Box component={"img"} src={RedCheckmarkIcon} />
+        <Box component={"img"} src={icon} />
         <Box>
           <Typography
             sx={{
@@ -67,7 +83,7 @@ const CustomAccordion = ({ title, children }: CustomAccordionProps) => {
             }}
           >
             {/* TODO: missing data */}
-            07 July 2025
+            {formatted}
           </Typography>
         </Box>
       </AccordionSummary>

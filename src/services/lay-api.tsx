@@ -1,5 +1,5 @@
-import axiosInstance from '../api/axios-instance';
-import { AxiosError } from 'axios';
+import axiosInstance from "../api/axios-instance";
+import { AxiosError } from "axios";
 
 const handleError = (error: unknown, defaultMessage: string) => {
   if (error instanceof AxiosError) {
@@ -13,23 +13,23 @@ const handleError = (error: unknown, defaultMessage: string) => {
 
 export const generateDepositAddress = async () => {
   try {
-    const response = await axiosInstance.get('/account/deposit/generate/');
+    const response = await axiosInstance.get("/account/deposit/generate/");
     return response.data;
   } catch (error) {
-    return handleError(error, 'Failed to generate deposit address.');
+    return handleError(error, "Failed to generate deposit address.");
   }
 };
 
 export const withdraw = async (data: { amount: number; address: string }) => {
   try {
-    const response = await axiosInstance.post('/account/withdraw/', data, {
+    const response = await axiosInstance.post("/account/withdraw/", data, {
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
     });
     return response.data;
   } catch (error) {
-    return handleError(error, 'Withdrawal request failed.');
+    return handleError(error, "Withdrawal request failed.");
   }
 };
 
@@ -38,6 +38,6 @@ export const calculateLay = async (formData: FormData) => {
     const response = await axiosInstance.post(`/account/calculator/`, formData);
     return response.data;
   } catch (error) {
-    return handleError(error, 'Failed to back your lay.');
+    return handleError(error, "Failed to back your lay.");
   }
 };

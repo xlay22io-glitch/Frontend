@@ -9,8 +9,8 @@ type BetItem = {
   match?: string;
   tip?: string;
   odds?: number | string;
-  stake_unit?: string; // e.g. "USDT"
-  payout_unit?: string; // e.g. "USDT"
+  stake_unit?: string;
+  payout_unit?: string;
 };
 
 const BetDetails = ({ item }: { item: BetItem }) => {

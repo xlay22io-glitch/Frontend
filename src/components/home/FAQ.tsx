@@ -11,7 +11,9 @@ import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded";
 import { useState } from "react";
 
-const Accordion = styled((props) => (
+import type { AccordionProps } from "@mui/material/Accordion";
+
+const Accordion = styled((props: AccordionProps) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
 ))(({ theme }) => ({
   borderRadius: "50px",

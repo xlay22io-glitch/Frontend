@@ -15,6 +15,104 @@ import StakeIcon from "../../assets/icons/stake-icon.svg";
 import uploadIcon from "../../assets/icons/upload-icon.svg";
 import { useNavigate } from "react-router-dom";
 
+// --- move these ABOVE Calculator() ---
+
+type LabeledProps = {
+  children: React.ReactNode;
+  label: string;
+  rightLabel?: React.ReactNode;
+};
+
+export const Labeled = ({ children, label, rightLabel }: LabeledProps) => {
+  return (
+    <Box sx={{ mb: 2 }}>
+      <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", mb: 1 }}>
+        <Typography sx={{ fontSize: 12, fontWeight: 700, color: "#B3B3B3" }}>{label}</Typography>
+        {rightLabel}
+      </Box>
+      {children}
+    </Box>
+  );
+};
+
+type FieldProps = {
+  placeholder: string;
+  icon: string;
+  inputProps?: any; // from react-hook-form register(...)
+  type?: string;
+  error?: string;
+  readOnly?: boolean;
+};
+
+export const Field = ({
+  placeholder,
+  icon,
+  inputProps,
+  type = "text",
+  error,
+  readOnly,
+}: FieldProps) => {
+  const fieldBg = "#2A2A2A";
+  const borderSoft = "1px solid rgba(255,255,255,0.08)";
+  const subText = "#909A9F";
+
+  // map RHF ref correctly for MUI
+  const { ref, ...rest } = inputProps ?? {};
+
+  return (
+    <Box sx={{ position: "relative" }}>
+      <Box
+        component="img"
+        src={icon}
+        sx={{ position: "absolute", zIndex: 1, left: 15, top: "30%" }}
+      />
+      <TextField
+        fullWidth
+        type={type}
+        placeholder={placeholder}
+        inputRef={ref}
+        {...rest}
+        InputProps={{ readOnly: readOnly }}
+        sx={{
+          "& .MuiOutlinedInput-root": {
+            borderRadius: "28px",
+            bgcolor: fieldBg,
+            color: "#fff !important",
+            paddingLeft: "30px",
+            "& fieldset": { border: borderSoft },
+            "&:hover fieldset": { borderColor: "rgba(255,255,255,0.16)" },
+            "&.Mui-focused fieldset": { borderColor: "rgba(255,255,255,0.24)" },
+          },
+          "& .MuiInputBase-input::placeholder": { color: subText, opacity: 1 },
+        }}
+      />
+      {error && <Typography sx={{ color: "#ff6b6b", fontSize: 12, mt: 0.5 }}>{error}</Typography>}
+    </Box>
+  );
+};
+
+type RowProps = { label: string; value: React.ReactNode };
+export const Row = ({ label, value }: RowProps) => {
+  const borderSoft = "1px solid rgba(255,255,255,0.08)";
+  const theme = useTheme();
+  return (
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        py: 1,
+        "& + &": { borderTop: borderSoft },
+      }}
+    >
+      <Typography sx={{ color: "#E3E3E3", fontWeight: 600, fontSize: 14 }}>{label}</Typography>
+      <Typography sx={{ color: theme.palette.primary.main, fontWeight: 800, fontSize: 16 }}>
+        {value}
+      </Typography>
+    </Box>
+  );
+};
+
 const Calculator = () => {
   const theme = useTheme();
 
@@ -42,9 +140,13 @@ const Calculator = () => {
     setValue("win_payout", result);
   }, [totalOdd, stakeAmount, setValue]);
 
+  useEffect(() => {
+    setValue("tip", "Under 0,5g or Correct score 0:0");
+  }, [setValue]);
+
   // simple "lose payout" display (not submitted): shows stake as in many UIs
   const losePayout =
-    stakeAmount && !isNaN(parseFloat(stakeAmount)) ? Number(stakeAmount).toFixed(6) : "0.000000";
+    stakeAmount && !isNaN(parseFloat(stakeAmount)) ? Number(stakeAmount) / 5 : "0.000000";
 
   const { mutate: calculatorMutate, isPending } = useCalculator();
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -56,11 +158,13 @@ const Calculator = () => {
     payload.append("total_odd", data.total_odd);
     payload.append("stake_amount", data.stake_amount);
     payload.append("win_payout", data.win_payout);
+    payload.append("tip", data.tip);
+    payload.append("loss_payout", String(losePayout));
+    payload.append("match", data.match);
     if (data.file) payload.append("file", data.file);
-    payload.append("all_data_true", String(data.all_data_true));
     calculatorMutate(payload);
   };
-
+  console.log(errors);
   // tokens to match the screenshot
   const cardBg = theme.palette.grey[900];
   const fieldBg = "#2A2A2A";
@@ -68,96 +172,6 @@ const Calculator = () => {
   const accent = theme.palette.primary.main; // your lime
   const labelColor = "#B3B3B3";
   const subText = "#909A9F";
-
-  const Labeled = ({
-    children,
-    label,
-    rightLabel,
-  }: {
-    children: React.ReactNode;
-    label: string;
-    rightLabel?: React.ReactNode;
-  }) => (
-    <Box sx={{ mb: 2 }}>
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "baseline",
-          mb: 1,
-        }}
-      >
-        <Typography sx={{ fontSize: 12, fontWeight: 700, color: labelColor }}>{label}</Typography>
-        {rightLabel}
-      </Box>
-      {children}
-    </Box>
-  );
-
-  const Field = ({
-    placeholder,
-    icon,
-    inputProps,
-    type = "text",
-    error,
-  }: {
-    placeholder: string;
-    icon: string;
-    inputProps?: any;
-    type?: string;
-    error?: string;
-  }) => (
-    <Box
-      sx={{
-        position: "relative",
-      }}
-    >
-      <Box
-        component={"img"}
-        src={icon}
-        sx={{
-          position: "absolute",
-          zIndex: 1,
-          left: "15px",
-          top: "30%",
-        }}
-      />
-      <TextField
-        fullWidth
-        type={type}
-        placeholder={placeholder}
-        {...inputProps}
-        sx={{
-          "& .MuiOutlinedInput-root": {
-            borderRadius: "28px",
-            bgcolor: fieldBg,
-            color: "#fff",
-            paddingLeft: "30px",
-            "& fieldset": { border: borderSoft },
-            "&:hover fieldset": { borderColor: "rgba(255,255,255,0.16)" },
-            "&.Mui-focused fieldset": { borderColor: "rgba(255,255,255,0.24)" },
-          },
-          "& .MuiInputBase-input::placeholder": { color: subText, opacity: 1 },
-        }}
-      />
-      {error && <Typography sx={{ color: "#ff6b6b", fontSize: 12, mt: 0.5 }}>{error}</Typography>}
-    </Box>
-  );
-
-  const Row = ({ label, value }: { label: string; value: React.ReactNode }) => (
-    <Box
-      sx={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        py: 1,
-        "& + &": { borderTop: borderSoft },
-      }}
-    >
-      <Typography sx={{ color: "#E3E3E3", fontWeight: 600, fontSize: 14 }}>{label}</Typography>
-      <Typography sx={{ color: accent, fontWeight: 800, fontSize: 16 }}>{value}</Typography>
-    </Box>
-  );
 
   return (
     <Box
@@ -209,7 +223,7 @@ const Calculator = () => {
             <Field
               placeholder="Enter Match"
               icon={MatchIcon}
-              inputProps={register("match" as any)} // optional: ignore if not in schema
+              inputProps={register("match")} // optional: ignore if not in schema
             />
           </Labeled>
 
@@ -218,7 +232,8 @@ const Calculator = () => {
             <Field
               placeholder="Under 0.5 or Correct Score 0:0"
               icon={TipIcon}
-              inputProps={register("tip" as any)}
+              inputProps={register("tip")}
+              readOnly={true}
             />
           </Labeled>
 
