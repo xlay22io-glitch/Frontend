@@ -14,7 +14,7 @@ const MyBacks = () => {
   const { data, isPending, error } = useAccountInfo();
   const navigate = useNavigate();
   const [activePage, setActivePage] = useState(1);
-  const ITEMS_PER_PAGE = 6;
+  const ITEMS_PER_PAGE = 20;
 
   const paginatedData = data?.active_lay.slice(
     (activePage - 1) * ITEMS_PER_PAGE,

@@ -7,8 +7,8 @@ export const registerSchema = z
       .string()
       .min(8, "Password must be at least 8 characters")
       .regex(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$#!%*?&+])/,
-        "Password must contain uppercase, lowercase, number and special character."
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/,
+        "Password must contain uppercase, lowercase, and a number."
       ),
     confirm_password: z.string().min(8, "Please confirm your password"),
   })
@@ -36,12 +36,23 @@ export const resetPasswordSchema = z
     path: ["confirm_password"],
   });
 
+const decimalLike = z
+  .string()
+  .min(1, "This field is required")
+  .refine((v) => {
+    const n = Number(v.replace(",", "."));
+    return Number.isFinite(n) && n > 0;
+  }, "Enter a positive number (e.g. 10.5 or 10,5)");
+
 export const calculatorSchema = z.object({
   match: z.string().min(1, "Match is required"),
   tip: z.string().min(1, "Tip is required"),
-  total_odd: z.string().min(1, "Total odd is required"),
-  stake_amount: z.string().min(1, "Stake amount is required"),
-  win_payout: z.string().min(1, "Win payout is required"),
+  total_odd: decimalLike, // <— accepts 10.50 or 10,50
+  stake_amount: decimalLike, // <— accepts 2.70 or 2,70
+  win_payout: z
+    .string()
+    .min(1, "Win payout is required")
+    .refine((v) => Number.isFinite(Number(v.replace(",", "."))), "Invalid payout"),
   file: z
     .instanceof(File, { message: "File is required" })
     .refine((file) => file.type.startsWith("image/"), {

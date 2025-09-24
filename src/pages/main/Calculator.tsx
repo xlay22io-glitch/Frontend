@@ -17,6 +17,15 @@ import { useNavigate } from "react-router-dom";
 
 // --- move these ABOVE Calculator() ---
 
+const toNum = (v?: string) => {
+  if (!v) return NaN;
+  const normalized = v.replace(",", ".").trim();
+  const n = Number(normalized);
+  return Number.isFinite(n) ? n : NaN;
+};
+
+const normalizeForApi = (v: string) => v.replace(",", ".").trim();
+
 type LabeledProps = {
   children: React.ReactNode;
   label: string;
@@ -134,19 +143,21 @@ const Calculator = () => {
   const { data: account, isPending: isAccPending } = useAccountInfo();
 
   useEffect(() => {
-    const odd = parseFloat(totalOdd);
-    const stake = parseFloat(stakeAmount);
+    const odd = toNum(totalOdd);
+    const stake = toNum(stakeAmount);
     const result = !isNaN(odd) && !isNaN(stake) ? (odd * stake).toFixed(6) : "0.000000";
     setValue("win_payout", result);
   }, [totalOdd, stakeAmount, setValue]);
+
+  // lose payout
+  const losePayout =
+    stakeAmount && !isNaN(toNum(stakeAmount)) ? (toNum(stakeAmount) / 5).toFixed(6) : "0.000000";
 
   useEffect(() => {
     setValue("tip", "Under 0,5g or Correct score 0:0");
   }, [setValue]);
 
   // simple "lose payout" display (not submitted): shows stake as in many UIs
-  const losePayout =
-    stakeAmount && !isNaN(parseFloat(stakeAmount)) ? Number(stakeAmount) / 5 : "0.000000";
 
   const { mutate: calculatorMutate, isPending } = useCalculator();
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -155,15 +166,16 @@ const Calculator = () => {
 
   const onSubmit = (data: CalculatorFormInputs) => {
     const payload = new FormData();
-    payload.append("total_odd", data.total_odd);
-    payload.append("stake_amount", data.stake_amount);
-    payload.append("win_payout", data.win_payout);
+    payload.append("total_odd", normalizeForApi(data.total_odd));
+    payload.append("stake_amount", normalizeForApi(data.stake_amount));
+    payload.append("win_payout", normalizeForApi(data.win_payout));
     payload.append("tip", data.tip);
-    payload.append("loss_payout", String(losePayout));
+    payload.append("loss_payout", normalizeForApi(String(losePayout)));
     payload.append("match", data.match);
     if (data.file) payload.append("file", data.file);
     calculatorMutate(payload);
   };
+
   console.log(errors);
   // tokens to match the screenshot
   const cardBg = theme.palette.grey[900];
@@ -241,7 +253,7 @@ const Calculator = () => {
           <Labeled label="Odds">
             <Field
               placeholder="0.00"
-              type="number"
+              type="text"
               icon={OddIcon}
               inputProps={{
                 ...register("total_odd"),
@@ -265,7 +277,7 @@ const Calculator = () => {
           >
             <Field
               placeholder="0.000000"
-              type="number"
+              type="text"
               icon={StakeIcon}
               inputProps={{
                 ...register("stake_amount"),

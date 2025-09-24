@@ -46,7 +46,7 @@ export const useLogin = () => {
       setToken(access);
       setRefreshToken(refresh);
 
-      navigate("/");
+      navigate("/account");
     },
     onError: (error: any) => {
       const errorMessage = error?.detail?.[0] || "Login failed.";
