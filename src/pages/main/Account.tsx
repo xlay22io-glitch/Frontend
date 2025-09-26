@@ -11,6 +11,7 @@ import Withdraw from "./Withdraw";
 import Deposit from "./Deposit";
 import { useAccountInfo, useLogout } from "../../hooks/auth-hook";
 import useAuthStore from "../../store/auth-store";
+import { useCloseWhenUserLeaves } from "../../hooks/lay-hook";
 
 const Account = () => {
   const navigate = useNavigate();
@@ -20,6 +21,7 @@ const Account = () => {
   const { mutate: logoutUser } = useLogout();
   const { data, isPending } = useAccountInfo();
   console.log(data);
+  useCloseWhenUserLeaves(() => setDepositModalVisible(false));
 
   const handleWithdrawClick = () => {
     setWithdrawModalVisible((c) => !c);

@@ -45,7 +45,7 @@ export const useLogin = () => {
       const { access, refresh } = data;
       setToken(access);
       setRefreshToken(refresh);
-
+      console.log("CALLED?");
       navigate("/account");
     },
     onError: (error: any) => {
