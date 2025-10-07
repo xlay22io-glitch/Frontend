@@ -228,15 +228,17 @@ const Calculator = () => {
         <Box
           sx={{
             display: "flex",
-            justifyContent: "space-between",
+            justifyContent: "center",
             alignItems: "center",
             mb: 3,
+            position: "relative",
           }}
         >
           <IconButton
             size="small"
             sx={{
-              mr: 1,
+              position: "absolute",
+              left: 0,
               border: borderSoft,
               padding: "10px",
               "&:hover": { bgcolor: "#333" },
@@ -251,7 +253,6 @@ const Calculator = () => {
           >
             Place Back
           </Typography>
-          <Box></Box>
         </Box>
 
         <Box
