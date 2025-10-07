@@ -6,6 +6,10 @@ import CustomButton from "../../components/common/CustomButton";
 const Deposit = () => {
   const { data, isPending, error } = useGenerateDepositAddress();
 
+  const handleCopyAddress = () => {
+    if (data?.address) navigator.clipboard.writeText(data.address);
+  };
+
   if (isPending) {
     return (
       <Box
@@ -75,10 +79,14 @@ const Deposit = () => {
         label="Generated Bitcoin Address"
         variantStyle="boxed"
         value={data?.address || ""}
-        copyable
         InputProps={{ readOnly: true }}
       />
-      <CustomButton variant="primary" fullWidth sx={{ mt: 5, mb: 1, p: 3.5, borderRadius: "50px" }}>
+      <CustomButton
+        variant="primary"
+        fullWidth
+        sx={{ mt: 5, mb: 1, p: 3.5, borderRadius: "50px" }}
+        onClick={handleCopyAddress}
+      >
         Copy Address
       </CustomButton>
     </Box>
