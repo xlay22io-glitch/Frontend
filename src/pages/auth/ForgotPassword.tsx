@@ -3,9 +3,11 @@ import CustomInput from "../../components/common/CustomInput";
 import CustomButton from "../../components/common/CustomButton";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { forgotPasswordSchema, type ForgotPasswordInputs } from "../../utils/validation";
+import {
+  forgotPasswordSchema,
+  type ForgotPasswordInputs,
+} from "../../utils/validation";
 import { useRequestPasswordReset } from "../../hooks/auth-hook";
-import EmailIcon from "../../assets/icons/login-email-icon.svg";
 
 const ForgotPassword = () => {
   const {
@@ -52,7 +54,10 @@ const ForgotPassword = () => {
         >
           Reset Your Password
         </Typography>
-        <Typography variant="body1" sx={{ opacity: "70%", marginBottom: "20px" }}>
+        <Typography
+          variant="body1"
+          sx={{ opacity: "70%", marginBottom: "20px" }}
+        >
           Securely Reset Your Password
         </Typography>
         <Box
@@ -71,19 +76,6 @@ const ForgotPassword = () => {
               position: "relative",
             }}
           >
-            <Box
-              src={EmailIcon}
-              component={"img"}
-              width={20}
-              height={20}
-              alt="email"
-              sx={{
-                position: "absolute",
-                left: "20px",
-                zIndex: 1,
-                top: "35%",
-              }}
-            />
             <CustomInput
               label="Email"
               placeholder="Enter Your Email Address"

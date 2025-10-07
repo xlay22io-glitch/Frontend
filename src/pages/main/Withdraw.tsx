@@ -4,8 +4,6 @@ import CustomInput from "../../components/common/CustomInput";
 import CustomButton from "../../components/common/CustomButton";
 import { useWithdraw } from "../../hooks/lay-hook";
 import { useAccountInfo } from "../../hooks/auth-hook";
-import EmailIcon from "../../assets/icons/login-email-icon.svg";
-import BtcIcon from "../../assets/icons/btc-icon.svg";
 
 const Withdraw = () => {
   const [amount, setAmount] = useState("");
@@ -54,19 +52,6 @@ const Withdraw = () => {
             >
               Bitcoin Address:
             </Typography>
-            <Box
-              src={EmailIcon}
-              component={"img"}
-              width={20}
-              height={20}
-              alt="email"
-              sx={{
-                position: "absolute",
-                left: "20px",
-                zIndex: 1,
-                top: "55%",
-              }}
-            />
 
             <CustomInput
               value={address}
@@ -102,19 +87,6 @@ const Withdraw = () => {
             >
               Amount (BTC):
             </Typography>
-            <Box
-              src={BtcIcon}
-              component={"img"}
-              width={20}
-              height={20}
-              alt="email"
-              sx={{
-                position: "absolute",
-                left: "20px",
-                zIndex: 1,
-                top: "55%",
-              }}
-            />
 
             <CustomInput
               value={amount}

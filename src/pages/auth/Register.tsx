@@ -8,8 +8,6 @@ import {
   registerSchema,
 } from "../../utils/validation";
 import { useRegister } from "../../hooks/auth-hook";
-import PasswordIcon from "../../assets/icons/login-password-icon.svg";
-import EmailIcon from "../../assets/icons/login-email-icon.svg";
 import { Link } from "react-router-dom";
 
 const Register = () => {
@@ -79,19 +77,6 @@ const Register = () => {
               position: "relative",
             }}
           >
-            <Box
-              src={EmailIcon}
-              component={"img"}
-              width={20}
-              height={20}
-              alt="email"
-              sx={{
-                position: "absolute",
-                left: "20px",
-                zIndex: 1,
-                top: "35%",
-              }}
-            />
             <CustomInput
               label="Email"
               placeholder="Enter Your Email Address"
@@ -109,19 +94,6 @@ const Register = () => {
               position: "relative",
             }}
           >
-            <Box
-              src={PasswordIcon}
-              component={"img"}
-              width={20}
-              height={20}
-              alt="password"
-              sx={{
-                position: "absolute",
-                left: "20px",
-                zIndex: 1,
-                top: "35%",
-              }}
-            />
             <CustomInput
               label="Password"
               type="password"
@@ -141,19 +113,6 @@ const Register = () => {
               position: "relative",
             }}
           >
-            <Box
-              src={PasswordIcon}
-              component={"img"}
-              width={20}
-              height={20}
-              alt="password"
-              sx={{
-                position: "absolute",
-                left: "20px",
-                zIndex: 1,
-                top: "35%",
-              }}
-            />
             <CustomInput
               label="Confirm Password"
               type="password"

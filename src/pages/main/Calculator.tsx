@@ -1,17 +1,22 @@
 import { useEffect, useRef } from "react";
-import { Box, Typography, TextField, IconButton, useTheme } from "@mui/material";
+import {
+  Box,
+  Typography,
+  TextField,
+  IconButton,
+  useTheme,
+} from "@mui/material";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 
 import { useCalculator } from "../../hooks/lay-hook";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { calculatorSchema, type CalculatorFormInputs } from "../../utils/validation";
+import {
+  calculatorSchema,
+  type CalculatorFormInputs,
+} from "../../utils/validation";
 import { useAccountInfo } from "../../hooks/auth-hook";
 
-import MatchIcon from "../../assets/icons/enter-match.svg";
-import TipIcon from "../../assets/icons/tip-icon.svg";
-import OddIcon from "../../assets/icons/ods.svg";
-import StakeIcon from "../../assets/icons/stake-icon.svg";
 import uploadIcon from "../../assets/icons/upload-icon.svg";
 import { useNavigate } from "react-router-dom";
 
@@ -35,8 +40,17 @@ type LabeledProps = {
 export const Labeled = ({ children, label, rightLabel }: LabeledProps) => {
   return (
     <Box sx={{ mb: 2 }}>
-      <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", mb: 1 }}>
-        <Typography sx={{ fontSize: 12, fontWeight: 700, color: "#B3B3B3" }}>{label}</Typography>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "baseline",
+          mb: 1,
+        }}
+      >
+        <Typography sx={{ fontSize: 12, fontWeight: 700, color: "#B3B3B3" }}>
+          {label}
+        </Typography>
         {rightLabel}
       </Box>
       {children}
@@ -46,7 +60,6 @@ export const Labeled = ({ children, label, rightLabel }: LabeledProps) => {
 
 type FieldProps = {
   placeholder: string;
-  icon: string;
   inputProps?: any; // from react-hook-form register(...)
   type?: string;
   error?: string;
@@ -55,7 +68,6 @@ type FieldProps = {
 
 export const Field = ({
   placeholder,
-  icon,
   inputProps,
   type = "text",
   error,
@@ -70,11 +82,6 @@ export const Field = ({
 
   return (
     <Box sx={{ position: "relative" }}>
-      <Box
-        component="img"
-        src={icon}
-        sx={{ position: "absolute", zIndex: 1, left: 15, top: "30%" }}
-      />
       <TextField
         fullWidth
         type={type}
@@ -87,7 +94,6 @@ export const Field = ({
             borderRadius: "28px",
             bgcolor: fieldBg,
             color: "#fff !important",
-            paddingLeft: "30px",
             "& fieldset": { border: borderSoft },
             "&:hover fieldset": { borderColor: "rgba(255,255,255,0.16)" },
             "&.Mui-focused fieldset": { borderColor: "rgba(255,255,255,0.24)" },
@@ -95,7 +101,11 @@ export const Field = ({
           "& .MuiInputBase-input::placeholder": { color: subText, opacity: 1 },
         }}
       />
-      {error && <Typography sx={{ color: "#ff6b6b", fontSize: 12, mt: 0.5 }}>{error}</Typography>}
+      {error && (
+        <Typography sx={{ color: "#ff6b6b", fontSize: 12, mt: 0.5 }}>
+          {error}
+        </Typography>
+      )}
     </Box>
   );
 };
@@ -114,8 +124,16 @@ export const Row = ({ label, value }: RowProps) => {
         "& + &": { borderTop: borderSoft },
       }}
     >
-      <Typography sx={{ color: "#E3E3E3", fontWeight: 600, fontSize: 14 }}>{label}</Typography>
-      <Typography sx={{ color: theme.palette.primary.main, fontWeight: 800, fontSize: 16 }}>
+      <Typography sx={{ color: "#E3E3E3", fontWeight: 600, fontSize: 14 }}>
+        {label}
+      </Typography>
+      <Typography
+        sx={{
+          color: theme.palette.primary.main,
+          fontWeight: 800,
+          fontSize: 16,
+        }}
+      >
         {value}
       </Typography>
     </Box>
@@ -145,13 +163,16 @@ const Calculator = () => {
   useEffect(() => {
     const odd = toNum(totalOdd);
     const stake = toNum(stakeAmount);
-    const result = !isNaN(odd) && !isNaN(stake) ? (odd * stake).toFixed(6) : "0.000000";
+    const result =
+      !isNaN(odd) && !isNaN(stake) ? (odd * stake).toFixed(6) : "0.000000";
     setValue("win_payout", result);
   }, [totalOdd, stakeAmount, setValue]);
 
   // lose payout
   const losePayout =
-    stakeAmount && !isNaN(toNum(stakeAmount)) ? (toNum(stakeAmount) / 5).toFixed(6) : "0.000000";
+    stakeAmount && !isNaN(toNum(stakeAmount))
+      ? (toNum(stakeAmount) / 5).toFixed(6)
+      : "0.000000";
 
   useEffect(() => {
     setValue("tip", "Under 0,5g or Correct score 0:0");
@@ -204,7 +225,14 @@ const Calculator = () => {
         }}
       >
         {/* Header */}
-        <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 3 }}>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            mb: 3,
+          }}
+        >
           <IconButton
             size="small"
             sx={{
@@ -217,7 +245,10 @@ const Calculator = () => {
           >
             <ArrowBackIosNewIcon sx={{ fontSize: 18, color: "#fff" }} />
           </IconButton>
-          <Typography variant="h5" sx={{ fontWeight: 800, color: "#fff", letterSpacing: 0.2 }}>
+          <Typography
+            variant="h5"
+            sx={{ fontWeight: 800, color: "#fff", letterSpacing: 0.2 }}
+          >
             Place Back
           </Typography>
           <Box></Box>
@@ -234,7 +265,6 @@ const Calculator = () => {
           <Labeled label="Match">
             <Field
               placeholder="Enter Match"
-              icon={MatchIcon}
               inputProps={register("match")} // optional: ignore if not in schema
             />
           </Labeled>
@@ -243,7 +273,6 @@ const Calculator = () => {
           <Labeled label="Tip">
             <Field
               placeholder="Under 0.5 or Correct Score 0:0"
-              icon={TipIcon}
               inputProps={register("tip")}
               readOnly={true}
             />
@@ -254,7 +283,6 @@ const Calculator = () => {
             <Field
               placeholder="0.00"
               type="text"
-              icon={OddIcon}
               inputProps={{
                 ...register("total_odd"),
                 inputMode: "decimal",
@@ -278,7 +306,6 @@ const Calculator = () => {
             <Field
               placeholder="0.000000"
               type="text"
-              icon={StakeIcon}
               inputProps={{
                 ...register("stake_amount"),
                 inputMode: "decimal",
@@ -289,7 +316,9 @@ const Calculator = () => {
         </Box>
         {/* Upload card */}
         <Box sx={{ my: 3 }}>
-          <Typography sx={{ fontSize: 14, fontWeight: 500, color: labelColor, mb: 1 }}>
+          <Typography
+            sx={{ fontSize: 14, fontWeight: 500, color: labelColor, mb: 1 }}
+          >
             Screenshot Of Your Original Lay
           </Typography>
 
@@ -331,9 +360,13 @@ const Calculator = () => {
             <Typography sx={{ fontWeight: 800, color: accent, mb: 0.5 }}>
               Click to Upload
             </Typography>
-            <Typography sx={{ color: subText, fontSize: 12 }}>(Max. File size: 25 MB)</Typography>
+            <Typography sx={{ color: subText, fontSize: 12 }}>
+              (Max. File size: 25 MB)
+            </Typography>
             {file && (
-              <Typography sx={{ color: "#e5e5e5", fontSize: 12, mt: 1 }}>{file.name}</Typography>
+              <Typography sx={{ color: "#e5e5e5", fontSize: 12, mt: 1 }}>
+                {file.name}
+              </Typography>
             )}
           </Box>
 
@@ -353,7 +386,10 @@ const Calculator = () => {
             mb: 3,
           }}
         >
-          <Row label="Win Payout:" value={`${watch("win_payout") || "0.000000"} BTC`} />
+          <Row
+            label="Win Payout:"
+            value={`${watch("win_payout") || "0.000000"} BTC`}
+          />
           <Row label="Lose Payout:" value={`${losePayout} BTC`} />
         </Box>
 

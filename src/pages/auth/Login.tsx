@@ -6,8 +6,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { type LoginFormInputs, loginSchema } from "../../utils/validation";
 import { Link } from "react-router-dom";
 import { useLogin } from "../../hooks/auth-hook";
-import EmailIcon from "../../assets/icons/login-email-icon.svg";
-import PasswordIcon from "../../assets/icons/login-password-icon.svg";
 
 const Login = () => {
   const {
@@ -80,19 +78,6 @@ const Login = () => {
               position: "relative",
             }}
           >
-            <Box
-              src={EmailIcon}
-              component={"img"}
-              width={20}
-              height={20}
-              alt="email"
-              sx={{
-                position: "absolute",
-                left: "20px",
-                zIndex: 1,
-                top: "35%",
-              }}
-            />
             <CustomInput
               label="Email"
               placeholder="Enter your Email"
@@ -110,19 +95,6 @@ const Login = () => {
               position: "relative",
             }}
           >
-            <Box
-              src={PasswordIcon}
-              component={"img"}
-              width={20}
-              height={20}
-              alt="password"
-              sx={{
-                position: "absolute",
-                left: "20px",
-                zIndex: 1,
-                top: "35%",
-              }}
-            />
             <CustomInput
               label="Password"
               type="password"

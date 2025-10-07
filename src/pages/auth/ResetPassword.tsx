@@ -4,9 +4,11 @@ import CustomInput from "../../components/common/CustomInput";
 import CustomButton from "../../components/common/CustomButton";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { type ResetPasswordFormInputs, resetPasswordSchema } from "../../utils/validation";
+import {
+  type ResetPasswordFormInputs,
+  resetPasswordSchema,
+} from "../../utils/validation";
 import { useResetPassword } from "../../hooks/auth-hook";
-import PasswordIcon from "../../assets/icons/login-password-icon.svg";
 
 const ResetPassword = () => {
   const [searchParams] = useSearchParams();
@@ -59,7 +61,10 @@ const ResetPassword = () => {
         >
           Reset Your Password
         </Typography>
-        <Typography variant="body1" sx={{ opacity: "70%", marginBottom: "20px" }}>
+        <Typography
+          variant="body1"
+          sx={{ opacity: "70%", marginBottom: "20px" }}
+        >
           Final step!
         </Typography>
         <Box
@@ -78,20 +83,11 @@ const ResetPassword = () => {
               position: "relative",
             }}
           >
-            <Box
-              src={PasswordIcon}
-              component={"img"}
-              width={20}
-              height={20}
-              alt="password"
-              sx={{
-                position: "absolute",
-                left: "20px",
-                zIndex: 1,
-                top: "35%",
-              }}
+            <CustomInput
+              label="Password"
+              type="password"
+              {...register("password")}
             />
-            <CustomInput label="Password" type="password" {...register("password")} />
             {errors.password && (
               <Typography sx={{ color: "red", fontSize: "12px", mt: 0.5 }}>
                 {errors.password.message}
@@ -104,19 +100,6 @@ const ResetPassword = () => {
               position: "relative",
             }}
           >
-            <Box
-              src={PasswordIcon}
-              component={"img"}
-              width={20}
-              height={20}
-              alt="password"
-              sx={{
-                position: "absolute",
-                left: "20px",
-                zIndex: 1,
-                top: "35%",
-              }}
-            />
             <CustomInput
               label="Confirm Password"
               type="password"
