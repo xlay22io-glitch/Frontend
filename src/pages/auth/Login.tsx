@@ -93,7 +93,11 @@ const Login = () => {
                 top: "35%",
               }}
             />
-            <CustomInput label="Email" placeholder="Enter your Email" {...register("email")} />
+            <CustomInput
+              label="Email"
+              placeholder="Enter your Email"
+              {...register("email")}
+            />
             {errors.email && (
               <Typography sx={{ color: "red", fontSize: "12px", mt: 0.5 }}>
                 {errors.email.message}
@@ -182,7 +186,7 @@ const Login = () => {
                 style={{
                   textDecoration: "none",
                   fontWeight: 500,
-                  color: "#BAFD02",
+                  color: "#D9FD08",
                 }}
               >
                 Sign up

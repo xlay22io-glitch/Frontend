@@ -88,8 +88,9 @@ const faqs: FaqItem[] = [
 
 const FAQ = () => {
   const [expanded, setExpanded] = useState<string | false>("f2"); // example: second is open
-  const handleChange = (panel: string) => (_e: React.SyntheticEvent, isExpanded: boolean) =>
-    setExpanded(isExpanded ? panel : false);
+  const handleChange =
+    (panel: string) => (_e: React.SyntheticEvent, isExpanded: boolean) =>
+      setExpanded(isExpanded ? panel : false);
 
   return (
     <Box
@@ -108,7 +109,7 @@ const FAQ = () => {
                 isOpen ? (
                   <RemoveRoundedIcon sx={{ color: "rgba(255,255,255, 0.7)" }} /> // TODO: CHANGE
                 ) : (
-                  <AddRoundedIcon sx={{ color: "#BAFD02" }} /> // TODO: CHANGE
+                  <AddRoundedIcon sx={{ color: "#D9FD08" }} /> // TODO: CHANGE
                 )
               }
             >

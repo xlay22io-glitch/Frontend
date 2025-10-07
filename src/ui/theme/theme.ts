@@ -32,7 +32,7 @@ const theme = createTheme({
       deadGray: "#919A9F",
     },
     primary: {
-      main: "#BAFD02",
+      main: "#D9FD08",
     },
     black: {
       main: "#000000",
