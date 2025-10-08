@@ -111,104 +111,211 @@ const Home = () => {
           },
         }}
       >
-        <Box sx={{ mb: 3 }}>
-          <Typography
-            variant="h1"
-            sx={{ textAlign: { xs: "unset", md: "center" } }}
-          >
-            Back Lays
-          </Typography>
-          <Typography
-            variant="h1"
-            sx={{ textAlign: { xs: "unset", md: "center" } }}
-          >
-            Transfer Risk
-          </Typography>
-        </Box>
-
-        <Typography
-          variant="body1"
-          sx={{
-            textAlign: { xs: "unset", md: "center" },
-            opacity: "0.7",
-            width: { md: "50%", xs: "unset" },
-            margin: { md: "auto", xs: "unset" },
-          }}
-        >
-          Build your bank by safely transferring risk! Back prematch your soccer
-          lays under 0.5 goals for your lay odds and enjoy up to 40% cashback
-          with no hidden terms.
-        </Typography>
+        {/* DESKTOP LAYOUT */}
         <Box
           sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            mt: 4,
-            mb: 2,
+            display: { xs: "none", md: "flex" },
+            alignItems: "stretch",
+            justifyContent: "space-between",
+            gap: 4,
           }}
         >
           <Box
-            component="img"
-            src={Player}
-            alt="Player"
             sx={{
-              width: "100%",
-              maxWidth: "600px",
-              height: "auto",
+              flex: 1,
+              maxWidth: "50%",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "flex-start",
             }}
-          />
+          >
+            <Box sx={{ mb: 3 }}>
+              <Typography variant="h1">Back Lays</Typography>
+              <Typography variant="h1">Transfer Risk</Typography>
+            </Box>
+
+            <Typography
+              variant="body1"
+              sx={{
+                opacity: "0.7",
+                mb: 4,
+              }}
+            >
+              Build your bank by safely transferring risk! Back prematch your
+              soccer lays under 0.5 goals for your lay odds and enjoy up to 40%
+              cashback with no hidden terms.
+            </Typography>
+
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                gap: "10px",
+                flexWrap: "wrap",
+                marginTop: "auto",
+              }}
+            >
+              <CustomButton
+                variant="primary"
+                onClick={handleGetStarted}
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "3px",
+                  padding: "20px 40px",
+                }}
+              >
+                <Typography
+                  variant="body2"
+                  sx={{
+                    color: (theme) => theme.palette.black.dark,
+                  }}
+                >
+                  Get Started
+                </Typography>
+                <Box
+                  component={"img"}
+                  src={RedirectIcon}
+                  sx={{ width: "15px", height: "15px" }}
+                />
+              </CustomButton>
+              <CustomButton
+                variant="outlined"
+                onClick={handleLogin}
+                sx={{
+                  padding: "20px 40px",
+                }}
+              >
+                <Typography
+                  variant="body2"
+                  sx={{
+                    color: (theme) => theme.palette.primary.main,
+                  }}
+                >
+                  Log In
+                </Typography>
+              </CustomButton>
+            </Box>
+          </Box>
+
+          <Box
+            sx={{
+              flex: 1,
+              maxWidth: "50%",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "flex-start",
+            }}
+          >
+            <Box
+              component="img"
+              src={Player}
+              alt="Player"
+              sx={{
+                width: "100%",
+                height: "auto",
+                objectFit: "contain",
+              }}
+            />
+          </Box>
         </Box>
+
+        {/* MOBILE LAYOUT */}
         <Box
           sx={{
-            display: "flex",
+            display: { xs: "flex", md: "none" },
+            flexDirection: "column",
             alignItems: "center",
-            justifyContent: "center",
-            gap: "10px",
-            marginTop: "1.5em",
-            marginBottom: "5em",
+            textAlign: "center",
           }}
         >
-          <CustomButton
-            variant="primary"
-            onClick={handleGetStarted}
+          <Box sx={{ mb: 3 }}>
+            <Typography variant="h1">Back Lays</Typography>
+            <Typography variant="h1">Transfer Risk</Typography>
+          </Box>
+
+          <Typography
+            variant="body1"
+            sx={{
+              opacity: "0.7",
+              mb: 4,
+            }}
+          >
+            Build your bank by safely transferring risk! Back prematch your
+            soccer lays under 0.5 goals for your lay odds and enjoy up to 40%
+            cashback with no hidden terms.
+          </Typography>
+
+          <Box
+            sx={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "flex-end",
+              mb: 4,
+            }}
+          >
+            <Box
+              component="img"
+              src={Player}
+              alt="Player"
+              sx={{
+                width: "80%",
+                maxWidth: "400px",
+                height: "auto",
+              }}
+            />
+          </Box>
+
+          <Box
             sx={{
               display: "flex",
               alignItems: "center",
-              gap: "3px",
-              padding: { md: "20px 40px" },
+              justifyContent: "center",
+              gap: "10px",
+              flexWrap: "wrap",
             }}
           >
-            <Typography
-              variant="body2"
+            <CustomButton
+              variant="primary"
+              onClick={handleGetStarted}
               sx={{
-                color: (theme) => theme.palette.black.dark,
+                display: "flex",
+                alignItems: "center",
+                gap: "3px",
+                padding: "20px 40px",
               }}
             >
-              Get Started
-            </Typography>
-            <Box
-              component={"img"}
-              src={RedirectIcon}
-              sx={{ width: "15px", height: "15px" }}
-            />
-          </CustomButton>
-          <CustomButton
-            variant="outlined"
-            onClick={handleLogin}
-            sx={{
-              padding: { md: "20px 40px" },
-            }}
-          >
-            <Typography
-              variant="body2"
+              <Typography
+                variant="body2"
+                sx={{
+                  color: (theme) => theme.palette.black.dark,
+                }}
+              >
+                Get Started
+              </Typography>
+              <Box
+                component={"img"}
+                src={RedirectIcon}
+                sx={{ width: "15px", height: "15px" }}
+              />
+            </CustomButton>
+            <CustomButton
+              variant="outlined"
+              onClick={handleLogin}
               sx={{
-                color: (theme) => theme.palette.primary.main,
+                padding: "20px 40px",
               }}
             >
-              Log In
-            </Typography>
-          </CustomButton>
+              <Typography
+                variant="body2"
+                sx={{
+                  color: (theme) => theme.palette.primary.main,
+                }}
+              >
+                Log In
+              </Typography>
+            </CustomButton>
+          </Box>
         </Box>
 
         {/* How It Works */}
@@ -218,6 +325,7 @@ const Home = () => {
             flexDirection: { xs: "column", md: "row" },
             alignItems: "center",
             justifyContent: "center",
+            mt: 15,
           }}
         >
           <Box
