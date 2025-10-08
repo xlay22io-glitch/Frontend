@@ -160,7 +160,7 @@ const Register = () => {
                 style={{
                   textDecoration: "none",
                   fontWeight: 500,
-                  color: "#D9FD08",
+                  color: "#E8D710",
                 }}
               >
                 Sign in

@@ -109,7 +109,7 @@ const FAQ = () => {
                 isOpen ? (
                   <RemoveRoundedIcon sx={{ color: "rgba(255,255,255, 0.7)" }} /> // TODO: CHANGE
                 ) : (
-                  <AddRoundedIcon sx={{ color: "#D9FD08" }} /> // TODO: CHANGE
+                  <AddRoundedIcon sx={{ color: "#E8D710" }} /> // TODO: CHANGE
                 )
               }
             >
