@@ -381,6 +381,7 @@ const Calculator = () => {
         {/* Payout summary box */}
         <Box
           sx={{
+            border: "1px solid #3A3A3A",
             borderRadius: "16px",
             bgcolor: fieldBg,
             p: 2,
