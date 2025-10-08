@@ -2,7 +2,6 @@ import { Box, Typography } from "@mui/material";
 import CustomButton from "../components/common/CustomButton";
 
 import RedirectIcon from "../assets/icons/redirect-icon.svg";
-import PlayIcon from "../assets/icons/play-icon.svg";
 import Player from "../assets/images/player.png";
 import WhiteRedirectIcon from "../assets/icons/white-redirect-icon.svg";
 import InstantCashbackIcon from "../assets/icons/instant-cashback-icon.svg";
@@ -12,6 +11,7 @@ import NoLuckTransparentIcon from "../assets/icons/no-luck-transparent-icon.svg"
 import FAQ from "../components/home/FAQ";
 import Logo from "../components/common/Logo";
 import Footer from "../components/navigation/Footer";
+import { useNavigate } from "react-router-dom";
 
 const EXPLANATION_CONTENT = [
   {
@@ -85,6 +85,16 @@ const NO_LUCK_TRANSPARENT_CONTENT = [
   },
 ];
 const Home = () => {
+  const navigate = useNavigate();
+
+  const handleGetStarted = () => {
+    navigate("/register");
+  };
+
+  const handleLogin = () => {
+    navigate("/login");
+  };
+
   return (
     <Box>
       <Box
@@ -161,6 +171,7 @@ const Home = () => {
         >
           <CustomButton
             variant="primary"
+            onClick={handleGetStarted}
             sx={{
               display: "flex",
               alignItems: "center",
@@ -184,6 +195,7 @@ const Home = () => {
           </CustomButton>
           <CustomButton
             variant="outlined"
+            onClick={handleLogin}
             sx={{
               padding: { md: "20px 40px" },
             }}
@@ -194,13 +206,8 @@ const Home = () => {
                 color: (theme) => theme.palette.primary.main,
               }}
             >
-              Watch Tutorial
+              Log In
             </Typography>
-            <Box
-              component={"img"}
-              src={PlayIcon}
-              sx={{ width: "20px", height: "20px" }}
-            />
           </CustomButton>
         </Box>
 
