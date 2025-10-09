@@ -12,6 +12,7 @@ import FAQ from "../components/home/FAQ";
 import Logo from "../components/common/Logo";
 import Footer from "../components/navigation/Footer";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const EXPLANATION_CONTENT = [
   {
@@ -595,6 +596,9 @@ const Home = () => {
             }}
           >
             <Typography>How it Works</Typography>
+            <Link to="/terms-and-conditions" style={{ textDecoration: "none" }}>
+              <Typography>Terms and Conditions</Typography>
+            </Link>
             <Typography>Testimonials</Typography>
             <Typography>Why XLY</Typography>
             <Typography>FAQ</Typography>

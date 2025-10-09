@@ -19,6 +19,7 @@ import FAQ from "./pages/legal/FAQ";
 import NotFound from "./pages/error/NotFound";
 import MyBacks from "./pages/main/MyBacks";
 import EmailSentSuccess from "./pages/success/EmailSentSuccess";
+import TermsAndConditions from "./pages/legal/TermsAndConditions";
 
 function App() {
   return (
@@ -152,6 +153,14 @@ function App() {
             }
           />
         </Route>
+        <Route
+          path="/terms-and-conditions"
+          element={
+            <Layout>
+              <TermsAndConditions />
+            </Layout>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
