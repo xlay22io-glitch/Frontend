@@ -19,6 +19,7 @@ import { useAccountInfo } from "../../hooks/auth-hook";
 
 import uploadIcon from "../../assets/icons/upload-icon.svg";
 import { useNavigate } from "react-router-dom";
+import { formatNumber } from "../../utils/formatters";
 
 // --- move these ABOVE Calculator() ---
 
@@ -164,15 +165,15 @@ const Calculator = () => {
     const odd = toNum(totalOdd);
     const stake = toNum(stakeAmount);
     const result =
-      !isNaN(odd) && !isNaN(stake) ? (odd * stake).toFixed(6) : "0.000000";
+      !isNaN(odd) && !isNaN(stake) ? (odd * stake).toFixed(2) : "0.00";
     setValue("win_payout", result);
   }, [totalOdd, stakeAmount, setValue]);
 
   // lose payout
   const losePayout =
     stakeAmount && !isNaN(toNum(stakeAmount))
-      ? (toNum(stakeAmount) / 5).toFixed(6)
-      : "0.000000";
+      ? (toNum(stakeAmount) / 5).toFixed(2)
+      : "0.00";
 
   useEffect(() => {
     setValue("tip", "Under 0,5g or Correct score 0:0");
@@ -294,18 +295,21 @@ const Calculator = () => {
 
           {/* Stake + available */}
           <Labeled
-            label="Stake (BTC)"
+            label="Stake"
             rightLabel={
               <Typography sx={{ color: "#B3B3B3", fontSize: 12 }}>
                 Available:{" "}
                 <Box component="span" sx={{ color: accent, fontWeight: 800 }}>
-                  {isAccPending ? "0.00000" : account?.balance ?? "0.00000"} BTC
+                  €
+                  {isAccPending
+                    ? "0.00"
+                    : formatNumber(account?.balance) ?? "0.00"}
                 </Box>
               </Typography>
             }
           >
             <Field
-              placeholder="0.000000"
+              placeholder="0.00"
               type="text"
               inputProps={{
                 ...register("stake_amount"),
@@ -390,9 +394,9 @@ const Calculator = () => {
         >
           <Row
             label="Win Payout:"
-            value={`${watch("win_payout") || "0.000000"} BTC`}
+            value={`€${watch("win_payout") || "0.00"}`}
           />
-          <Row label="Lose Payout:" value={`${losePayout} BTC`} />
+          <Row label="Lose Payout:" value={`€${losePayout}`} />
         </Box>
 
         {/* Big lime button */}

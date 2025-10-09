@@ -12,6 +12,7 @@ import Deposit from "./Deposit";
 import { useAccountInfo, useLogout } from "../../hooks/auth-hook";
 import useAuthStore from "../../store/auth-store";
 import { useCloseWhenUserLeaves } from "../../hooks/lay-hook";
+import { formatNumber } from "../../utils/formatters";
 
 const Account = () => {
   const navigate = useNavigate();
@@ -160,11 +161,11 @@ const Account = () => {
                 fontFamilry: "Roboto",
               }}
             >
-              {/* missing data */}
-              {data.balance}
-              <Box component="span" sx={{ fontSize: "10px", fontWeight: 500 }}>
-                BTC
+              <Box component="span" sx={{ fontWeight: 500 }}>
+                €
               </Box>
+              {/* missing data */}
+              {(data?.balance).toFixed(2)}
             </Typography>
           </Box>
           <Box
@@ -351,15 +352,8 @@ const Account = () => {
                       fontWeight: 600,
                     }}
                   >
-                    {data?.weekly_bonus?.[0]?.weekly_reward}
-                    <Box
-                      component={"span"}
-                      sx={{
-                        color: "#BEBEBE",
-                      }}
-                    >
-                      BTC
-                    </Box>
+                    <Box component={"span"}>€</Box>
+                    {formatNumber(data?.weekly_bonus?.[0]?.weekly_reward)}
                   </Typography>
                 </Box>
 
@@ -387,15 +381,8 @@ const Account = () => {
                       fontWeight: 600,
                     }}
                   >
-                    {data?.weekly_bonus?.[0]?.weekly_balance}
-                    <Box
-                      component={"span"}
-                      sx={{
-                        color: "#BEBEBE",
-                      }}
-                    >
-                      BTC
-                    </Box>
+                    <Box component={"span"}>€</Box>
+                    {formatNumber(data?.weekly_bonus?.[0]?.weekly_balance)}
                   </Typography>
                 </Box>
               </Box>

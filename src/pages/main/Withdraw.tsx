@@ -85,14 +85,14 @@ const Withdraw = () => {
                 marginBottom: "8px",
               }}
             >
-              Amount (BTC):
+              Amount:
             </Typography>
 
             <CustomInput
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
               label="Bitcoin Address"
-              placeholder="0.00000000"
+              placeholder="0.00"
               sx={{
                 backgroundColor: "#272727",
                 border: "1px solid #3A3A3A ",
@@ -144,15 +144,8 @@ const Withdraw = () => {
                   "Loading..."
                 ) : (
                   <>
-                    {data?.balance || "0.00000"}{" "}
-                    <Box
-                      component={"span"}
-                      sx={{
-                        color: "#BEBEBE",
-                      }}
-                    >
-                      BTC
-                    </Box>
+                    <Box component={"span"}>€</Box>
+                    {data?.balance?.toFixed(2) || "0.00"}{" "}
                   </>
                 )}
               </Typography>
