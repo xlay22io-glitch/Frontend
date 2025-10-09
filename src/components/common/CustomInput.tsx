@@ -39,7 +39,7 @@ const DefaultStyledInput = styled(TextField)(({ theme }) => ({
   "& .MuiInputBase-input": {
     color: "white",
     fontWeight: 400,
-    fontSize: "14px",
+    fontSize: "16px",
     display: "flex",
     alignItems: "center",
   },
@@ -83,7 +83,7 @@ const BoxedStyledInput = styled(TextField)(({ theme }) => ({
   "& .MuiInputBase-input": {
     padding: "20px 20px",
     color: "white",
-    fontSize: "14px",
+    fontSize: "16px",
   },
   "& .MuiOutlinedInput-notchedOutline": {
     borderWidth: "1px",
