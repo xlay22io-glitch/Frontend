@@ -7,11 +7,12 @@ import CustomButton from "../common/CustomButton";
 import CloseIcon from "@mui/icons-material/Close";
 import useAuthStore from "../../store/auth-store";
 import { useLogout } from "../../hooks/auth-hook";
-import accIcon from "../../assets/icons/account-icon.png";
+
 import backCalcIcon from "../../assets/icons/back-calculator-icon.png";
 import faqsIcon from "../../assets/icons/faqs-icon.png";
 import homeIcon from "../../assets/icons/home-icon.png";
-import logoutIcon from "../../assets/icons/logout-icon.png";
+import redirectIcon from "../../assets/icons/redirect-icon.png";
+
 import profilePlaceholder from "../../assets/images/profile-picture-placeholder.webp";
 import Logo from "../common/Logo";
 
@@ -228,19 +229,26 @@ const Navbar = () => {
               backgroundColor: "#111",
               color: "white",
               py: 2,
-              px: 4,
+              px: 2,
               mt: "80px",
             },
           },
         }}
       >
         <List>
-          {navItems.map(({ icon, label, path }) => (
+          {navItems.map(({ label, path }) => (
             <ListItem key={label} disablePadding>
               <ListItemText
                 primary={
-                  <Box sx={{ display: "flex", alignItems: "center" }}>
-                    <Box component="img" src={icon} alt={`${label} icon`} />
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      borderBottom: "1px solid #333",
+                      width: "100%",
+                    }}
+                  >
                     <Typography
                       onClick={() => {
                         navigate(path);
@@ -249,13 +257,20 @@ const Navbar = () => {
                       sx={{
                         fontSize: "18px",
                         fontWeight: 500,
-                        pl: 2,
+                        pl: 1,
                         py: 1.5,
                         cursor: "pointer",
                       }}
                     >
                       {label}
                     </Typography>
+                    <Box
+                      width={16}
+                      height={16}
+                      component={"img"}
+                      src={redirectIcon}
+                      alt="redirect-icon"
+                    />
                   </Box>
                 }
               />
@@ -267,8 +282,13 @@ const Navbar = () => {
               <ListItem disablePadding>
                 <ListItemText
                   primary={
-                    <Box sx={{ display: "flex", alignItems: "center" }}>
-                      <Box component="img" src={accIcon} alt="Account Icon" />
+                    <Box
+                      sx={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                      }}
+                    >
                       <Typography
                         onClick={() => {
                           navigate("/account");
@@ -277,13 +297,20 @@ const Navbar = () => {
                         sx={{
                           fontSize: "18px",
                           fontWeight: 500,
-                          pl: 2,
+                          pl: 1,
                           py: 1.5,
                           cursor: "pointer",
                         }}
                       >
                         Account
                       </Typography>
+                      <Box
+                        width={16}
+                        height={16}
+                        component={"img"}
+                        src={redirectIcon}
+                        alt="redirect-icon"
+                      />
                     </Box>
                   }
                 />
@@ -291,8 +318,13 @@ const Navbar = () => {
               <ListItem disablePadding>
                 <ListItemText
                   primary={
-                    <Box sx={{ display: "flex", alignItems: "center" }}>
-                      <Box component="img" src={logoutIcon} alt="Logout Icon" />
+                    <Box
+                      sx={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                      }}
+                    >
                       <Typography
                         onClick={() => {
                           handleLogout();
@@ -301,13 +333,21 @@ const Navbar = () => {
                         sx={{
                           fontSize: "18px",
                           fontWeight: 500,
-                          pl: 2,
+                          pl: 1,
                           py: 1.5,
                           cursor: "pointer",
+                          borderBottom: "1px solid #333",
                         }}
                       >
                         Logout
                       </Typography>
+                      <Box
+                        width={16}
+                        height={16}
+                        component={"img"}
+                        src={redirectIcon}
+                        alt="redirect-icon"
+                      />
                     </Box>
                   }
                 />
@@ -318,21 +358,38 @@ const Navbar = () => {
               <ListItem disablePadding>
                 <ListItemText
                   primary={
-                    <Typography
-                      onClick={() => {
-                        navigate("/login");
-                        setMobileOpen(false);
-                      }}
+                    <Box
                       sx={{
-                        fontSize: "18px",
-                        fontWeight: 500,
-                        pl: 2,
-                        py: 1.5,
-                        cursor: "pointer",
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        borderBottom: "1px solid #333",
+                        width: "100%",
                       }}
                     >
-                      Login
-                    </Typography>
+                      <Typography
+                        onClick={() => {
+                          navigate("/login");
+                          setMobileOpen(false);
+                        }}
+                        sx={{
+                          fontSize: "18px",
+                          fontWeight: 500,
+                          pl: 1,
+                          py: 1.5,
+                          cursor: "pointer",
+                        }}
+                      >
+                        Login
+                      </Typography>
+                      <Box
+                        width={16}
+                        height={16}
+                        component={"img"}
+                        src={redirectIcon}
+                        alt="redirect-icon"
+                      />
+                    </Box>
                   }
                 />
               </ListItem>
@@ -340,21 +397,39 @@ const Navbar = () => {
               <ListItem disablePadding>
                 <ListItemText
                   primary={
-                    <Typography
-                      onClick={() => {
-                        navigate("/register");
-                        setMobileOpen(false);
-                      }}
+                    <Box
                       sx={{
-                        fontSize: "18px",
-                        fontWeight: 500,
-                        pl: 2,
-                        py: 1.5,
-                        cursor: "pointer",
+                        borderBottom: "1px solid #333",
+                        width: "100%",
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
                       }}
                     >
-                      Register
-                    </Typography>
+                      <Typography
+                        onClick={() => {
+                          navigate("/register");
+                          setMobileOpen(false);
+                        }}
+                        sx={{
+                          fontSize: "18px",
+                          fontWeight: 500,
+                          pl: 1,
+                          py: 1.5,
+                          cursor: "pointer",
+                          borderBottom: "1px solid #333",
+                        }}
+                      >
+                        Register
+                      </Typography>
+                      <Box
+                        width={16}
+                        height={16}
+                        component={"img"}
+                        src={redirectIcon}
+                        alt="redirect-icon"
+                      />
+                    </Box>
                   }
                 />
               </ListItem>
