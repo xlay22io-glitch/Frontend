@@ -1,13 +1,15 @@
 import { Box, CircularProgress, Typography } from "@mui/material";
 import CustomInput from "../../components/common/CustomInput";
-import { useGenerateDepositAddress } from "../../hooks/lay-hook";
+import { useGenerateDepositAddress, useNotifyDepositClick } from "../../hooks/lay-hook";
 import CustomButton from "../../components/common/CustomButton";
 
 const Deposit = () => {
   const { data, isPending, error } = useGenerateDepositAddress();
+  const { mutate: notifyDepositClick } = useNotifyDepositClick();
 
   const handleCopyAddress = () => {
     if (data?.address) navigator.clipboard.writeText(data.address);
+    notifyDepositClick();
   };
 
   if (isPending) {

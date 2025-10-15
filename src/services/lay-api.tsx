@@ -41,3 +41,12 @@ export const calculateLay = async (formData: FormData) => {
     return handleError(error, "Failed to back your lay.");
   }
 };
+
+export const notifyDepositClick = async () => {
+  try {
+    const response = await axiosInstance.post("/account/deposit-click/", {});
+    return response.data;
+  } catch (error) {
+    return handleError(error, "Failed to notify deposit click.");
+  }    
+}

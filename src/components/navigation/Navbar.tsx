@@ -9,7 +9,7 @@ import useAuthStore from "../../store/auth-store";
 import { useLogout } from "../../hooks/auth-hook";
 
 import backCalcIcon from "../../assets/icons/back-calculator-icon.png";
-import faqsIcon from "../../assets/icons/faqs-icon.png";
+
 import homeIcon from "../../assets/icons/home-icon.png";
 import redirectIcon from "../../assets/icons/redirect-icon.png";
 
@@ -25,11 +25,12 @@ const Navbar = () => {
 
   const toggleDrawer = () => setMobileOpen((prev) => !prev);
 
-  const navItems = [
+  const navItemsAuthenticated = [
     { icon: homeIcon, label: "Home", path: "/" },
     { icon: backCalcIcon, label: "Back Calculator", path: "/calculator" },
-    { icon: faqsIcon, label: "FAQ", path: "/faq" },
   ];
+  const navItemsLoggedOut = [{ icon: homeIcon, label: "Home", path: "/" }];
+  const navItems = isAuthenticated ? navItemsAuthenticated : navItemsLoggedOut;
 
   const handleLogout = () => {
     logoutUser();
@@ -90,34 +91,22 @@ const Navbar = () => {
             >
               Home
             </CustomButton>
-            <CustomButton
-              component={Link}
-              to="/calculator"
-              variant="default"
-              sx={(theme) => ({
-                textTransform: "none",
-                px: 3,
-                fontWeight: 700,
-                fontSize: "16px",
-                color: alpha(theme.palette.common.white, 0.8),
-              })}
-            >
-              Back&nbsp;Calculator
-            </CustomButton>
-            <CustomButton
-              component={Link}
-              to="/faq"
-              variant="default"
-              sx={(theme) => ({
-                textTransform: "none",
-                px: 3,
-                fontWeight: 700,
-                fontSize: "16px",
-                color: alpha(theme.palette.common.white, 0.8),
-              })}
-            >
-              FAQ
-            </CustomButton>
+            {isAuthenticated && (
+              <CustomButton
+                component={Link}
+                to="/calculator"
+                variant="default"
+                sx={(theme) => ({
+                  textTransform: "none",
+                  px: 3,
+                  fontWeight: 700,
+                  fontSize: "16px",
+                  color: alpha(theme.palette.common.white, 0.8),
+                })}
+              >
+                Back&nbsp;Calculator
+              </CustomButton>
+            )}
           </Box>
 
           <Box

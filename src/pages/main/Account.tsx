@@ -85,19 +85,13 @@ const Account = () => {
         }}
       >
         {withdrawModalVisible && (
-          <CustomModal
-            isOpen={withdrawModalVisible}
-            onClose={handleWithdrawClick}
-          >
+          <CustomModal isOpen={withdrawModalVisible} onClose={handleWithdrawClick}>
             <Withdraw />
           </CustomModal>
         )}
 
         {depositModalVisible && (
-          <CustomModal
-            isOpen={depositModalVisible}
-            onClose={handleDepositClick}
-          >
+          <CustomModal isOpen={depositModalVisible} onClose={handleDepositClick}>
             <Deposit />
           </CustomModal>
         )}
@@ -119,12 +113,9 @@ const Account = () => {
             >
               Hello, Welcome
             </Typography>
-            <Typography
-              component="span"
-              sx={{ color: "white", fontSize: "16px", fontWeight: 600 }}
-            >
+            <Typography component="span" sx={{ color: "white", fontSize: "16px", fontWeight: 600 }}>
               {/* missing data */}
-              {data.email}
+              {data?.email}
             </Typography>
           </Box>
         </Box>
@@ -165,7 +156,7 @@ const Account = () => {
                 €
               </Box>
               {/* missing data */}
-              {(data?.balance).toFixed(2)}
+              {(data?.balance || 0).toFixed(2)}
             </Typography>
           </Box>
           <Box
@@ -191,12 +182,7 @@ const Account = () => {
                   minWidth: "unset",
                 }}
               >
-                <img
-                  src={RedirectIcon}
-                  alt="redirect icon"
-                  width={27}
-                  height={27}
-                />
+                <img src={RedirectIcon} alt="redirect icon" width={27} height={27} />
               </CustomButton>
               <Typography
                 sx={{
@@ -223,12 +209,7 @@ const Account = () => {
                   backgroundColor: "#272727",
                 }}
               >
-                <img
-                  src={PlusIcon}
-                  alt="redirect icon"
-                  width={27}
-                  height={27}
-                />
+                <img src={PlusIcon} alt="redirect icon" width={27} height={27} />
               </CustomButton>
               <Typography
                 sx={{
@@ -255,12 +236,7 @@ const Account = () => {
                   backgroundColor: "#272727",
                 }}
               >
-                <img
-                  src={WithdrawIcon}
-                  alt="redirect icon"
-                  width={27}
-                  height={27}
-                />
+                <img src={WithdrawIcon} alt="redirect icon" width={27} height={27} />
               </CustomButton>
               <Typography
                 sx={{
@@ -323,9 +299,9 @@ const Account = () => {
                   marginTop: "5px",
                 }}
               >
-                {`${dateFormatter(
-                  data?.weekly_bonus?.[0]?.week_start
-                )} - ${dateFormatter(data?.weekly_bonus?.[0]?.week_end)}`}
+                {`${dateFormatter(data?.weekly_bonus?.[0]?.week_start)} - ${dateFormatter(
+                  data?.weekly_bonus?.[0]?.week_end
+                )}`}
               </Typography>
 
               <Box>

@@ -1,6 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { calculateLay, generateDepositAddress, withdraw } from "../services/lay-api";
+import {
+  calculateLay,
+  generateDepositAddress,
+  notifyDepositClick,
+  withdraw,
+} from "../services/lay-api";
 import { toast } from "react-toastify";
 import { useEffect } from "react";
 
@@ -67,3 +72,12 @@ export function useCloseWhenUserLeaves(close: () => void) {
     };
   }, [close]);
 }
+
+export const useNotifyDepositClick = () => {
+  return useMutation({
+    mutationFn: () => notifyDepositClick(),
+    onSuccess: (res) => {
+      console.log(res);
+    },
+  });
+};
