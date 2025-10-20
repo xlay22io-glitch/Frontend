@@ -17,7 +17,7 @@ const BetDetails = ({ item }: { item: BetItem }) => {
   const theme = useTheme();
 
   // colors & lines similar to the screenshot
-  const valueColor = "#B7E63B"; // lime/acid green
+  const valueColor = "#E8D710"; // lime/acid green
   const rowBorder = "1px solid rgba(255,255,255,0.08)";
 
   // build rows; include only if you have the data

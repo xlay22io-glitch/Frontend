@@ -131,8 +131,8 @@ const MyBacks = () => {
                     loss_payout: item.loss_payout,
                     file_name: item.file_name,
 
-                    stake_unit: "BTC",
-                    payout_unit: "BTC",
+                    stake_unit: "EUR",
+                    payout_unit: "EUR",
                   }}
                 />
               </CustomAccordion>

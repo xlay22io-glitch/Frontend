@@ -329,7 +329,7 @@ const Account = () => {
                     }}
                   >
                     <Box component={"span"}>€</Box>
-                    {formatNumber(data?.weekly_bonus?.[0]?.weekly_reward)}
+                    {formatNumber(data?.weekly_bonus?.weekly_reward)}
                   </Typography>
                 </Box>
 
@@ -358,7 +358,7 @@ const Account = () => {
                     }}
                   >
                     <Box component={"span"}>€</Box>
-                    {formatNumber(data?.weekly_bonus?.[0]?.weekly_balance)}
+                    {formatNumber(data?.weekly_bonus?.weekly_balance)}
                   </Typography>
                 </Box>
               </Box>

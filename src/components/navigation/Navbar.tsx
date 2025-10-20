@@ -1,16 +1,13 @@
 import { useState } from "react";
 import { Typography, Box, IconButton, Drawer, ListItem, List, ListItemText } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import { Link, useNavigate } from "react-router-dom";
-import { alpha } from "@mui/material/styles";
-import CustomButton from "../common/CustomButton";
 import CloseIcon from "@mui/icons-material/Close";
+import { Link, useNavigate } from "react-router-dom";
+
+import CustomButton from "../common/CustomButton";
 import useAuthStore from "../../store/auth-store";
 import { useLogout } from "../../hooks/auth-hook";
 
-import backCalcIcon from "../../assets/icons/back-calculator-icon.png";
-
-import homeIcon from "../../assets/icons/home-icon.png";
 import redirectIcon from "../../assets/icons/redirect-icon.png";
 
 import profilePlaceholder from "../../assets/images/profile-picture-placeholder.webp";
@@ -24,13 +21,6 @@ const Navbar = () => {
   const { mutate: logoutUser, isPending } = useLogout();
 
   const toggleDrawer = () => setMobileOpen((prev) => !prev);
-
-  const navItemsAuthenticated = [
-    { icon: homeIcon, label: "Home", path: "/" },
-    { icon: backCalcIcon, label: "Back Calculator", path: "/calculator" },
-  ];
-  const navItemsLoggedOut = [{ icon: homeIcon, label: "Home", path: "/" }];
-  const navItems = isAuthenticated ? navItemsAuthenticated : navItemsLoggedOut;
 
   const handleLogout = () => {
     logoutUser();
@@ -62,51 +52,6 @@ const Navbar = () => {
         >
           <Box sx={{ display: "flex", alignItems: "center", flex: 1 }}>
             <Logo />
-          </Box>
-
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              flex: 1,
-              gap: 4,
-
-              "@media (max-width: 1200px)": {
-                display: "none",
-              },
-            }}
-          >
-            <CustomButton
-              component={Link}
-              to="/"
-              variant="default"
-              sx={(theme) => ({
-                textTransform: "none",
-                px: 3,
-                fontWeight: 700,
-                fontSize: "16px",
-                color: alpha(theme.palette.common.white, 0.8),
-              })}
-            >
-              Home
-            </CustomButton>
-            {isAuthenticated && (
-              <CustomButton
-                component={Link}
-                to="/calculator"
-                variant="default"
-                sx={(theme) => ({
-                  textTransform: "none",
-                  px: 3,
-                  fontWeight: 700,
-                  fontSize: "16px",
-                  color: alpha(theme.palette.common.white, 0.8),
-                })}
-              >
-                Back&nbsp;Calculator
-              </CustomButton>
-            )}
           </Box>
 
           <Box
@@ -225,47 +170,6 @@ const Navbar = () => {
         }}
       >
         <List>
-          {navItems.map(({ label, path }) => (
-            <ListItem key={label} disablePadding>
-              <ListItemText
-                primary={
-                  <Box
-                    sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "space-between",
-                      borderBottom: "1px solid #333",
-                      width: "100%",
-                    }}
-                  >
-                    <Typography
-                      onClick={() => {
-                        navigate(path);
-                        setMobileOpen(false);
-                      }}
-                      sx={{
-                        fontSize: "18px",
-                        fontWeight: 500,
-                        pl: 1,
-                        py: 1.5,
-                        cursor: "pointer",
-                      }}
-                    >
-                      {label}
-                    </Typography>
-                    <Box
-                      width={16}
-                      height={16}
-                      component={"img"}
-                      src={redirectIcon}
-                      alt="redirect-icon"
-                    />
-                  </Box>
-                }
-              />
-            </ListItem>
-          ))}
-
           {isAuthenticated ? (
             <>
               <ListItem disablePadding>
