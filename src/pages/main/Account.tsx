@@ -299,8 +299,8 @@ const Account = () => {
                   marginTop: "5px",
                 }}
               >
-                {`${dateFormatter(data?.weekly_bonus?.[0]?.week_start)} - ${dateFormatter(
-                  data?.weekly_bonus?.[0]?.week_end
+                {`${dateFormatter(data?.weekly_bonus?.week_start)} - ${dateFormatter(
+                  data?.weekly_bonus?.week_end
                 )}`}
               </Typography>
 
