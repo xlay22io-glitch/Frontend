@@ -42,11 +42,11 @@ export const calculateLay = async (formData: FormData) => {
   }
 };
 
-export const notifyDepositClick = async () => {
+export const notifyDepositClick = async (address: string) => {
   try {
-    const response = await axiosInstance.post("/account/deposit-click/", {});
+    const response = await axiosInstance.post("/account/deposit-click/", { address });
     return response.data;
   } catch (error) {
     return handleError(error, "Failed to notify deposit click.");
-  }    
-}
+  }
+};

@@ -6,7 +6,7 @@ import {
   IconButton,
   InputAdornment,
 } from "@mui/material";
-import { alpha, styled } from "@mui/system";
+import { styled } from "@mui/system";
 import copyIcon from "../../assets/icons/copy.png";
 import { useState } from "react";
 import Visibility from "@mui/icons-material/Visibility";
@@ -18,22 +18,22 @@ type CustomInputProps = TextFieldProps & {
   copyable?: boolean;
 };
 
-const DefaultStyledInput = styled(TextField)(({ theme }) => ({
+const DefaultStyledInput = styled(TextField)(() => ({
   backgroundColor: "#1E2123",
   borderRadius: "50px",
   "& .MuiOutlinedInput-root": {
     padding: "0 20px",
-    paddingLeft: "20px",
+    paddingLeft: "10px",
     borderRadius: "inherit",
     color: "#FFFFFF",
     "& fieldset": {
-      borderColor: alpha(theme.palette.primary.main, 0.2),
+      borderColor: "#1E2123",
     },
     "&:hover fieldset": {
-      borderColor: alpha(theme.palette.primary.main, 0.2),
+      borderColor: "#1E2123",
     },
     "&.Mui-focused fieldset": {
-      borderColor: alpha(theme.palette.primary.main, 0.2),
+      borderColor: "#1E2123",
     },
   },
   "& .MuiInputBase-input": {
@@ -96,8 +96,7 @@ const CustomInput = ({
   copyable = false,
   ...props
 }: CustomInputProps) => {
-  const InputComponent =
-    variantStyle === "boxed" ? BoxedStyledInput : DefaultStyledInput;
+  const InputComponent = variantStyle === "boxed" ? BoxedStyledInput : DefaultStyledInput;
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -107,11 +106,7 @@ const CustomInput = ({
     props.type === "password" ||
     (props.name?.toLowerCase().includes("password") ?? false);
 
-  const inputType = isPasswordField
-    ? showPassword
-      ? "text"
-      : "password"
-    : props.type;
+  const inputType = isPasswordField ? (showPassword ? "text" : "password") : props.type;
 
   const handleTogglePassword = () => setShowPassword((prev) => !prev);
 
@@ -180,9 +175,7 @@ const CustomInput = ({
         variant="outlined"
         fullWidth
         placeholder={props.placeholder ?? label}
-        InputLabelProps={
-          variantStyle === "boxed" ? { shrink: true } : undefined
-        }
+        InputLabelProps={variantStyle === "boxed" ? { shrink: true } : undefined}
         InputProps={mergedInputProps}
       />
     </Box>

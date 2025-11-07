@@ -9,7 +9,7 @@ const Deposit = () => {
 
   const handleCopyAddress = () => {
     if (data?.address) navigator.clipboard.writeText(data.address);
-    notifyDepositClick();
+    notifyDepositClick(data.address);
   };
 
   if (isPending) {
@@ -74,14 +74,33 @@ const Deposit = () => {
         Deposit
       </Typography>
 
+      <Typography
+        sx={{
+          marginBottom: "8px",
+        }}
+      >
+        Generated Bitcoin Address:
+      </Typography>
+
       <CustomInput
         sx={{
-          borderRadius: "50px",
+          backgroundColor: "#272727",
+          border: "1px solid #3A3A3A ",
+          "& fieldset": {
+            borderColor: "#3A3A3A !important",
+          },
+          "&:hover fieldset": {
+            border: "1px solid #3A3A3A",
+          },
+          "&.Mui-focused fieldset": {
+            border: "1px solid #3A3A3A",
+          },
+          "& .MuiInputBase-input": {
+            fontSize: { xs: "9px", md: "unset" },
+          },
         }}
         label="Generated Bitcoin Address"
-        variantStyle="boxed"
         value={data?.address || ""}
-        InputProps={{ readOnly: true }}
       />
       <CustomButton
         variant="primary"

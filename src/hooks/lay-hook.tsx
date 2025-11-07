@@ -75,7 +75,7 @@ export function useCloseWhenUserLeaves(close: () => void) {
 
 export const useNotifyDepositClick = () => {
   return useMutation({
-    mutationFn: () => notifyDepositClick(),
+    mutationFn: (address: string) => notifyDepositClick(address),
     onSuccess: (res) => {
       console.log(res);
     },

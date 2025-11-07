@@ -5,6 +5,8 @@ import LogoText from "../../assets/images/logo-text.svg";
 const Logo = () => {
   return (
     <Box
+      component={"a"}
+      href="/"
       sx={{
         display: "flex",
         alignItems: "center",

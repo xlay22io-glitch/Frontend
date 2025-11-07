@@ -69,8 +69,7 @@ const NO_LUCK_TRANSPARENT_CONTENT = [
   },
   {
     title: "Clear Limits",
-    description:
-      "Simple rules for stakes, winnings, deposits, and withdrawals.",
+    description: "Simple rules for stakes, winnings, deposits, and withdrawals.",
   },
   {
     title: "Skill Over Luck",
@@ -142,9 +141,8 @@ const Home = () => {
                 mb: 4,
               }}
             >
-              Build your bank by safely transferring risk! Back prematch your
-              soccer lays under 0.5 goals for your lay odds and enjoy up to 40%
-              cashback with no hidden terms.
+              Build your bank by safely transferring risk! Back prematch your soccer lays under 0.5
+              goals for your lay odds and enjoy up to 40% cashback with no hidden terms.
             </Typography>
 
             <Box
@@ -174,11 +172,7 @@ const Home = () => {
                 >
                   Get Started
                 </Typography>
-                <Box
-                  component={"img"}
-                  src={RedirectIcon}
-                  sx={{ width: "15px", height: "15px" }}
-                />
+                <Box component={"img"} src={RedirectIcon} sx={{ width: "15px", height: "15px" }} />
               </CustomButton>
               <CustomButton
                 variant="outlined"
@@ -242,9 +236,8 @@ const Home = () => {
               mb: 4,
             }}
           >
-            Build your bank by safely transferring risk! Back prematch your
-            soccer lays under 0.5 goals for your lay odds and enjoy up to 40%
-            cashback with no hidden terms.
+            Build your bank by safely transferring risk! Back prematch your soccer lays under 0.5
+            goals for your lay odds and enjoy up to 40% cashback with no hidden terms.
           </Typography>
 
           <Box
@@ -294,11 +287,7 @@ const Home = () => {
               >
                 Get Started
               </Typography>
-              <Box
-                component={"img"}
-                src={RedirectIcon}
-                sx={{ width: "15px", height: "15px" }}
-              />
+              <Box component={"img"} src={RedirectIcon} sx={{ width: "15px", height: "15px" }} />
             </CustomButton>
             <CustomButton
               variant="outlined"
@@ -383,11 +372,7 @@ const Home = () => {
                         {item.description}
                       </Typography>
                     </Box>
-                    <Box
-                      component={"img"}
-                      src={WhiteRedirectIcon}
-                      alt="redirect"
-                    />
+                    <Box component={"img"} src={WhiteRedirectIcon} alt="redirect" />
                   </Box>
                 </Box>
               ))}
@@ -406,9 +391,8 @@ const Home = () => {
               marginBottom: "25px",
             }}
           >
-            Here’s exactly how XLAY rewards you for backing your lay bets. Enjoy
-            instant payouts, weekly protection, and total freedom to withdraw
-            anytime.
+            Here’s exactly how XLAY rewards you for backing your lay bets. Enjoy instant payouts,
+            weekly protection, and total freedom to withdraw anytime.
           </Typography>
 
           <Box
@@ -436,9 +420,7 @@ const Home = () => {
                     alignItems: "center",
                   }}
                 >
-                  <Typography sx={{ opacity: "70%" }}>
-                    {item.description}
-                  </Typography>
+                  <Typography sx={{ opacity: "70%" }}>{item.description}</Typography>
                   <Box component={"img"} src={item.icon} alt={item.title} />
                 </Box>
                 <Typography
@@ -486,11 +468,7 @@ const Home = () => {
                       gap: "1.4em",
                     }}
                   >
-                    <Box
-                      src={NoLuckTransparentIcon}
-                      alt="icon"
-                      component={"img"}
-                    />
+                    <Box src={NoLuckTransparentIcon} alt="icon" component={"img"} />
                     <Typography
                       sx={{
                         fontWeight: "500",
@@ -539,9 +517,8 @@ const Home = () => {
               textAlign: "center",
             }}
           >
-            Before we start, it’s important to answer these questions to avoid
-            any confusion later. If you have any other questions, just let me
-            know!
+            Before we start, it’s important to answer these questions to avoid any confusion later.
+            If you have any other questions, just let me know!
           </Typography>
           <FAQ />
         </Box>
@@ -575,15 +552,8 @@ const Home = () => {
                 opacity: "70%",
               }}
             >
-              Smarter betting starts here. Back your lay bets on XLY, unlock
-              instant cashback, and protect your bankroll — win or lose.
-            </Typography>
-            <Typography
-              sx={{
-                marginBottom: "15px",
-              }}
-            >
-              More about us
+              Smarter betting starts here. Back your lay bets on XLAY, unlock instant cashback, and
+              protect your bankroll — win or lose.
             </Typography>
           </Box>
           <Box
@@ -595,32 +565,11 @@ const Home = () => {
               width: { md: "50%", xs: "100%" },
             }}
           >
-            <Typography>How it Works</Typography>
             <Link to="/terms-and-conditions" style={{ textDecoration: "none" }}>
               <Typography>Terms and Conditions</Typography>
             </Link>
-            <Typography>Testimonials</Typography>
-            <Typography>Why XLY</Typography>
-            <Typography>FAQ</Typography>
           </Box>
         </Box>
-        <Typography
-          sx={{
-            fontSize: "20px",
-            fontWeight: 500,
-            fontFamily: "Manrope",
-            margin: "15px 0",
-          }}
-        >
-          Support
-        </Typography>
-        <Typography
-          sx={{
-            opacity: "70%",
-          }}
-        >
-          support@xlyplatform.com
-        </Typography>
       </Box>
       <Footer />
     </Box>

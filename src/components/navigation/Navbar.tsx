@@ -81,7 +81,6 @@ const Navbar = () => {
                   {isPending ? "Logging out..." : "Logout"}
                 </CustomButton>
 
-                {/* TODO: add real user picture if exists */}
                 <Box
                   onClick={() => navigate("/account")}
                   component="img"
@@ -160,7 +159,7 @@ const Navbar = () => {
           paper: {
             sx: {
               width: "100%",
-              backgroundColor: "#111",
+              backgroundColor: "#1A1A1A",
               color: "white",
               py: 2,
               px: 2,
@@ -180,6 +179,8 @@ const Navbar = () => {
                         display: "flex",
                         justifyContent: "space-between",
                         alignItems: "center",
+                        borderBottom: "1px solid #333",
+                        width: "100%",
                       }}
                     >
                       <Typography
@@ -216,6 +217,8 @@ const Navbar = () => {
                         display: "flex",
                         justifyContent: "space-between",
                         alignItems: "center",
+                        borderBottom: "1px solid #333",
+                        width: "100%",
                       }}
                     >
                       <Typography
@@ -229,7 +232,6 @@ const Navbar = () => {
                           pl: 1,
                           py: 1.5,
                           cursor: "pointer",
-                          borderBottom: "1px solid #333",
                         }}
                       >
                         Logout

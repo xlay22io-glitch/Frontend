@@ -1,20 +1,11 @@
 import { useEffect, useRef } from "react";
-import {
-  Box,
-  Typography,
-  TextField,
-  IconButton,
-  useTheme,
-} from "@mui/material";
+import { Box, Typography, TextField, IconButton, useTheme } from "@mui/material";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 
 import { useCalculator } from "../../hooks/lay-hook";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  calculatorSchema,
-  type CalculatorFormInputs,
-} from "../../utils/validation";
+import { calculatorSchema, type CalculatorFormInputs } from "../../utils/validation";
 import { useAccountInfo } from "../../hooks/auth-hook";
 
 import uploadIcon from "../../assets/icons/upload-icon.svg";
@@ -49,9 +40,14 @@ export const Labeled = ({ children, label, rightLabel }: LabeledProps) => {
           mb: 1,
         }}
       >
-        <Typography sx={{ fontSize: 12, fontWeight: 700, color: "#B3B3B3" }}>
+        <Typography
+          sx={{
+            marginBottom: "8px",
+          }}
+        >
           {label}
         </Typography>
+
         {rightLabel}
       </Box>
       {children}
@@ -67,15 +63,7 @@ type FieldProps = {
   readOnly?: boolean;
 };
 
-export const Field = ({
-  placeholder,
-  inputProps,
-  type = "text",
-  error,
-  readOnly,
-}: FieldProps) => {
-  const fieldBg = "#2A2A2A";
-  const borderSoft = "1px solid rgba(255,255,255,0.08)";
+export const Field = ({ placeholder, inputProps, type = "text", error, readOnly }: FieldProps) => {
   const subText = "#909A9F";
 
   // map RHF ref correctly for MUI
@@ -91,22 +79,25 @@ export const Field = ({
         {...rest}
         InputProps={{ readOnly: readOnly }}
         sx={{
+          "& fieldset": {
+            borderColor: "#3A3A3A !important",
+          },
+          "&:hover fieldset": {
+            border: "1px solid #3A3A3A",
+          },
+          "&.Mui-focused fieldset": {
+            border: "1px solid #3A3A3A",
+          },
           "& .MuiOutlinedInput-root": {
             borderRadius: "28px",
-            bgcolor: fieldBg,
-            color: "#fff !important",
-            "& fieldset": { border: borderSoft },
-            "&:hover fieldset": { borderColor: "rgba(255,255,255,0.16)" },
-            "&.Mui-focused fieldset": { borderColor: "rgba(255,255,255,0.24)" },
+            backgroundColor: "#272727",
+            border: "1px solid #3A3A3A ",
+            color: "white !important",
           },
           "& .MuiInputBase-input::placeholder": { color: subText, opacity: 1 },
         }}
       />
-      {error && (
-        <Typography sx={{ color: "#ff6b6b", fontSize: 12, mt: 0.5 }}>
-          {error}
-        </Typography>
-      )}
+      {error && <Typography sx={{ color: "#ff6b6b", fontSize: 12, mt: 0.5 }}>{error}</Typography>}
     </Box>
   );
 };
@@ -125,9 +116,14 @@ export const Row = ({ label, value }: RowProps) => {
         "& + &": { borderTop: borderSoft },
       }}
     >
-      <Typography sx={{ color: "#E3E3E3", fontWeight: 600, fontSize: 14 }}>
+      <Typography
+        sx={{
+          marginBottom: "8px",
+        }}
+      >
         {label}
       </Typography>
+
       <Typography
         sx={{
           color: theme.palette.primary.main,
@@ -164,16 +160,13 @@ const Calculator = () => {
   useEffect(() => {
     const odd = toNum(totalOdd);
     const stake = toNum(stakeAmount);
-    const result =
-      !isNaN(odd) && !isNaN(stake) ? (odd * stake).toFixed(2) : "0.00";
+    const result = !isNaN(odd) && !isNaN(stake) ? (odd * stake).toFixed(2) : "0.00";
     setValue("win_payout", result);
   }, [totalOdd, stakeAmount, setValue]);
 
   // lose payout
   const losePayout =
-    stakeAmount && !isNaN(toNum(stakeAmount))
-      ? (toNum(stakeAmount) / 5).toFixed(2)
-      : "0.00";
+    stakeAmount && !isNaN(toNum(stakeAmount)) ? (toNum(stakeAmount) / 5).toFixed(2) : "0.00";
 
   useEffect(() => {
     setValue("tip", "Under 0,5g or Correct score 0:0");
@@ -248,10 +241,7 @@ const Calculator = () => {
           >
             <ArrowBackIosNewIcon sx={{ fontSize: 18, color: "#fff" }} />
           </IconButton>
-          <Typography
-            variant="h5"
-            sx={{ fontWeight: 800, color: "#fff", letterSpacing: 0.2 }}
-          >
+          <Typography variant="h5" sx={{ fontSize: "1.5rem", fontWeight: 400 }}>
             Place Back
           </Typography>
         </Box>
@@ -266,7 +256,7 @@ const Calculator = () => {
           {/* Match */}
           <Labeled label="Match">
             <Field
-              placeholder="Enter Match"
+              placeholder="0.00"
               inputProps={register("match")} // optional: ignore if not in schema
             />
           </Labeled>
@@ -300,10 +290,7 @@ const Calculator = () => {
               <Typography sx={{ color: "#B3B3B3", fontSize: 12 }}>
                 Available:{" "}
                 <Box component="span" sx={{ color: accent, fontWeight: 800 }}>
-                  €
-                  {isAccPending
-                    ? "0.00"
-                    : formatNumber(account?.balance) ?? "0.00"}
+                  €{isAccPending ? "0.00" : formatNumber(account?.balance) ?? "0.00"}
                 </Box>
               </Typography>
             }
@@ -319,11 +306,23 @@ const Calculator = () => {
             />
           </Labeled>
         </Box>
+
+        {/* Payout summary box */}
+        <Box
+          sx={{
+            border: "1px solid #3A3A3A",
+            borderRadius: "16px",
+            bgcolor: fieldBg,
+            p: 2,
+            mb: 3,
+          }}
+        >
+          <Row label="Win Payout:" value={`€${watch("win_payout") || "0.00"}`} />
+          <Row label="Lose Payout:" value={`€${losePayout}`} />
+        </Box>
         {/* Upload card */}
         <Box sx={{ my: 3 }}>
-          <Typography
-            sx={{ fontSize: 14, fontWeight: 500, color: labelColor, mb: 1 }}
-          >
+          <Typography sx={{ fontSize: 14, fontWeight: 500, color: labelColor, mb: 1 }}>
             Screenshot Of Your Original Lay
           </Typography>
 
@@ -365,13 +364,9 @@ const Calculator = () => {
             <Typography sx={{ fontWeight: 800, color: accent, mb: 0.5 }}>
               Click to Upload
             </Typography>
-            <Typography sx={{ color: subText, fontSize: 12 }}>
-              (Max. File size: 25 MB)
-            </Typography>
+            <Typography sx={{ color: subText, fontSize: 12 }}>(Max. File size: 25 MB)</Typography>
             {file && (
-              <Typography sx={{ color: "#e5e5e5", fontSize: 12, mt: 1 }}>
-                {file.name}
-              </Typography>
+              <Typography sx={{ color: "#e5e5e5", fontSize: 12, mt: 1 }}>{file.name}</Typography>
             )}
           </Box>
 
@@ -380,23 +375,6 @@ const Calculator = () => {
               {errors.file.message}
             </Typography>
           )}
-        </Box>
-
-        {/* Payout summary box */}
-        <Box
-          sx={{
-            border: "1px solid #3A3A3A",
-            borderRadius: "16px",
-            bgcolor: fieldBg,
-            p: 2,
-            mb: 3,
-          }}
-        >
-          <Row
-            label="Win Payout:"
-            value={`€${watch("win_payout") || "0.00"}`}
-          />
-          <Row label="Lose Payout:" value={`€${losePayout}`} />
         </Box>
 
         {/* Big lime button */}
@@ -409,7 +387,6 @@ const Calculator = () => {
               height: 56,
               borderRadius: 999,
               border: "none",
-              fontWeight: 800,
               fontSize: 16,
               background: String(accent),
               color: "#000",

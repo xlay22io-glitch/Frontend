@@ -18,7 +18,7 @@ const Accordion = styled((props: AccordionProps) => (
 ))(({ theme }) => ({
   borderRadius: "50px",
   overflow: "hidden",
-  border: `2px solid #535353`,
+  border: `1px solid #535353`,
   backgroundColor: "#1A1A1A",
   marginBottom: theme.spacing(2.5),
   "&::before": { display: "none" }, // remove default divider
@@ -128,8 +128,7 @@ const faqs: FaqItem[] = [
   },
   {
     id: "f12",
-    question:
-      "Are there any limits on deposits, bets, or withdrawals in Bitcoin?",
+    question: "Are there any limits on deposits, bets, or withdrawals in Bitcoin?",
     detail:
       "Yes! To ensure smooth and fair play, we have set clear limits: \n•	Minimum deposit: equivalent to 10 EUR in Bitcoin \n •	Minimum stake on bets: equivalent to 10 EUR \n •	Maximum winnings per bet: equivalent to 1000 EUR \n •	Minimum withdrawal: equivalent to 20 EUR in Bitcoin\nThese limits help us keep transactions cost-effective and maintain a safe and enjoyable experience for everyone.",
   },
@@ -143,9 +142,8 @@ const faqs: FaqItem[] = [
 
 const FAQ = () => {
   const [expanded, setExpanded] = useState<string | false>("f2"); // example: second is open
-  const handleChange =
-    (panel: string) => (_e: React.SyntheticEvent, isExpanded: boolean) =>
-      setExpanded(isExpanded ? panel : false);
+  const handleChange = (panel: string) => (_e: React.SyntheticEvent, isExpanded: boolean) =>
+    setExpanded(isExpanded ? panel : false);
 
   return (
     <Box
