@@ -352,7 +352,6 @@ const Home = () => {
                     gap: "20px",
                   }}
                 >
-                  <Typography>0{i + 1}</Typography>
                   <Box
                     sx={{
                       display: "flex",
@@ -361,12 +360,14 @@ const Home = () => {
                     }}
                   >
                     <Box>
-                      <Typography variant="body2">{item.title}</Typography>
+                      <Typography variant="body2">
+                        {i + 1}. {item.title}
+                      </Typography>
                       <Typography
                         variant="body1"
                         sx={{
                           opacity: "70%",
-                          marginTop: "5px",
+                          marginTop: "8px",
                         }}
                       >
                         {item.description}
@@ -570,6 +571,23 @@ const Home = () => {
             </Link>
           </Box>
         </Box>
+        <Typography
+          sx={{
+            fontSize: "20px",
+            fontWeight: 500,
+            fontFamily: "Manrope",
+            margin: "15px 0",
+          }}
+        >
+          Support
+        </Typography>
+        <Typography
+          sx={{
+            opacity: "70%",
+          }}
+        >
+          support@xlay.io
+        </Typography>
       </Box>
       <Footer />
     </Box>

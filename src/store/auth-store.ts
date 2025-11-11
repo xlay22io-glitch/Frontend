@@ -1,5 +1,5 @@
-import { create } from 'zustand';
-import { persist, createJSONStorage } from 'zustand/middleware';
+import { create } from "zustand";
+import { persist, createJSONStorage } from "zustand/middleware";
 
 type AuthState = {
   isAuthenticated: boolean;
@@ -15,7 +15,7 @@ const useAuthStore = create<AuthState>()(
   persist(
     (set) => ({
       user: null,
-      isAuthenticated: true,
+      isAuthenticated: false,
       token: null,
       refreshToken: null,
       questionnaireCompleted: false,
@@ -30,7 +30,7 @@ const useAuthStore = create<AuthState>()(
         }),
     }),
     {
-      name: 'auth-trade-layback-storage',
+      name: "auth-trade-layback-storage",
       storage: createJSONStorage(() => localStorage),
     }
   )

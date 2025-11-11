@@ -60,15 +60,9 @@ const Withdraw = () => {
               placeholder="Enter Your Bitcoin Address"
               sx={{
                 backgroundColor: "#272727",
-                border: "1px solid #3A3A3A ",
+
                 "& fieldset": {
                   borderColor: "#3A3A3A !important",
-                },
-                "&:hover fieldset": {
-                  border: "1px solid #3A3A3A",
-                },
-                "&.Mui-focused fieldset": {
-                  border: "1px solid #3A3A3A",
                 },
               }}
             />
@@ -95,15 +89,9 @@ const Withdraw = () => {
               placeholder="0.00"
               sx={{
                 backgroundColor: "#272727",
-                border: "1px solid #3A3A3A ",
+                // border: "1px solid #3A3A3A ",
                 "& fieldset": {
                   borderColor: "#3A3A3A !important",
-                },
-                "&:hover fieldset": {
-                  border: "1px solid #3A3A3A",
-                },
-                "&.Mui-focused fieldset": {
-                  border: "1px solid #3A3A3A",
                 },
               }}
             />

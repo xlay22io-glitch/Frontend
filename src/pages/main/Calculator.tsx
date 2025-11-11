@@ -82,16 +82,10 @@ export const Field = ({ placeholder, inputProps, type = "text", error, readOnly 
           "& fieldset": {
             borderColor: "#3A3A3A !important",
           },
-          "&:hover fieldset": {
-            border: "1px solid #3A3A3A",
-          },
-          "&.Mui-focused fieldset": {
-            border: "1px solid #3A3A3A",
-          },
+
           "& .MuiOutlinedInput-root": {
             borderRadius: "28px",
             backgroundColor: "#272727",
-            border: "1px solid #3A3A3A ",
             color: "white !important",
           },
           "& .MuiInputBase-input::placeholder": { color: subText, opacity: 1 },
@@ -197,7 +191,6 @@ const Calculator = () => {
   const fieldBg = "#2A2A2A";
   const borderSoft = "1px solid rgba(255,255,255,0.08)";
   const accent = theme.palette.primary.main; // your lime
-  const labelColor = "#B3B3B3";
   const subText = "#909A9F";
 
   return (
@@ -256,7 +249,7 @@ const Calculator = () => {
           {/* Match */}
           <Labeled label="Match">
             <Field
-              placeholder="0.00"
+              placeholder="Enter Match"
               inputProps={register("match")} // optional: ignore if not in schema
             />
           </Labeled>
@@ -287,7 +280,7 @@ const Calculator = () => {
           <Labeled
             label="Stake"
             rightLabel={
-              <Typography sx={{ color: "#B3B3B3", fontSize: 12 }}>
+              <Typography sx={{}}>
                 Available:{" "}
                 <Box component="span" sx={{ color: accent, fontWeight: 800 }}>
                   €{isAccPending ? "0.00" : formatNumber(account?.balance) ?? "0.00"}
@@ -322,7 +315,7 @@ const Calculator = () => {
         </Box>
         {/* Upload card */}
         <Box sx={{ my: 3 }}>
-          <Typography sx={{ fontSize: 14, fontWeight: 500, color: labelColor, mb: 1 }}>
+          <Typography sx={{ fontSize: 14, fontWeight: 500, mb: 1 }}>
             Screenshot Of Your Original Lay
           </Typography>
 
@@ -391,6 +384,7 @@ const Calculator = () => {
               background: String(accent),
               color: "#000",
               cursor: isPending ? "default" : "pointer",
+              fontWeight: 400,
             }}
           >
             {isPending ? "Submitting..." : "Back"}

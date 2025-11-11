@@ -19,8 +19,11 @@ type CustomInputProps = TextFieldProps & {
 };
 
 const DefaultStyledInput = styled(TextField)(() => ({
-  backgroundColor: "#1E2123",
+  backgroundColor: "#272727",
   borderRadius: "50px",
+  "& fieldset": {
+    borderColor: "#3A3A3A !important",
+  },
   "& .MuiOutlinedInput-root": {
     padding: "0 20px",
     paddingLeft: "10px",
@@ -84,9 +87,6 @@ const BoxedStyledInput = styled(TextField)(({ theme }) => ({
     padding: "20px 20px",
     color: "white",
     fontSize: "16px",
-  },
-  "& .MuiOutlinedInput-notchedOutline": {
-    borderWidth: "1px",
   },
 }));
 
