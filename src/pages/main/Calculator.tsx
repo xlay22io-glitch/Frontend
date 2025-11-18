@@ -86,7 +86,7 @@ export const Field = ({ placeholder, inputProps, type = "text", error, readOnly 
 
           "& .MuiOutlinedInput-root": {
             borderRadius: "28px",
-            backgroundColor: "#424242",
+            backgroundColor: "#272727",
             color: "white !important",
           },
           "& .MuiInputBase-input::placeholder": { color: subText, opacity: 1 },
@@ -244,7 +244,7 @@ const Calculator = () => {
           sx={{
             display: "grid",
             gridTemplateColumns: { md: "repeat(2, 1fr)", xs: "repeat(1, 1fr)" },
-            // gap: 2,
+            gap: { md: 2, xs: "unset" },
           }}
         >
           {/* Match */}
