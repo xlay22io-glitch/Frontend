@@ -189,7 +189,7 @@ const Calculator = () => {
   console.log(errors);
   // tokens to match the screenshot
   const cardBg = "#424242";
-  const fieldBg = "#2A2A2A";
+
   const borderSoft = "1px solid rgba(255,255,255,0.08)";
   const accent = theme.palette.primary.main; // your lime
   const subText = "#909A9F";
