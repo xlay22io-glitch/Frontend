@@ -360,7 +360,13 @@ const Home = () => {
                     }}
                   >
                     <Box>
-                      <Typography variant="body2">
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          fontSize: "20px",
+                          lineHeight: "unset",
+                        }}
+                      >
                         {i + 1}. {item.title}
                       </Typography>
                       <Typography
@@ -368,6 +374,7 @@ const Home = () => {
                         sx={{
                           opacity: "70%",
                           marginTop: "8px",
+                          fontSize: "16px",
                         }}
                       >
                         {item.description}

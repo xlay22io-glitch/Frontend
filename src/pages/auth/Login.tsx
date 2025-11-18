@@ -78,11 +78,7 @@ const Login = () => {
               position: "relative",
             }}
           >
-            <CustomInput
-              label="Email"
-              placeholder="Enter your Email"
-              {...register("email")}
-            />
+            <CustomInput label="Email" placeholder="Enter your Email" {...register("email")} />
             {errors.email && (
               <Typography sx={{ color: "red", fontSize: "12px", mt: 0.5 }}>
                 {errors.email.message}
@@ -140,8 +136,8 @@ const Login = () => {
                 ml: 2,
                 textTransform: "none",
                 px: 4,
-                py: "20px",
-
+                py: 3.5,
+                borderRadius: "50px",
                 width: "100%",
               }}
             >

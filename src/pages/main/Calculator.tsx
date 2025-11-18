@@ -64,7 +64,7 @@ type FieldProps = {
 };
 
 export const Field = ({ placeholder, inputProps, type = "text", error, readOnly }: FieldProps) => {
-  const subText = "#909A9F";
+  const subText = "#C1C2C5";
 
   // map RHF ref correctly for MUI
   const { ref, ...rest } = inputProps ?? {};
@@ -79,13 +79,14 @@ export const Field = ({ placeholder, inputProps, type = "text", error, readOnly 
         {...rest}
         InputProps={{ readOnly: readOnly }}
         sx={{
+          color: "#FFFFFF",
           "& fieldset": {
             borderColor: "#3A3A3A !important",
           },
 
           "& .MuiOutlinedInput-root": {
             borderRadius: "28px",
-            backgroundColor: "#272727",
+            backgroundColor: "#424242",
             color: "white !important",
           },
           "& .MuiInputBase-input::placeholder": { color: subText, opacity: 1 },
@@ -187,7 +188,7 @@ const Calculator = () => {
 
   console.log(errors);
   // tokens to match the screenshot
-  const cardBg = theme.palette.grey[900];
+  const cardBg = "#424242";
   const fieldBg = "#2A2A2A";
   const borderSoft = "1px solid rgba(255,255,255,0.08)";
   const accent = theme.palette.primary.main; // your lime
@@ -243,7 +244,7 @@ const Calculator = () => {
           sx={{
             display: "grid",
             gridTemplateColumns: { md: "repeat(2, 1fr)", xs: "repeat(1, 1fr)" },
-            gap: "10px",
+            // gap: 2,
           }}
         >
           {/* Match */}
@@ -299,21 +300,6 @@ const Calculator = () => {
             />
           </Labeled>
         </Box>
-
-        {/* Payout summary box */}
-        <Box
-          sx={{
-            border: "1px solid #3A3A3A",
-            borderRadius: "16px",
-            bgcolor: fieldBg,
-            p: 2,
-            mb: 3,
-          }}
-        >
-          <Row label="Win Payout:" value={`€${watch("win_payout") || "0.00"}`} />
-          <Row label="Lose Payout:" value={`€${losePayout}`} />
-        </Box>
-        {/* Upload card */}
         <Box sx={{ my: 3 }}>
           <Typography sx={{ fontSize: 14, fontWeight: 500, mb: 1 }}>
             Screenshot Of Your Original Lay
@@ -369,6 +355,20 @@ const Calculator = () => {
             </Typography>
           )}
         </Box>
+        {/* Payout summary box */}
+        <Box
+          sx={{
+            border: "1px solid #3A3A3A",
+            borderRadius: "16px",
+            bgcolor: "#2727274D",
+            p: 2,
+            mb: 3,
+          }}
+        >
+          <Row label="Win Payout:" value={`€${watch("win_payout") || "0.00"}`} />
+          <Row label="Lose Payout:" value={`€${losePayout}`} />
+        </Box>
+        {/* Upload card */}
 
         {/* Big lime button */}
         <Box sx={{ mt: 1 }}>

@@ -3,10 +3,7 @@ import CustomInput from "../../components/common/CustomInput";
 import CustomButton from "../../components/common/CustomButton";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  type RegisterFormInputs,
-  registerSchema,
-} from "../../utils/validation";
+import { type RegisterFormInputs, registerSchema } from "../../utils/validation";
 import { useRegister } from "../../hooks/auth-hook";
 import { Link } from "react-router-dom";
 
@@ -55,10 +52,7 @@ const Register = () => {
         >
           Welcome! 👋
         </Typography>
-        <Typography
-          variant="body1"
-          sx={{ opacity: "70%", marginBottom: "20px" }}
-        >
+        <Typography variant="body1" sx={{ opacity: "70%", marginBottom: "20px" }}>
           Please Register to open your own personal account!
         </Typography>
         <Box
@@ -141,7 +135,8 @@ const Register = () => {
               sx={{
                 textTransform: "none",
                 px: 3,
-                py: 2.5,
+                py: 3.5,
+                borderRadius: "50px",
                 mt: 3,
                 height: "36px",
                 width: "100%",
