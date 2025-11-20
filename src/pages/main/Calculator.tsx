@@ -188,7 +188,6 @@ const Calculator = () => {
 
   console.log(errors);
   // tokens to match the screenshot
-  const cardBg = "#424242";
 
   const borderSoft = "1px solid rgba(255,255,255,0.08)";
   const accent = theme.palette.primary.main; // your lime
@@ -321,7 +320,7 @@ const Calculator = () => {
             sx={{
               border: "2px dashed rgba(255,255,255,0.12)",
               borderRadius: "20px",
-              bgcolor: cardBg,
+              backgroundColor: "#272727",
               py: 5,
               textAlign: "center",
               cursor: "pointer",
